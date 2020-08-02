@@ -1,0 +1,1316 @@
+* DONE 学习下rtx 
+* TODO write demo for vulkan tutorial!!!
+
+** TODO write demo with two cubes with lighting, materials
+
+
+use std140
+
+use scalar
+
+
+
+//render two triangles
+
+//add plane
+
+//render with light:
+std140: float with mat3,mat4???
+
+
+////with textures(two textures)
+
+
+////scenes + materials + textures
+//scenes + materials
+
+
+
+
+
+
+//shadow ray
+
+
+//arcball camera
+
+
+
+render cube:
+add depth texture
+
+
+
+////render gltf model for show!
+
+
+
+
+//solve the issues!!!
+e.g. include, bug report, ...
+
+
+
+
+
+
+
+
+
+
+
+** DONE second tutorial
+
+** DONE fix SceneObjOffsetData
+
+
+
+
+** DONE 3 tutorial
+
+
+** DONE fix:add materialIndex 
+
+
+** DONE reflect tutorial
+
+fix normal
+
+
+
+
+** DONE multiple hit
+
+
+** TODO animation
+
+//use instanceBuffer
+
+
+//update tlas
+
+
+
+update blas:
+
+TODO fix: update vertex buffer to blas!!!
+test scene only has one gameObject and one vertices
+
+
+TODO feat: scene has static and dynamic vertices!
+
+
+
+
+** TODO switch to reason
+
+
+*** DONE create new project
+
+
+
+
+*** DONE install
+
+*** DONE pass render triangle
+
+
+install webgpu(origin repo):
+//run triangle example!!!
+
+
+
+//run ray tracing triangle example!!!
+
+
+
+
+
+
+*** DONE pass basic rt triangle
+
+
+*** DONE pass vertex animation(no light, no material, ...)
+
+
+
+*** DONE expose api
+addTransform, ...
+
+add basic test:
+test main data!
+
+
+*** DONE add remains
+
+add arcball camera
+
+////add transform animation
+
+
+no dynamic vertex
+
+
+
+
+
+
+
+** DONE begin new tutorial
+
+
+
+
+*** DONE gbuffer with rasterization
+pos
+normal
+diffuse texture + shininess
+specular color + depth
+
+
+*** TODO add debug button
+now to show different channel color!
+
+
+*** DONE add lambert and shadow
+
+/*
+two direction lights
+
+random shadow ray
+*/
+
+
+gbuffer:
+world position(rgb16)
+world normal
+diffuse(rgb8)
+specular + shininess(rgba8)
+
+//depth(depth24)
+//velocity(rg16)
+
+
+//finish draft
+
+
+//pass compile
+
+
+run test gbuffer:
+//depth
+//position(without modelMatrix)
+
+
+
+
+
+one direction light
+
+one shadow ray
+
+////add one sphere
+
+one triangle + one plane
+
+
+
+run test:
+TODO why has 4 parts???
+
+//should show shadow!!!
+
+
+
+
+
+** TODO denoise
+
+
+
+我终于把TAA实现了，包括下面的部分：
+basic taa
+unjitter uv
+cloest veloty
+yoco space
+clip to aabb
+tone map
+最后输出的时候混合参数（就是刚刚说alpha取0.05的那个）可以根据画面动静变化，也就是说根据速度矢量的大小进行插值，还可以考虑把历史和当前帧的差距考虑进去，我目前设置的是静态0.03，动态0.12。
+
+
+*** DONE taa
+
+//learn js taa
+
+//use unjitter +  no cloest veloty, no clip, no filter, no tone map, no yoco space, no variant clip
+
+//unjitter
+////mix not work?
+//motion error:
+   //check motionVector, lastModelMatrix
+   //move triangle by anim! to reproduce ghost!
+
+
+//fix noise???
+
+//solve ghost
+
+
+//use yoco space
+
+
+solve filter:
+//tone map
+
+
+
+//add edge closest
+
+
+
+//最后输出的时候混合参数（就是刚刚说alpha取0.05的那个）可以根据画面动静变化，也就是说根据速度矢量的大小进行插值，还可以考虑把历史和当前帧的差距考虑进去，我目前设置的是静态0.03，动态0.12。
+
+
+
+//add each one to test:
+camera move/gameObject move
+gchost
+ficker
+
+
+
+*** DONE bmfr
+
+**** DONE learn bmfr algorithm
+
+Before inputting the 1 spp input into our post-processing pipeline,
+we remove first bounce surface albedo from it. Reconstructing without albedo is a common practice 
+
+because it ensures
+that high-frequency details in first-bounce textures are not blurred
+by the filter. 
+
+
+
+
+Preprocessing:
+
+In the reprojection process, worldspace positions and shading normals are used to test whether we
+can accumulate previous data or have to fall back to the current
+frame’s 1 spp path-traced result.
+
+Computing the cumulative moving average
+
+
+We use bilinear sampling of the history data and do a discard test
+for each pixel separately
+
+
+
+
+
+
+BMFR:
+
+feature regression operated on non-overlapping image blocks, covering the entire single frame
+
+
+
+
+
+
+
+
+**** DONE learn bmfr implement code
+
+
+**** DONE shadow noise
+
+two lights
+
+
+////remove taa pass(only show), not jitter
+
+
+
+
+////**** TODO temporl accumulate
+
+
+
+**** DONE implement bmfr
+
+***** DONE preprocess
+
+////need unjitter???
+
+move taa pass after preprocess pass
+
+
+
+debug with preprocess only:
+////ghost
+
+
+//not jitter: only jitter in taa glsl???
+
+//why move with not work?
+
+
+
+
+//debug with taa:
+taa bug
+
+
+
+
+
+
+
+***** DONE regression
+
+//finish draft
+
+
+
+test only regression:
+
+//no specular!
+
+
+test with preprocess + taa
+
+
+***** DONE postprocess
+
+//draft
+
+
+test with pre+reg+post:
+
+ghost
+
+small shadow disappear:
+shadow lag???
+
+
+test with taa
+
+
+
+
+demodulate in preprocess, modulate in postprocess?
+
+
+
+////***** TODO optimize taa with the bmfr source code
+
+
+////***** TODO fix ghost!
+
+////***** TODO fix
+
+
+move ficker
+
+
+
+
+** DONE 加入捐赠者信息到README！！！
+
+** TODO global illumination
+
+*** DONE add diffuse
+
+//fix
+
+
+write draft:
+finish glsl
+finish pass draft, pass compile
+
+
+pass run test:
+need verify!
+
+indirect light has noise!
+
+
+
+
+
+////*** TODO add specular
+
+
+*** DONE verify correct
+
+learn one bounce global illumination!!!
+
+
+compute right image!!!and compare it with the rendered result!!!
+
+
+
+*** DONE learn monte and how to improve monte(e.g. importance sampling)
+
+
+//how cos hei:
+https://www.cnblogs.com/lv-anchoret/p/10518961.html
+
+
+
+
+//direct sampling
+
+
+//rect/sphere light source sampling
+
+
+
+//learn more references
+
+
+
+*** DONE think rect light + direction light
+
+
+//learn composite importance sampling
+
+//know randowm shadow why compute?
+
+
+////fix direct light + indirect light 
+
+//think multiple xz rect lights + multiple direction lights
+
+
+
+
+
+
+
+**** DONE think how to use direct light sample in rt pipeline?
+
+brdf
+
+
+
+**** TODO fix Compute our Lambertian shading color
+
+relearn http://cwyman.org/code/dxrTutors/tutors/Tutor9/tutorial09.md.html
+
+Compute our Lambertian shading color using the physically based Lambertian term (albedo / pi)
+
+remove specular???
+
+
+use Lambertian reflectance model
+
+
+
+
+
+
+
+
+
+
+*** DONE fix noise
+
+indirect light has noise! 
+description:
+should test one light
+(only has indirect noise!)
+
+reason:
+////the post process pass has noise!!!
+
+the specular indirect light has noise!!!
+
+
+
+refer to https://www.scratchapixel.com/lessons/3d-basic-rendering/global-illumination-path-tracing -> Using Indirect Diffuse Sampling Method to Compute Indirect Specular Is Inefficient
+
+
+solution:
+add preprocess pass?
+use blue noise?
+The direction of the secondary ray is decided based on importance sampling
+more???
+fix specular???
+test sphere!?
+
+
+
+
+
+
+
+//why specular wrong???
+
+can CGX specular lobe fix???
+
+
+
+*** DONE learn GGX model
+
+
+**** DONE learn
+
+
+**** DONE direct light
+
+***** note
+
+phong model implement has bugs:
+shadow
+compute diffuse should add "/ PI"
+
+
+***** TODO implement
+ggx
+
+
+use pbrMaterial
+
+
+gbuffer add:
+metalness
+roughness
+specular
+
+
+
+fix:
+////diffuse: add * baseColor
+(direct, indirect)
+
+
+TODO fix:
+indirect->diffuse, specular has much noise!
+(pdf wrong!!!!????)
+
+
+indirect->diffuse has much noise:
+direct GGX cause noise!
+
+
+
+reason:
+fireflies : 
+One source of noise is “fireflies”
+A problem with Monte Carlo is that if you happen to sample a low probability part of the
+PDF and then that ray hits something bright in the scene, you’ll end up dividing the bright
+value by a really small number and the result can explode. On average, this is indeed
+correct and that energy should be in the scene, but in practice it means that every now and
+then you get one super bright pixel for one frame, and it flickers and looks terrible. So,
+don’t do that. Clamp the minimum PDF value, the maximum radiance, run an outlier
+detection at the end…and just throw away that energy to make the scene stable.
+Production renderers all do this.
+
+refer to:
+https://alain.xyz/blog/raytracing-denoising -> firefly-rejection
+(https://alain.xyz/blog/raytracing-denoising#firefly-rejection)
+
+https://www.google.com/search?ei=P3zoXqLuOJHr-wTE47qgDw&q=raytracing+noise+fireflies&oq=raytracing+noise+fireflies&gs_lcp=CgZwc3ktYWIQAzIGCAAQBxAeMggIABAIEAcQHjIICAAQCBAHEB4yCAgAEAgQBxAeMggIABAIEAcQHjIICAAQCBAHEB4yCAgAEAgQBxAeMggIABAIEAcQHjIICAAQCBAHEB4yCAgAEAgQBxAeOgQIABBDOgIIAFDtBViKKmCPK2gAcAB4AIABuwKIAbkokgEGMi0xNC40mAEAoAEBqgEHZ3dzLXdpeg&sclient=psy-ab&ved=0ahUKEwjiiZqP74XqAhWR9Z4KHcSxDvQQ4dUDCAw&uact=5
+
+
+
+solution:
+////denoise twice(need separate buffers!)?
+
+Increase Roughness Per Bounce
+
+different gtr2 clamp between direct light, indirect light
+
+
+add sampleCount:
+uint sampleCount = 10;
+// uint sampleCount = 1;
+
+  for (uint ss = 0; ss < sampleCount; ++ss) {
+    vec3 jitteredCameraPosition = vec3(
+      uCamera.cameraPosition.x + rnd(seed),
+      uCamera.cameraPosition.y + rnd(seed),
+      uCamera.cameraPosition.z + rnd(seed)
+    );
+
+    vec3 jitteredV = normalize( jitteredCameraPosition - worldPosition.xyz);
+
+
+    // hitValue += computeDirectLight(seed, tMin, lightCount, worldPosition.xyz,
+    //                                worldNormal, jitteredV, shading, topLevelAS);
+
+    if (doIndirectGI) {
+      vec3 indirectLight = computeIndirectLight(seed, tMin, worldPosition.xyz,
+                                       worldNormal, jitteredV, shading, topLevelAS);
+
+float maxValue = 4.0;
+
+  indirectLight = vec3( clamp(indirectLight.x, 0.0, maxValue), clamp(indirectLight.y, 0.0, maxValue),clamp(indirectLight.z, 0.0, maxValue));
+
+  hitValue += indirectLight;
+    }
+    }
+
+
+
+
+
+TODO learn:
+Path Space Regularization for Holistic and Robust Light Transport
+Reweighting Firefly Samples for Improved Finite-Sample Monte Carlo Estimates
+
+
+
+
+
+
+
+
+//move common_data.glsl
+
+
+
+
+
+
+
+TODO:
+//need test reflect(add one triangle for test!)
+
+
+
+**** DONE indirect light
+
+pdf
+
+
+
+*** DONE fix indirect specular aa
+
+no jitter V?
+
+
+*** DONE try fix indirect specular noise
+
+
+
+
+//use regular grid to sample all random in one frame(900 sample count)
+
+
+
+
+
+////*** TODO why diffuse so dim???
+
+
+*** DONE add multiple bounce architecture
+
+at least 2 bounce
+
+
+
+
+
+*** DONE build complicate scene to test
+
+add cube, spheres
+
+
+
+
+
+
+**** DONE try fix indirect diffuse noise???
+
+
+
+
+*** DONE improve image quality
+
+implement accum
+
+
+
+
+accum for a few frames, then use denoise
+
+
+
+
+
+
+
+////*** TODO add tonemap pass?
+
+add output pass before the pass?
+
+tonemap pass only change output color, not change pixels buffer?
+
+
+
+** DONE back up data
+
+
+
+////** TODO move website to tencent cloud
+
+
+
+
+** TODO update newest webgpu node
+
+
+pass current WebGPU-RTX
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** TODO write articles to share raytracing learning
+
+
+
+** TODO summary chrome collections
+
+
+
+
+** TODO learn and use newest rt features
+test VK_KHR_ray_tracing feature! 
+
+https://news.developer.nvidia.com/whats-new-in-nvidia-vkray/
+
+*** TODO learn Callable Shader
+https://nvpro-samples.github.io/vk_raytracing_tutorial_KHR/vkrt_tuto_callable.md.html
+
+
+*** TODO learn Ray Query
+https://nvpro-samples.github.io/vk_raytracing_tutorial_KHR/vkrt_tuto_rayquery.md.htm
+
+
+
+*** TODO use
+
+
+
+** TODO learn WebGPU-Path-Tracer
+
+
+
+*** DONE learn
+
+
+*** DONE add metallic in ggx
+
+baseColor
+
+metallic
+
+roughness
+
+specular
+
+
+
+no normal map now!
+
+
+
+
+
+*** TODO add bsdf for transparent, refract
+
+refer to:
+https://sergeyreznik.github.io/metal-ray-tracer/part-4/index.html
+
+https://www.google.com/search?q=bsdf+ray+tracing&oq=bsdf+ray+tracing&aqs=chrome..69i57j69i60l2j69i65l2j69i60j69i61j69i60.2303j0j7&sourceid=chrome&ie=UTF-8
+
+https://www.cs.cornell.edu/~srm/publications/EGSR07-btdf.pdf
+
+https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_slides.pdf
+
+https://zhuanlan.51cto.com/art/201904/594881.htm
+
+
+
+*** TODO test with sphere
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** TODO use texture array instead of bindless texture
+
+the current alternative is descriptor indexing which is enabled in my fork. If you want to sample textures with different sizes, then use a plain buffer and do the texture filtering (e.g. linear) inside the shader
+
+
+try descriptor-indexing:
+basically descriptor-indexing is a better deisgn for an implementation that has "performing validation and verification" as one of the concerns in its scope.
+
+
+refer to : https://github.com/gpuweb/gpuweb/issues/380
+
+
+
+
+
+////*** TODO load with gltf(pbr material)
+
+
+
+
+*** TODO use metal, rough, normal map
+
+
+
+
+*** TODO demo(sphere)
+
+
+
+
+*** TODO gamma correction
+
+refer to:
+https://learnopengl-cn.readthedocs.io/zh/latest/05%20Advanced%20Lighting/02%20Gamma%20Correction/
+https://forum.substance3d.com/index.php?topic=8745.0
+
+
+should handle gamma correction for map(e.g. albedo,roughness,normal map)!
+
+
+
+*** TODO render ldr model(with pbr material, no map, at most one envMap)
+
+
+
+
+
+
+
+** TODO virtual texture
+
+investigation:
+descriptor index?
+texture array?
+bindless texture?
+
+
+
+can use texture array refer to WebGPU-Path-Tracer
+
+
+
+refer to:
+https://zhuanlan.zhihu.com/p/148283184
+
+
+
+
+
+////** TODO load model/add cube, spheres
+
+
+
+
+
+
+
+
+
+////** TODO electron demo for editor and engine
+
+use webgpu node
+
+
+
+
+
+
+
+** TODO multi-thread ray tracing to mutiple cloud servers
+
+
+*** TODO multi-thread in webgpu
+
+
+
+
+*** TODO multi-thread ray tracing
+
+e.g. split sampleCount to servers, ...
+
+
+
+
+
+
+** TODO fix and improve static render, support more materials and render effect
+
+*** TODO optimize
+
+use less geometry container(e.g. the same sphere should in one geometry container)
+
+
+
+
+*** TODO add denoiser for monte Carlo
+
+
+try to use NVIDIA's Optix Denoiser:
+https://github.com/maierfelix/nvk-optix-denoiser
+https://research.nvidia.com/publication/interactive-reconstruction-monte-carlo-image-sequences-using-recurrent-denoising
+https://developer.nvidia.com/optix-denoiser
+
+
+
+more denoiser:
+https://www.ece.ucsb.edu/~psen/PaperPages/removing_MC_noise.html
+https://studios.disneyresearch.com/wp-content/uploads/2019/03/Denoising-Deep-Monte-Carlo-Renderings-1.pdf
+https://perso.telecom-paristech.fr/boubek/papers/BCD/
+
+
+
+
+*** TODO try fix indirect specular noise
+
+
+
+
+
+
+**** TODO sample VNDF instead of NDF
+
+basic learning:
+http://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Reflection_Functions.html
+https://hal.archives-ouvertes.fr/tel-01291974/file/TH2015DupuyJonathan2.pdf
+
+
+
+refer to:
+http://jcgt.org/published/0007/04/01/slides.pdf
+https://github.com/NVIDIA/Q2RTX/issues/40
+https://stackoverflow.com/questions/58248624/implementing-ggx-vndf-importance-sampling-with-dxr
+http://jcgt.org/published/0007/04/01/paper.pdf
+https://schuttejoe.github.io/post/ggximportancesamplingpart1/
+https://schuttejoe.github.io/post/ggximportancesamplingpart2/
+
+
+
+
+
+**** TODO use blue noise
+
+refer to:
+http://psgraphics.blogspot.com/2018/10/flavors-of-sampling-in-ray-tracing.html
+https://hal.archives-ouvertes.fr/hal-02158423/file/blueNoiseTemporal2019_slides.pdf
+https://belcour.github.io/blog/research/2019/06/18/animation-bluenoise.html
+https://zhuanlan.zhihu.com/p/90017623
+
+
+
+**** TODO improve multiple bounce indirect specular
+
+refer to:
+https://books.google.com/books?id=MNqRDwAAQBAJ&pg=PA307&lpg=PA307&dq=multiple+bounce+denoise&source=bl&ots=L2-P4gakwu&sig=ACfU3U0uj84QokBfStFL-vCu_d7uP1tCew&hl=zh-CN&sa=X&ved=2ahUKEwi-laLlq5fqAhXNuZ4KHT52BTwQ6AEwAXoECAkQAQ#v=onepage&q=multiple%20bounce%20denoise&f=false
+
+solutions may include:
+apply reflection denoise filter;
+adaptive multiple bounce;
+...
+
+
+
+
+**** TODO remove causicts/indirect specular noise(use photon mapping)
+
+current solution:
+increase indirect specular sample count;
+refer to https://www.scratchapixel.com/lessons/3d-basic-rendering/global-illumination-path-tracing -> Using Indirect Diffuse Sampling Method to Compute Indirect Specular Is Inefficient, indirect diffuse lobe -> bounced color only compute diffuse(wrong???);
+clamp;
+
+
+
+
+
+
+bi-directional path tracing
+
+VCM
+
+photon mapping
+
+
+refer to:
+https://www.chaosgroup.com/blog/what-are-caustics-and-how-to-render-them-the-right-way
+https://www.google.com/search?newwindow=1&safe=strict&sxsrf=ALeKk01n-OItg1YKvMHeMZjrdRynklBylA%3A1592638894627&ei=rr3tXszqJdKE-gTr1r-gCQ&q=Efficient+Caustic+Rendering+with+Lightweight+Photon+Mapping&oq=Efficient+Caustic+Rendering+with+Lightweight+Photon+Mapping&gs_lcp=CgZwc3ktYWIQDDIECCMQJ1DL5g5Yy-YOYK_wDmgAcAB4AIABlwKIAacEkgEDMi0ymAEAoAECoAEBqgEHZ3dzLXdpeg&sclient=psy-ab&ved=0ahUKEwjM-cac8o_qAhVSgp4KHWvrD5QQ4dUDCAw
+<<ray tracing gems>> -> photon mapping
+https://forums.newtek.com/showthread.php/157274-Specular-indirect
+
+
+
+
+
+
+
+**** TODO more
+
+http://openaccess.thecvf.com/content_cvpr_workshops_2015/W10/papers/Zhang_SparkleVision_Seeing_the_2015_CVPR_paper.pdf
+
+https://cseweb.ucsd.edu/~ravir/stochastic.pdf
+
+
+*** TODO improve ggx pdf?
+
+https://www.google.com/search?q=ggx+pdf&oq=ggx+pdf&aqs=chrome..69i57j35i39l2j0l5.1591j0j7&sourceid=chrome&ie=UTF-8
+
+
+*** TODO learn
+
+
+http://cwyman.org/presentations/SIG2019_OpenProblems_TowardPathTracingInGames_wNotes.pdf
+
+http://brechpunkt.de/q2vkpt/
+
+https://news.developer.nvidia.com/turning-up-the-lights-interactive-path-tracing-scenes-from-a-short-film/
+
+
+
+
+read <<ray tracing gems>> related articles
+
+
+https://dl.acm.org/doi/fullHtml/10.1145/3384382.3384534
+
+
+
+
+PRODUCTION-SCALE REAL-TIME RAY TRACING:
+http://rtintro.realtimerendering.com/3-Production.pdf
+
+
+A Low-Discrepancy Sampler that Distributes Monte Carlo Errors as a Blue Noise in Screen Space:
+https://belcour.github.io/blog/research/2019/06/17/sampling-bluenoise.html
+
+
+Distributing Monte Carlo Errors as a Blue Noise in Screen Space by Permuting Pixel Seeds Between Frames:
+https://belcour.github.io/blog/research/2019/06/18/animation-bluenoise.html
+
+
+
+
+** TODO fix and improve bmfr
+
+
+*** TODO add pre process pass
+
+
+*** TODO fix bug: render a sphere with specific diffuse, around will has red circle!!!
+
+description
+sphere with (0.11, 0.0, 0.5) diffuse has the bug:
+ let state = _createSphere (((10.0, 0.0, 10.0), (0.,0.,0.)), ((0.11,0.0,0.5), 0.95, 0.0001, 0.00001), state);
+
+ let _createSphere = ((translation, rotation), (diffuse, specular, metalness, roughness), state) =>{
+  let (sphere, state) = GameObject.create(state);
+
+  let (tran3, state) = Transform.create(state);
+  let state =
+    state
+    |> Transform.setTranslation(tran3, translation)
+    |> Transform.setRotation(tran3, rotation)
+    |> Transform.setScale(tran3, (1.,1.,1.));
+
+    let radius = 2.;
+    let bands = 20;
+
+  let (geo3, state) = Geometry.create(state);
+  let state =
+    state
+    |> Geometry.setVertexData(geo3, Geometry.buildSphereVertexData(radius, bands))
+    |> Geometry.setIndexData(geo3, Geometry.buildSphereIndexData(bands));
+
+  let (mat3, state) = PBRMaterial.create(state);
+  let state =
+    state
+    |> PBRMaterial.setDiffuse(mat3, diffuse)
+    |> PBRMaterial.setSpecular(mat3, specular)
+    |> PBRMaterial.setMetalness(mat3, Js.Math.min_float(metalness, 0.99))
+    |> PBRMaterial.setRoughness(mat3, Js.Math.max_float(0.01, roughness));
+
+  let (shader3, state) = Shader.create(state);
+  let state = state |> Shader.setHitGroupIndex(shader3, 0);
+
+  let state =
+    state
+    |> GameObject.addTransform(sphere, tran3)
+    |> GameObject.addGeometry(sphere, geo3)
+    |> GameObject.addPBRMaterial(sphere, mat3)
+    |> GameObject.addShader(sphere, shader3);
+
+    state
+};
+
+
+
+
+*** TODO reduce ghost
+
+
+*** TODO improve specular hightlights
+
+description
+caused by indirect specular !
+
+see pdf -> 8 LIMITATIONS
+
+
+
+** TODO improve more
+
+
+
+
+*** TODO texture lod
+https://media.contentapi.ea.com/content/dam/ea/seed/presentations/2019-ray-tracing-gems-chapter-20-akenine-moller-et-al.pdf
+
+
+
+
+** TODO load gltf model
+
+
+*** TODO implement simple one just for run test
+
+
+
+*** TODO test beautiful scene !!!
+
+spon
+
+...
+
+
+
+
+
+
+
+** TODO write articles
+
+
+** TODO event sourcing demo
+
+
+
+
+
+
+** TODO indirect draw
+
+
+optimize gbuffer
+
+
+
+
+
+
+
+
+
+
+** TODO extend demo for engine
+
+
+
+** TODO extend demo for editor
+
+
+
+** TODO add charge
+
+sss,
+
+
+** TODO add push to server
+
+xh already have done this! find and recover it!
+
+
+
+
+
+
+
+
+** TODO imgui
+change webgl to webgpu
+
+
+
+** TODO optimize
+*** TODO access all textures in the scene
+
+bindless texture???
+
+https://github.com/KhronosGroup/Vulkan-Docs/blob/master/appendices/VK_EXT_descriptor_indexing.txt
+https://devblogs.nvidia.com/improved-glsl-syntax-vulkans-descriptorset-indexing/
+http://chunkstories.xyz/blog/a-note-on-descriptor-indexing/
+
+
+now can use virtual texture instead!
+
+or update dawn-ray-tracing and node webgpu, try use texture array(has added texture array example in node webgpu repo!)
+
+try descriptor indexing extension?
+
+
+
+
+
+*** TODO GLSL Compiler optimisations
+use GL_EXT_control_flow_attributes and #pragma optionNV(fastmath on)...
+
+https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_control_flow_attributes.txt
+https://www.gamedev.net/forums/topic/571738-glsl-compiler-optimisations/
+
+
+
+* TODO learn tiny-rtx
+
+
+
+
+* TODO hybrid render 
+
+
+** TODO defer shading for direct light
+
+
+
+** TODO ...
+
+
+

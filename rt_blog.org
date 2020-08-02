@@ -1,0 +1,40 @@
+prepare environment
+
+basic rt
+
+
+
+monte integration:
+
+learn monte integration
+
+
+implement multiple light source->shadow
+
+
+implement gi(one bounce):
+use frame accumulation to reduce noise(path trace)
+
+
+
+implement rect/sphere light source sampling?
+
+
+
+
+
+
+denoise:
+
+implement denoise
+
+
+
+
+GGX:
+
+diffuse lobe
+
+specular lobe
+
+

@@ -1,0 +1,53 @@
+* TODO update Website-Template
+** DONE add devServer in webpack
+
+devServer: {
+        
+        compress: true,
+        port: 8090
+        
+    },
+https://www.webpackjs.com/configuration/dev-server/#devserver-contentbase
+
+
+////** TODO use contract check
+
+by decorator
+
+edit from wonder-log???
+
+move Log.fatal logic to @requireCheck
+
+
+** DONE add router
+
+
+** DONE use HashRouter to solve copy url problem
+
+
+
+
+
+** TODO update Model 3d Website when check @ruida code!
+
+
+
+* DONE build test, online env; add travis ci; add bumprc to release version;
+
+for:
+model project;
+exportlist-service project;
+exportlist-application project;
+
+
+
+* TODO add prod network, render1
+
+
+
+* TODO handle fatal
+
+use try catch to handle fatal!
+
+handle:
+jump to error page, show message and stack!

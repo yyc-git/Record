@@ -1,0 +1,1 @@
+cloudbase hosting:deploy ./ -e testldr1-3t3vf

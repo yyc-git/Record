@@ -1,0 +1,14 @@
+* DONE cullMode not work!
+cullMode should not work for ray tracing!!!
+
+
+
+* TODO how to prepare bindless textures for rt?
+so try to use virtual texture???
+
+** webgpu not has texture/sampler array!
+https://lists.w3.org/Archives/Public/public-gpu/2019Nov/0016.html
+
+
+** webgpu not support bindless texture
+https://github.com/gpuweb/gpuweb/issues/380

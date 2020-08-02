@@ -1,0 +1,41 @@
+foreach sample:
+if(is fireFly(s)){
+    newS = N/k * r * s;
+}
+else{
+    newS = s;
+}
+
+
+
+
+compute r*: reliability
+
+find fireflies samples
+
+reweight them
+
+Value-Based Lower Bounds
+
+
+
+
+asc sort
+
+
+
+
+* TODO 
+//pass glsl compile
+
+run test:
+should add :
+  // allow re-weighting to be disabled esily for the viewer demo
+  if (!(oneOverK < 1.e6)) {
+    return 1.0;
+  }
+
+
+  one big casade buffeer
+
+

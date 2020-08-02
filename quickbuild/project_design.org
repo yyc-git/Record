@@ -1,0 +1,67 @@
+load:
+
+one main model
+
+
+part -> step
+
+
+step -> part as sub models
+
+
+isPrimitive
+
+computeIsPart
+
+
+remove cleanup ???
+
+
+
+Generator basic primitives, not load them!!!
+
+
+
+setPartType
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+generate:
+
+
+one file = one part 
+
+
+main model->each sub model has(main model shouldn't be part!):
+one line geometry(one material) + one conditional line geometry(one material) +  multiple triangle geometries(key is color id. one color id has one triangle geometry)?
+
+
+
+
+
+one part:
+use idx to map vertex in vertices array
+
+merge one part's all (geometries and sub models' geometries) -> vertices to one vertices array
+
+one color id of the triangle point has one mesh+one geometry+one material
+
+
+
+
+main model/FILE isn't part, so go to:
+ this.steps.forEach(step => step.generateThreePart(loader, c, p, r, cull, inv, mc, taskList));
+
+
+

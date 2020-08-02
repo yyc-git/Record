@@ -1,0 +1,246 @@
+安装最新的vulkan sdk
+
+查询vulkan sdk版本：
+cmd:
+vulkaninfo
+
+
+
+
+
+
+
+
+
+TODO finish fork webgpu:
+////add include
+rewrite README.md
+
+(update package.json->dependencies)
+
+
+
+
+
+
+
+
+
+set http_proxy=http://http-dyn.abuyun.com:9020
+
+
+
+
+
+XWS38rL4
+
+EWAVKDEUXMAV34X6DUN5WVK
+
+
+
+
+set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+
+
+
+should install vs2017/2019
+
+
+
+"Debugging Tools for Windows" feature from the Windows 10 SDK:
+只勾选debuger
+然后在下载文件夹中，运行 X64 Debuggers And Tools-x64_en-us
+
+
+or:
+npm install --global --production windows-build-tools
+
+
+
+
+
+
+
+////when ninja -C out/Shared:
+error:
+ImportError: No module named win32file:
+
+
+python -m pip install pywin32
+
+
+
+
+npm run all --dawnversion=0.0.1  :
+
+shoud run:
+set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+
+
+
+if error:
+Error: Could not find any Python installation to use:
+solution: 
+npm run all --dawnversion=0.0.1 --python="C:\Users\Administrator\Downloads\depot_tools\bootstrap-3_8_0_chromium_8_bin\python\bin\python.exe"
+
+
+
+
+gn gen out/Shared --ide=vs --target_cpu="x64" --args="is_component_build=true is_debug=false is_clang=false"
+
+
+
+or:
+In case python wasn't found:
+
+Use where python to get the location of your python installation
+Repoint it by running e.g. npm config set python C:\depot_tools\python.bat
+
+
+
+
+
+
+
+
+
+
+/*
+webgpu/lib/include/ should add dawn/,dawn_native/,dawn_wire/,
+
+shaderc/:
+https://github.com/google/shaderc/tree/master/libshaderc/include/shaderc
+
+
+...
+*/
+
+
+
+
+
+still has bug for ray tracing demo in webgpu node!:
+Error: shader:3: error: '#pragma': invalid stage for 'shader_stage' #pragma: 'raygen'
+
+fixed by author:
+need fix dawn-ray-tracing/.../shaderc.cpp!!!
+
+
+
+
+
+
+https://maierfelix.github.io/chromium-ray-tracing-demo/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+node --experimental-modules examples/hello-triangle.mjs
+node --experimental-modules examples/interactive-triangle.mjs
+node --experimental-modules examples/ray-tracing/index.mjs
+node --experimental-modules examples/textured-cube.mjs
+node --experimental-modules examples/interactive-triangle.mjs
+
+
+
+
+
+
+
+
+
+
+哈哈，配置了3天，我终于把webgpu+rtx跑通了！！！使用了ray tracing pipeline(如raygen shader等)！！！
+性能真是比webgl的ray tracing好得多啊！！！
+
+
+我使用了开源的node webgpu，它底层用nodejs封装了c++模块（使用vulkan的VK_KHR_ray_tracing扩展），从而在webgpu中能够使用ray tracing pipeline!!!
+我在我电脑上（专门买了rtx 2060s显卡）跑通了它的webgpu rtx的demo！！！
+
+详见这篇文章：Real-Time Ray-Tracing in WebGPU（http://maierfelix.github.io/2020-01-13-webgpu-ray-tracing/）
+
+这个开源项目的作者还有nvk开源项目，用nodejs封装了整个vulkan sdk，从而可以在nodejs中调用vulkan api！如实现ray tracing、mesh shader等！！！
+
+
+
+
+
+
+
+我还运行了该作者的tiny-rtx项目的使用ray tracing pipeline的demo：https://github.com/maierfelix/tiny-rtx
+
+性能果然高啊！
+
+
+
+
+
+** 配置glsl format
+npm install clang-format
+
+安装Clang-Format插件
+https://marketplace.visualstudio.com/items?itemName=xaver.clang-format
+
+设置setting，指定clang-format地址:
+"clang-format.executable": "D:/Github/webgpu/node_modules/clang-format/bin/win32/clang-format",
+
+
+
+
+
+TODO should refer to:
+https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md#Setting-up-Windows
+
+before gclient sync:
+install vs 2019
+c++ tool
+
+debug tools
+
+
+no nedd to install vulkan sdk

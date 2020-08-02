@@ -1,0 +1,1486 @@
+* DONE subscriptor or small program?
+
+
+* DONE send project + database + basic architecture
+
+
+
+
+* TODO implement ldr-gltf converter
+
+
+** TODO write basic render based on open source
+
+
+*** TODO learn open source
+
+how to render final model?
+
+how to get final model data?
+
+
+
+
+//learn code
+
+
+
+//run with box.dat:
+merge to one big geometry
+
+
+
+run with simple dat(multiple model)
+
+
+run with simple mpd(with step, FILE)
+
+
+////run with test_assemble.mpd
+
+
+run with corvette_full.mpd
+
+
+
+
+
+TODO run with test3.mpd!!!!!!
+
+
+
+
+
+*** TODO implement
+
+simple:
+no instruction meta command
+no texture
+no BFC
+only one file(dat,ldr)
+not consider work with studio
+no assemble(minifig): https://www.brickowl.com/catalog/lego-parts/minifig
+not handle direct color
+no bounding box(no outline)
+
+
+
+
+use reason to write
+
+abstract render api
+
+
+
+renderer use three.js
+
+
+
+
+improve:
+use frp to load resources
+
+
+
+
+** DONE implement load
+
+basic
+
+
+handle error
+
+handle next
+
+
+
+
+run test
+
+
+add cleanup
+
+
+
+
+** DONE implement generate
+
+
+//draw with basic materials!
+
+run test:
+pass
+show
+
+
+
+
+
+////draw with pbr materials!
+
+
+
+
+////** TODO support mpd
+
+
+
+
+** DONE deploy and test online
+
+//test in pc
+
+
+weixin xiaoyouxi:
+fix bug
+
+
+
+show for custom
+
+
+
+
+install studio, find the parts library(ldr need it!)
+
+
+
+
+** DONE test models
+
+need mpd models!
+
+
+
+** DONE deploy to cloud
+
+deploy:
+
+267.dat
+
+973p01.dat 
+
+
+
+
+
+10908s07p04
+
+003238s4
+
+6517s01
+
+
+32022s01
+
+
+973p39
+
+
+2952
+
+
+3626bph7
+
+
+
+4873
+
+
+41667
+//48172
+
+
+
+test in weixin:
+use cloud storage
+use cloud function
+
+
+
+
+
+test in pc:
+host static website in cloud
+use cloud sdk/http api
+
+
+
+
+////** TODO add imgui
+
+select model
+
+
+
+* DONE DDD
+
+event storm
+
+common language
+
+domain(all) and sub-domain(first stage)
+
+
+context
+
+
+context map
+
+aggregation
+
+
+
+
+
+
+unify to one UL
+
+
+unify to one DDD
+
+
+
+render1,2,3 ...
+
+
+
+
+
+
+
+////domain has layer relation!
+
+
+domain:
+Cloud Render
+
+Tencent Cloud
+
+Service
+
+Application
+
+
+
+sub-domain:
+
+TC:
+SDK
+Data
+
+
+CR:
+Render3 Engine
+
+
+
+Service:
+LDR:
+    LoadAndParse
+    Converter
+    Exporter
+
+Tencent Cloud SDK Adapter
+
+
+
+
+
+
+App:
+LDRRendererInPC
+
+
+
+LDRRendererInMobile
+
+
+LDRConverter
+
+
+LDRExporter
+
+
+Model Management
+
+
+System Management
+
+
+After Sale
+
+
+
+
+
+
+
+
+
+
+
+
+LDRRendererInPC
+
+
+
+LDRRendererInMobile
+
+
+
+
+* DONE build dev env and test
+
+//push to github page
+
+
+test in pc:
+
+big model run slow
+
+
+
+
+
+test in mobile:
+
+big model not render!!???
+
+
+
+
+
+
+fix model:
+remove 59145c01.dat
+
+
+
+/*
+fix in mobile
+
+
+add texture
+click to jump to model
+*/
+
+
+not use small game!!! (remain LDRRendererInMobile, use the mostly same code as InPC)
+
+fix Wonder-ldr:
+if error is limit:
+wait 50ms
+download again
+
+# pc:
+# add page to jump to model
+
+
+
+# mobile:
+# add texture
+# click to jump to model
+
+
+
+
+
+** DONE solve cos!!!
+
+test in mobile!!!
+
+
+not jump:
+add domain
+
+
+** DONE add record
+
+3.13
+546
+
+2020.04.26-27
+349
+
+
+
+05.20
+322
+
+
+
+224
+
+
+32*5=160
+
+
+384h
+
+
+////197h
+
+
+
+** DONE prepare summary
+
+write doc
+
+
+prepare arrange
+
+
+
+** DONE prepare for front end
+
+
+write init doc
+
+
+learn vue
+
+
+prepare typescript env
+
+
+
+update doc
+
+
+
+
+
+
+
+** DONE feat:use perspective(for user)
+
+//perspective
+
+//adjust 
+
+
+** DONE feat:add loading bar
+
+*** DONE hide canvas when loading
+
+
+*** DONE show loading text
+
+
+
+
+** DONE feat: if 404, just skip it
+
+
+
+** DONE pass all models in mobile
+
+use small models:
+Total Lots < 200
+
+
+use 通用/
+
+////*** TODO need 59154c01.dat
+
+*** DONE upload custom part to cloud(build and to another ldraw_parts_models folder, e.g. ldraw_custom_parts_models/)
+
+
+*** DONE link expire, password
+
+expire Forest.ldr
+
+
+////*** TODO solve cors
+
+
+* DONE adjust perspective camera
+
+
+
+* DONE write front request doc
+
+
+* DONE learn react redux
+
+refer to https://react-redux.js.org/introduction/quick-start:
+connect
+
+
+
+
+* DONE build front end template
+
+
+** DONE basic
+
+TODO build redux project
+
+
+
+upload to github as front end template
+
+
+typescript
+react
+redux
+sass
+webpack
+ramda
+immutable.js
+most
+
+
+
+
+
+
+** DONE write example code
+
+
+
+
+only use one global store to store uiState
+
+use persistent data to store logic data
+
+
+
+react:
+
+use functional component unless they need state, lifecycle hooks, or performance optimizations.:
+export const Hello = (props: HelloProps) => <h1>Hello from {props.compiler} and {props.framework}!</h1>;
+
+
+
+
+
+** DONE webpack
+
+build:
+html
+css
+
+start server(from dist)
+
+
+
+
+* DONE talk
+
+
+
+* DONE see page prototype
+
+
+////* TODO write platform DDD
+
+domain model
+
+通用语言
+
+
+
+
+
+
+* DONE give demand list
+
+
+
+////* TODO move website,editor to Tencent cloud???
+
+
+
+
+* TODO tool:convert export studio data to produce data
+
+use Wonder-Ldr for load ldr
+add LDRExportPartList Service in service
+add LDRExportPartListTool in application
+
+
+//extract ldr-loader-service from Wonder-Ldr
+
+////extract ldr-parse-service from Wonder-Ldr
+
+
+
+//add getAllParts function
+
+
+
+//write test in ldr-exportpartlist-service:
+//TODO import jest, build test env
+
+
+//TODO import ldr-loader-service
+
+
+
+
+** question
+
+some part unavaliable:
+price is unavaliable
+
+
+
+** DONE extract ldr-render1-service
+
+edit:
+    let origo = adapter.Vector3.create(0.0, 0.0, 0.0);
+    let inv = adapter.Matrix3.create(1, 0, 0, 0, -1, 0, 0, 0, -1);// Invert Y, and Z-axis for LDraw
+
+
+
+pass run test
+
+
+** DONE refactor ldr-loader-service
+
+
+//add getMainPartTypeData, getAllPartDataMap
+
+
+
+
+** DONE write partlist exporter service
+//TODO use contract check, Result
+
+
+
+//TODO change check to return Result:
+add Contract.re
+
+
+render image:
+//implement
+//pass unit test
+//pass run test:
+    color name should be option
+    different color id with the same itemNo is different
+    render with color id
+
+
+//dispose scene
+
+
+//ldr-render1-server as ldr-render-server external(has type in interface)
+add test cases
+
+
+
+
+
+////refactor
+
+
+
+//add features:
+//otho camera
+//sort:
+    add bounding box size in export list
+
+
+
+@weiwei :
+
+map model id, ...
+
+
+not plugin, upload ldr, table
+
+otho camera(45 degree)
+
+image size are the same
+image:
+    camera's position should from aabb(size * 0.5 ?)
+
+
+sort:
+sort by aabb
+
+1.color sort
+
+2.lots sort
+put color together
+
+
+no price
+
+
+name should be auto generated
+
+
+Item no. is the name of .dat
+
+
+
+
+
+
+get part(data):
+//refactor: distinguish loaded part and loaded file in main model
+
+
+
+
+////use travis
+
+
+
+
+** DONE fix: render1 bug->some line will show or not show in some camera's degree!!!
+
+especiall in perspective camera!!!
+
+
+** DONE continue update website
+
+TODO update all page's url!!!
+
+
+
+
+** DONE solve render->conditional line's bug
+
+
+** DONE fix export service
+
+publish and update ldr-render1-service
+
+fix run test
+
+
+** DONE tencent cloud charge
+
+
+
+
+** DONE write partlist exporter application tool
+
+//define d.ts
+
+
+fix:
+//conditional line
+
+//camera pos: 3021
+
+//handle not rendered part!
+
+
+
+
+feat:
+////config: image size; backgroud color
+
+//transparent backgroud
+
+//config: image size
+
+//fixed image size(high quality!can resize and show clearly!)
+
+
+//show loading info
+
+
+
+
+//export csv:
+add image
+
+
+
+//move status out(red):
+
+//check file should be .ldr
+
+
+//check rendered file before export
+
+
+////refactor UploadFile.tsx->setTimeout
+
+
+
+
+it don't has line in the top:
+//98138 don't show line!!!
+(black color use white line, other color use black line!)
+
+
+
+
+
+
+
+//model should be bigger
+(camera zoom need )
+
+
+//sort not work?
+
+
+
+
+
+//add password verify
+
+limit zone:
+hubei
+
+
+
+
+//css
+
+
+
+
+
+
+
+//TODO:
+update and publish ldr-loader-service
+
+publish ldr-exportpartlist-service(0.0.2)
+
+
+add dependencies:ex,loader,render1,three in application
+
+use three.js
+import from three instead of THREE. 
+
+
+
+
+
+
+
+update and publish ldr-loader-service
+
+publish ldr-exportpartlist-service(0.0.2)
+
+
+add dependencies:ex,loader,render1,three in application
+
+
+
+
+show part list(html)
+
+export csv
+
+bellow:
+Total parts, total lots
+
+
+** DONE publish
+
+
+//type:password
+
+//:hover
+
+
+//publish to github page
+
+
+
+
+** DONE fix: rename Exportor to Exporter(service, application)
+
+github repo
+
+npm
+
+
+
+
+
+** DONE fix bug
+
+fix u9053 
+
+
+more parts:
+update and publish ldr-loader-service; update in application;
+
+
+fix:
+main color
+if edge, warning!
+
+
+
+
+feat:
+show 404 parts together;
+should add total 404 Parts/Lots;
+
+
+
+
+update and publish ldr-loader-service, ldr-exportpartlist-service and update in application;
+
+
+
+
+
+
+
+//export excel has data
+
+
+
+
+
+
+** DONE fix bug
+
+
+//TODO study https://www.ldraw.org/part-number-spec.html:
+
+72853.dat:
+
+itemNo. is 78c05(from name???)
+
+////change to chinese
+
+
+
+
+//why now not render with transformed data?
+
+
+
+
+
+
+//fix: css:
+item No. too long
+
+
+
+** DONE fix: handle xxx-2.dat
+
+
+
+
+
+* DONE update design
+
+
+
+* TODO code review
+
+//bundle by require:
+bundle too slow
+
+
+
+
+
+//ui interface
+
+
+
+//webpack:
+use css loader instead of less
+
+
+
+check
+
+
+
+bug:
+upload model: 
+    remove image cause error;
+    downloaded model's file name should be the same as the uploaded model file;
+
+
+
+
+* DONE cd: test env
+
+** DONE auto push to test env for exporter application
+
+
+////** TODO cd: add travis for service
+
+
+** DONE cd: release version for exporter application
+
+** DONE auto push to test env for modelwebsite
+
+** DONE cd: release version for modelwebsite
+
+
+* TODO publish modelwebsite
+
+** TODO merge to master
+
+** TODO publish to test env
+
+** TODO release version
+
+** TODO template: add import path
+
+
+
+** TODO check website with @wu @du
+
+
+
+
+
+* DONE think and implement fake show demo(bevel width demo)
+
+
+
+
+////* TODO  replace
+
+101
+
+////* TODO bevel edge
+
+** TODO implement1
+
+only one segment
+
+
+identify edge/not edge
+
+
+
+test in basic primitives:
+box
+circle
+stud
+...
+
+
+
+only consider about edge in basic primitives???
+
+
+
+
+
+** TODO service
+
+
+
+
+params:
+width, segments, ...
+
+
+
+
+
+
+
+*** TODO can use blender plugin directly???
+
+
+*** TODO to not bevel
+
+if data has bevel, change to no bevel!
+
+
+
+*** TODO to bevel
+
+
+** TODO application
+
+
+
+
+* TODO convert ldr to fbx(should support load in 3dmax)
+
+
+
+
+
+
+
+
+* TODO write upload model doc
+
+
+
+* TODO fix: console.dir in mobile
+
+use expandLog?
+
+
+* TODO fix: Patrol boat miss part occasionally
+
+only error in ldr-renderer
+
+why miss???
+
+
+
+
+* DONE pass Render3 run test
+
+
+//TODO now can use 0.1.4 version! but too slow with scene2!!!why???
+
+
+
+//TODO simple createRayTracingShaderBindingTable->groups, only remain used index
+
+//TODO improve:
+structure:
+structure
+
+
+////TODO get_hi...:
+scalar
+
+
+
+//TODO duplicate: lineSampler
+
+
+////TODO other todos
+
+
+
+//TODO restore scene
+////TODO clean ManageAccXXX
+
+//TODO remove print2
+
+////test code and edit from the code!
+
+
+//TODO need author fix the bug!
+
+
+
+
+
+
+
+////* TODO judge brick's tech team
+
+
+
+* DONE write recruit
+
+
+
+* DONE build 语雀
+
+
+
+
+
+
+
+* TODO refactor LDR
+
+** TODO extract ldr-common-service
+
+
+LDRVector3,LDRVector4,LDRMatrix3,LDRMatrix4
+
+
+LDRPartDescription.js, LDRStructure.js, 
+
+
+** TODO move interface to be a project
+
+ldr-loader-service,... should also use it
+
+
+** TODO refactor
+
+# split ldr-render1-service to ldr-render1-scenegraph-service, ldr-render1-service
+
+ldr-render1-scenegraph-service build the scene graph data(e.g. refer to wonder or gltf) for render1(render1,render2,render3' scene graph data structure are the same!);
+ldr-render1-service use the scenegraph data to render with threejs.
+
+
+
+
+# should separate LDR Load And Parser,render1 from Wonder-ldr(service)
+should separate LDR Load,render1 from Wonder-ldr(service)
+
+refactor ldr-loader-service, ldr-render1-service, ...
+
+
+rename ldr-loader-service->setNetworkEngineExternal to setNetworkExternal
+
+
+rename "ID" to "Id"
+
+rewrite service to reason!?
+
+
+separate cloud layer
+
+
+move colors into ColorManager
+
+create Colormanager in ColorMaterial
+
+
+extract domain service: Generate 
+
+
+Wonder-Ldr remove THREEAdapter
+
+network and render engine should inject into API instead of set to _adapter!
+
+
+MeshCollector:
+use adapter->addMesh
+    adapter add addMesh
+
+
+
+add LDRLoaderRepo:
+loadLDRFile(use Network->fetch)
+
+
+
+API:
+load
+generate
+
+
+
+refactor as data view
+
+
+
+
+add contract check
+
+
+
+
+
+rename to name as domain model!
+
+
+
+use onion architecture
+
+
+
+
+abstract "parse ldr"(generate) code:
+e.g. get geometry data, material data, shader data...
+
+
+
+write some tests
+
+
+
+refactor app
+
+
+** TODO improve loading progress
+
+get all need loaded parts in main model!
+
+
+** TODO feat:LDR loader should add fail case(404) to the end of queue
+
+use queue to load
+
+
+
+* TODO add project: SDK Adapter service 
+
+
+
+* TODO refactor LDRRenderer
+
+
+
+
+
+remove ldr-dev-env
+LDRRenderer add local model part library
+
+
+
+add ldr-renderer-online-env project
+
+
+
+
+use typescript
+
+use es6 module
+
+
+
+refer to architecture view
+
+
+////extract LDRRenderer project from -pc, -mobile, -dev-env
+
+
+should design as DDD:
+e.g. give mobile,pc domains
+
+
+
+pc/module separate:
+import vconsole
+log(mobile should expand, pc shouldn't)
+
+
+
+
+add Logger to unify log,error,...
+
+
+
+
+
+** TODO feat: improve handle error message
+
+unify pc,mobile error handle
+
+if model not find, should stop all download and error!!!
+
+
+* TODO move repo to org
+
+
+
+
+* TODO release and build env
+
+environment:
+dev env
+test env
+online env
+
+
+bump:
+release version
+
+
+
+* TODO feat(ldr-render1-service): can set line width
+
+use Line material instead of raw material in three.js???
+
+
+
+* TODO fix: render J20(0626) model
+
+now can't show!!!
+
+
+
+
+* TODO feat: render quality to affect the line smooth
+
+3005.dat
+
+gobricks:
+https://gobricks.cn/#/casedetail/U6691288489700364288
+
+
+
+not change ldr data, just generate more lines at run time when render
+
+
+
+
+
+
+* TODO statistics
+
+
+
+
+
+
+* TODO improve
+
+** TODO learn how to convert studio files(io/ldd) to ldr
+
+
+
+** TODO optimize 
+
+
+load parts too slow(parts too many), need cache
+
+
+mobile:
+big model render too slow! need test in other newer mobile
+
+
+optimize render?
+
+
+
+stream load
+
+
+
+anti-aliasing(test in mobile)
+
+
+
+
+
+
+** TODO test with studio
+
+
+
+
+
+
+
+
+
+
+** TODO support physic render
+
+
+
+
+** TODO support BFC
+
+
+
+
+
+
+
+
+** TODO add instruction
+
+each step should only load its self model data!
+
+
+gltf/wd add instruction data(relate to gameObject)
+
+
+
+
+** TODO optimize
+
+remove duplicate vertex for line type 3,4 ???
