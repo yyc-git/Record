@@ -1209,7 +1209,7 @@ ldr-loader-service,... should also use it
 # split ldr-render1-service to ldr-render1-scenegraph-service, ldr-render1-service
 
 ldr-render1-scenegraph-service build the scene graph data(e.g. refer to wonder or gltf) for render1(render1,render2,render3' scene graph data structure are the same!);
-ldr-render1-service use the scenegraph data to render with threejs.
+ldr-render1-service use the scenegraph data to render with threejs(threejs is still external!so can replace it to wonder, ...)
 
 
 
