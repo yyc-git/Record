@@ -1,0 +1,127 @@
+* TODO build basic application and render demo
+render ldraw model(.ldr file)
+
+
+** DONE update design
+
+design
+
+doc:
+requirement
+roadmap
+
+
+
+** DONE summary collections
+
+
+
+** DONE fix .dat bug
+
+test1.dat
+3626texshell.dat
+
+should show the head!!!
+
+
+
+update render1 service
+
+
+update application
+
+
+update ldr-pc
+
+
+
+** TODO install win10
+
+
+test webgpu-rtx->scene2 !
+
+
+** TODO multi thread render/multi gpu core render
+
+
+think how to parallel???
+
+
+e.g. split sampleCount to servers, ...
+
+
+
+
+
+
+** TODO refactor ldr code
+only generate scene graph data(.wd) for render3;
+
+
+////** TODO render3 demo
+load scene graph data(.wd);
+use render demo to render ldr model file;
+
+(remove denoise, taa pass, use accumulate pass to reduce noise)
+
+
+** TODO build engine(Wonder.js v2.0.0-alpha.1)
+
+render test
+
+unit test
+
+no perf test!
+
+
+multi thread/single thread
+webgpu only
+ray tracing only
+static scene
+data: scene graph data(.wd)
+
+
+load scene graph data(.wd);
+use render demo to render ldr model file;
+
+(remove denoise, taa pass, use accumulate pass to reduce noise)
+
+
+
+** TODO deploy to cloud
+
+
+** TODO add taa pass
+
+
+** TODO add denoise
+
+** TODO add transparent
+
+** TODO add env map
+
+** TODO support rounded corner
+
+
+** TODO add application
+
+////set camera
+
+////set lights
+
+////add env map
+
+
+only send ldr file
+(store part file in render3 engine cloud)
+
+
+** TODO add weixin login
+
+
+** TODO add weixin payment
+
+
+** TODO publish v1.0.0
+
+publish Wonder.js v2.0.0

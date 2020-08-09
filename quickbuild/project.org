@@ -1116,18 +1116,6 @@ if data has bevel, change to no bevel!
 
 
 
-* TODO fix: console.dir in mobile
-
-use expandLog?
-
-
-* TODO fix: Patrol boat miss part occasionally
-
-only error in ldr-renderer
-
-why miss???
-
-
 
 
 * DONE pass Render3 run test
@@ -1185,6 +1173,18 @@ scalar
 
 
 
+
+
+* TODO fix: console.dir in mobile
+
+use expandLog?
+
+
+* TODO fix: Patrol boat miss part occasionally
+
+only error in ldr-renderer
+
+why miss???
 
 
 
