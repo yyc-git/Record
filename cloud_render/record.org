@@ -194,8 +194,24 @@ give divide domains view
 
 
 
+externals:
+WebGPU(so can work with webgpu node and webgpu in browser!!!)(now only inject with webgpu node in the entry!)
 
-*** TODO build engine template(refer to Model3DPlatform template!)
+
+
+
+
+*** TODO build engine in dev branch
+
+unit test
+
+render test(local test, not test in .travis!!!)
+
+no perf test!
+
+add .cz, test coverage, travis, code climate, build status ...
+
+
 
 
 
@@ -479,6 +495,8 @@ https://github.com/maierfelix/webgpu/issues/26
 然后租用一台云服务器作为主服务器，两者通过http传输二进制文件;
 主服务器与Front End Tool通过http通信；
 
+
+可考虑把我这台电脑作为worker服务器！（@王影）
 
 
 
