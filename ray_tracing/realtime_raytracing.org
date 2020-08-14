@@ -1,0 +1,84 @@
+
+** TODO fix and improve bmfr
+
+
+*** TODO add pre process pass
+
+
+*** TODO fix bug: render a sphere with specific diffuse, around will has red circle!!!
+
+description
+sphere with (0.11, 0.0, 0.5) diffuse has the bug:
+ let state = _createSphere (((10.0, 0.0, 10.0), (0.,0.,0.)), ((0.11,0.0,0.5), 0.95, 0.0001, 0.00001), state);
+
+ let _createSphere = ((translation, rotation), (diffuse, specular, metalness, roughness), state) =>{
+  let (sphere, state) = GameObject.create(state);
+
+  let (tran3, state) = Transform.create(state);
+  let state =
+    state
+    |> Transform.setTranslation(tran3, translation)
+    |> Transform.setRotation(tran3, rotation)
+    |> Transform.setScale(tran3, (1.,1.,1.));
+
+    let radius = 2.;
+    let bands = 20;
+
+  let (geo3, state) = Geometry.create(state);
+  let state =
+    state
+    |> Geometry.setVertexData(geo3, Geometry.buildSphereVertexData(radius, bands))
+    |> Geometry.setIndexData(geo3, Geometry.buildSphereIndexData(bands));
+
+  let (mat3, state) = PBRMaterial.create(state);
+  let state =
+    state
+    |> PBRMaterial.setDiffuse(mat3, diffuse)
+    |> PBRMaterial.setSpecular(mat3, specular)
+    |> PBRMaterial.setMetalness(mat3, Js.Math.min_float(metalness, 0.99))
+    |> PBRMaterial.setRoughness(mat3, Js.Math.max_float(0.01, roughness));
+
+  let (shader3, state) = Shader.create(state);
+  let state = state |> Shader.setHitGroupIndex(shader3, 0);
+
+  let state =
+    state
+    |> GameObject.addTransform(sphere, tran3)
+    |> GameObject.addGeometry(sphere, geo3)
+    |> GameObject.addPBRMaterial(sphere, mat3)
+    |> GameObject.addShader(sphere, shader3);
+
+    state
+};
+
+
+
+
+*** TODO reduce ghost
+
+
+*** TODO improve specular hightlights
+
+description
+caused by indirect specular !
+
+see pdf -> 8 LIMITATIONS
+
+
+** TODO Path Space Filtering(reduce noise with 1spp)
+
+
+https://cgg.mff.cuni.cz/~jaroslav/papers/2014-ltscourse/KellerPathSpaceFiltering.pdf
+
+https://nvlabs.github.io/fermat/_p_s_f_p_t_page.html
+
+
+
+https://news.developer.nvidia.com/massively-parallel-path-space-filtering-in-game-development/
+
+https://developer.download.nvidia.com/video/gputechconf/gtc/2019/presentation/s9462-ray-traced-global-illumination-for-games-massively-parallel-path-space-filtering.pdf
+
+
+** TODO Parallel Shader Compilation for Ray Tracing Pipeline States
+
+https://developer.nvidia.com/blog/parallel-shader-compilation-ray-tracing-pipeline-states/

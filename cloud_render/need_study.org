@@ -1,0 +1,88 @@
+
+**** TODO improve multiple bounce indirect specular
+
+refer to:
+https://books.google.com/books?id=MNqRDwAAQBAJ&pg=PA307&lpg=PA307&dq=multiple+bounce+denoise&source=bl&ots=L2-P4gakwu&sig=ACfU3U0uj84QokBfStFL-vCu_d7uP1tCew&hl=zh-CN&sa=X&ved=2ahUKEwi-laLlq5fqAhXNuZ4KHT52BTwQ6AEwAXoECAkQAQ#v=onepage&q=multiple%20bounce%20denoise&f=false
+
+solutions may include:
+apply reflection denoise filter;
+adaptive multiple bounce;
+...
+
+
+
+
+**** TODO remove causicts/indirect specular noise(use photon mapping)
+
+current solution:
+increase indirect specular sample count;
+refer to https://www.scratchapixel.com/lessons/3d-basic-rendering/global-illumination-path-tracing -> Using Indirect Diffuse Sampling Method to Compute Indirect Specular Is Inefficient, indirect diffuse lobe -> bounced color only compute diffuse(wrong???);
+clamp;
+
+
+
+
+
+
+bi-directional path tracing
+
+VCM
+
+photon mapping
+
+
+refer to:
+https://www.chaosgroup.com/blog/what-are-caustics-and-how-to-render-them-the-right-way
+https://www.google.com/search?newwindow=1&safe=strict&sxsrf=ALeKk01n-OItg1YKvMHeMZjrdRynklBylA%3A1592638894627&ei=rr3tXszqJdKE-gTr1r-gCQ&q=Efficient+Caustic+Rendering+with+Lightweight+Photon+Mapping&oq=Efficient+Caustic+Rendering+with+Lightweight+Photon+Mapping&gs_lcp=CgZwc3ktYWIQDDIECCMQJ1DL5g5Yy-YOYK_wDmgAcAB4AIABlwKIAacEkgEDMi0ymAEAoAECoAEBqgEHZ3dzLXdpeg&sclient=psy-ab&ved=0ahUKEwjM-cac8o_qAhVSgp4KHWvrD5QQ4dUDCAw
+<<ray tracing gems>> -> photon mapping
+https://forums.newtek.com/showthread.php/157274-Specular-indirect
+
+
+
+
+
+
+
+**** TODO more
+
+http://openaccess.thecvf.com/content_cvpr_workshops_2015/W10/papers/Zhang_SparkleVision_Seeing_the_2015_CVPR_paper.pdf
+
+https://cseweb.ucsd.edu/~ravir/stochastic.pdf
+
+
+*** TODO improve ggx pdf?
+
+https://www.google.com/search?q=ggx+pdf&oq=ggx+pdf&aqs=chrome..69i57j35i39l2j0l5.1591j0j7&sourceid=chrome&ie=UTF-8
+
+
+*** TODO learn
+
+
+http://cwyman.org/presentations/SIG2019_OpenProblems_TowardPathTracingInGames_wNotes.pdf
+
+http://brechpunkt.de/q2vkpt/
+
+https://news.developer.nvidia.com/turning-up-the-lights-interactive-path-tracing-scenes-from-a-short-film/
+
+
+
+
+read <<ray tracing gems>> related articles
+
+
+https://dl.acm.org/doi/fullHtml/10.1145/3384382.3384534
+
+
+
+
+PRODUCTION-SCALE REAL-TIME RAY TRACING:
+http://rtintro.realtimerendering.com/3-Production.pdf
+
+
+A Low-Discrepancy Sampler that Distributes Monte Carlo Errors as a Blue Noise in Screen Space:
+https://belcour.github.io/blog/research/2019/06/17/sampling-bluenoise.html
+
+
+Distributing Monte Carlo Errors as a Blue Noise in Screen Space by Permuting Pixel Seeds Between Frames:
+https://belcour.github.io/blog/research/2019/06/18/animation-bluenoise.html
+

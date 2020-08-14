@@ -1188,9 +1188,23 @@ why miss???
 
 
 
+
 * TODO refactor LDR
 
+** TODO improve loading progress
+
+get all need loaded parts in main model!
+
+
+** TODO feat:LDR loader should add fail case(404) to the end of queue
+
+use queue to load
+
+
+
 ** TODO extract ldr-common-service
+
+need to extract???? or not????
 
 
 LDRVector3,LDRVector4,LDRMatrix3,LDRMatrix4
@@ -1291,17 +1305,6 @@ write some tests
 
 
 refactor app
-
-
-** TODO improve loading progress
-
-get all need loaded parts in main model!
-
-
-** TODO feat:LDR loader should add fail case(404) to the end of queue
-
-use queue to load
-
 
 
 * TODO add project: SDK Adapter service 

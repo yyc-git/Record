@@ -1,0 +1,112 @@
+* TODO interactive render
+
+https://www-file.huawei.com/-/media/corporate/pdf/ilab/2019/cloud_game_whitepaper.pdf
+
+
+
+
+
+interactive render in editor
+
+
+
+
+
+** TODO support arcball camera
+
+when move, use 1 spp
+
+
+** TODO add editor
+use event sourcing;
+the data:
+events
+scene graph data(.wd)
+use render1(edit scene),render2(run scene) to render in local;
+can export to render3 snapshot;
+support use render3 for run scene for vip user;
+note:
+persistent data only use events!!!no editor state/engine state!!!
+(use store and state for show data in react)
+
+
+
+features:
+edit, run scene;
+import(.ldr, .wd_ldr);
+export(.wd_ldr, render3 snapshot);
+no assets;
+arcball camera;
+add/remove camera, light:direction, point lights
+transform;
+
+
+
+(.wd_ldr = .ldr + camera, light data)
+
+
+engine should parse .wd_ldr to .wd!
+
+
+
+
+** TODO use webrtc to transport?
+
+
+
+
+
+
+
+
+
+
+* TODO add texture
+parse ldr's texture data;
+render3 support texture;
+
+* TODO V-RAY COMPATIBILITY
+
+Fully compatible with V-Ray content: materials, lights, environments, geometries, proxies, render options, etc.
+
+refer to https://www.cl3ver.com/
+
+
+
+* TODO support more formats(gltf, fbx, 3dmax)
+
+
+* TODO texture lod
+https://media.contentapi.ea.com/content/dam/ea/seed/presentations/2019-ray-tracing-gems-chapter-20-akenine-moller-et-al.pdf
+
+
+
+* TODO sample VNDF instead of NDF
+
+basic learning:
+http://www.pbr-book.org/3ed-2018/Light_Transport_I_Surface_Reflection/Sampling_Reflection_Functions.html
+https://hal.archives-ouvertes.fr/tel-01291974/file/TH2015DupuyJonathan2.pdf
+
+
+
+refer to:
+http://jcgt.org/published/0007/04/01/slides.pdf
+https://github.com/NVIDIA/Q2RTX/issues/40
+https://stackoverflow.com/questions/58248624/implementing-ggx-vndf-importance-sampling-with-dxr
+http://jcgt.org/published/0007/04/01/paper.pdf
+https://schuttejoe.github.io/post/ggximportancesamplingpart1/
+https://schuttejoe.github.io/post/ggximportancesamplingpart2/
+
+
+
+
+
+* TODO use blue noise
+
+refer to:
+http://psgraphics.blogspot.com/2018/10/flavors-of-sampling-in-ray-tracing.html
+https://hal.archives-ouvertes.fr/hal-02158423/file/blueNoiseTemporal2019_slides.pdf
+https://belcour.github.io/blog/research/2019/06/18/animation-bluenoise.html
+https://zhuanlan.zhihu.com/p/90017623
+
+

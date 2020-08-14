@@ -35,27 +35,202 @@ update ldr-pc
 
 
 
-** TODO install win10
+** DONE install win10
 
 
 test webgpu-rtx->scene2 !
 
 
-** TODO multi thread render/multi gpu core render
-
-
-think how to parallel???
-
+** DONE multi thread render/multi gpu core render
 
 e.g. split sampleCount to servers, ...
 
 
+*** DONE think how to parallel
+
+multiple render workers
+
+share the:
+device
+storage buffer(pixel buffer)
+uniform buffer(camera buffer, render command buffer)
+topLevelAS(or not?)
+
+rt,render pipeline
+gbuffer texture
 
 
 
 
-** TODO refactor ldr code
-only generate scene graph data(.wd) for render3;
+
+*** TODO implement
+
+test one render worker
+
+
+test two render workers
+
+
+
+test gbuffer texture
+
+
+
+*** DONE think how to parallel2
+
+1.我们需要服务器的显卡（RTX2060及以上的显卡）支持光线追踪
+2.我们会在服务器上部署云渲染服务，提供给用户使用 （因此需要外网访问服务器，80或443端口）
+3.我们需要服务器安装最新的在win10上运行的nvdia->vulkan-driver驱动（如Windows 451.98版本）（驱动下载地址：https://developer.nvidia.com/vulkan-driver -> Vulkan Beta Driver Downloads）
+4.我们希望进行GPU调度，如这台服务器若有4个RTX GPU，那么就可以让我们通过代码来调度，从而实现同时让4个或更多的用户同时使用这台服务器上的不同的GPU。
+通过代码（SDK）来进行下面的操作，从而让我们可以开发一个自动化调度GPU的工具：
+获得有哪些GPU空闲；
+设置多少个用户可以同时使用云渲染服务（互相独立不影响）；
+设置某个用户使用多大的GPU资源；
+
+5.我们希望联合多个GPU(RTX2060及以上的显卡)形成支持光线追踪的渲染农场，从而让我们可以分布式地并行渲染一个大型3D场景(使用光线追踪)
+
+主要目的：
+进行分布式渲染，得到一张3D场景的图片
+
+思路：
+其中一台服务器节点（该节点可以为一个CPU或一般的服务器）作为主节点，进行渲染任务的调配;
+其他服务器节点（该节点可以为一个GPU或者GPU服务器）作为worker节点，负责渲染该图片的某个方块区域；
+他们都共享场景数据；
+
+
+所有服务器共享场景数据（一个buffer数据）；
+主服务器需要传输渲染指令（如渲染该图片的哪个方块区域，使用哪个相机的数据等）；
+GPU服务器节点负责把渲染结果（该图片的某个方块区域的数据）传输给主服务器节点；
+
+
+worker节点需要win10操作系统，因为渲染引擎需要运行在GPU服务器节点上，需要win10系统+vulkan驱动
+
+
+
+
+1台主机，多个GPU
+
+
+
+
+
+我研究了下，目前渲染引擎没有找到在一台服务器上使用多个GPU的方法。
+
+那么：
+1、你这边是否可以把一台服务器的多个GPU聚合为一个GPU，让我像一个GPU那样调用？
+如一台服务器有两个显存为11G的RTX 2070s，那么我可以把它当成一个GPU那样来使用（显存为22G）
+
+
+回答：不能
+
+
+2、你这边是否可以给我多台服务器（包含一台主服务器和多台worker服务器），每台服务器都是win10系统+只有一个RTX2070s以上的GPU，每台服务器通过http通信（最好用内网通信，速度要快！）？
+这样我就可以由主服务器负责通过http通信，将渲染任务分派给各个worker服务器（只有一个GPU），然后将最终结果通过http通信传输给外界用户
+
+
+回答：
+可以。
+主服务器和worker服务器的通信速度、主服务器与外部用户的通信速度 要看你的设计要求。
+
+
+
+主服务器和worker服务器的通信、主服务器与外部用户的通信 都使用http通信把？
+
+回答：
+这个没问题
+
+
+
+
+6.我们后期会上线云游戏服务，因此需要提供良好的网络传输和网络压缩工具等。
+
+
+** TODO learn and use newest rt features
+test VK_KHR_ray_tracing feature! 
+
+https://news.developer.nvidia.com/whats-new-in-nvidia-vkray/
+
+*** DONE learn Callable Shader
+https://nvpro-samples.github.io/vk_raytracing_tutorial_KHR/vkrt_tuto_callable.md.html
+
+
+*** DONE learn Ray Query
+https://nvpro-samples.github.io/vk_raytracing_tutorial_KHR/vkrt_tuto_rayquery.md.htm
+
+
+
+*** TODO webgpu node should support them!!!
+
+
+
+** TODO learn .res
+
+https://reasonml.org/docs/reason-compiler/latest/new-bucklescript-syntax
+
+
+https://rescript-lang.org/docs/manual/latest/let-binding
+
+
+*** TODO prepare dev env
+
+
+////*** TODO update blog!
+
+
+** TODO think engine's architecture
+
+*** TODO recall DDD
+
+
+*** TODO recall engine serials
+
+
+
+*** TODO design engine
+
+give architecture views
+
+give divide domains view
+
+
+
+
+*** TODO build engine template(refer to Model3DPlatform template!)
+
+
+
+** TODO move Array, Option, Result, ... to Wonder-Re-Structure
+
+"bsc-flags": ["-open WonderReStructure"],
+
+
+the api is like wonder-commonlib, but the implement can use Belt!
+
+
+
+** TODO rewrite ldr loader
+
+use wrap type(refer to DDD)
+
+add unit test
+
+add test coverage, travis
+
+
+** TODO ldr converter
+
+use wrap type(refer to DDD)
+
+add unit test
+
+add test coverage, travis
+
+
+
+
+only generate scene graph data(.wd) for render3:
+input: .ldr
+output: .wd
 
 
 ////** TODO render3 demo
@@ -65,7 +240,7 @@ use render demo to render ldr model file;
 (remove denoise, taa pass, use accumulate pass to reduce noise)
 
 
-** TODO build engine(Wonder.js v2.0.0-alpha.1)
+** TODO build engine as renderer(Wonder.js v2.0.0-alpha.1)
 
 render test
 
@@ -73,34 +248,123 @@ unit test
 
 no perf test!
 
+add test coverage, travis, code climate, build status ...
 
-multi thread/single thread
+
+receive the render command for distributed Ray Tracing:
+input: tile region's width,height + .wd
+output: the tile region data(uint8Array)
+
+
+
+
+
+
+single render thread
 webgpu only
 ray tracing only
 static scene
 data: scene graph data(.wd)
 
 
+fixed camera(no arcball camera)
+
+
+
+
+use high-performance in requestAdapter:
+[Exposed=(Window, DedicatedWorker)]
+interface GPU {
+    Promise<GPUAdapter?> requestAdapter(optional GPURequestAdapterOptions options = {});
+};
+
+dictionary GPURequestAdapterOptions {
+    GPUPowerPreference powerPreference;
+};
+enum GPUPowerPreference {
+    "low-power",
+    "high-performance"
+};
+
+
+
+
+
+
+
+////convert .ldr to .wd;
+////(extract service)
+
 load scene graph data(.wd);
 use render demo to render ldr model file;
+
+
+run:
+for debug
+
+
+export:
+snapshot data(uint8Array?)
+
+should support stream!????
+
+
+
+
+build dev env, test env;
+build ci/cd tool;
+
+
+
+
+
+
+optimize:
+use less geometry container(e.g. the same sphere should in one geometry container)
+
+
 
 (remove denoise, taa pass, use accumulate pass to reduce noise)
 
 
 
-** TODO deploy to cloud
 
 
-** TODO add taa pass
+
+
 
 
 ** TODO add denoise
 
+try to use NVIDIA's Optix Denoiser:
+https://github.com/maierfelix/nvk-optix-denoiser
+https://research.nvidia.com/publication/interactive-reconstruction-monte-carlo-image-sequences-using-recurrent-denoising
+https://developer.nvidia.com/optix-denoiser
+
+
+
+more denoiser:
+https://www.ece.ucsb.edu/~psen/PaperPages/removing_MC_noise.html
+https://studios.disneyresearch.com/wp-content/uploads/2019/03/Denoising-Deep-Monte-Carlo-Renderings-1.pdf
+https://perso.telecom-paristech.fr/boubek/papers/BCD/
+
+
+
+
+*** TODO try fix indirect specular noise
+
+
+
+
+
+** TODO add taa pass
+
 ** TODO add transparent
 
-** TODO add env map
+////** TODO add env map
 
 ** TODO support rounded corner
+
 
 
 ** TODO add application
@@ -116,10 +380,116 @@ only send ldr file
 (store part file in render3 engine cloud)
 
 
+*** TODO add Main Server
+
+
+*** TODO add Worker Server
+
+
+*** TODO add Front End Tool(very basic)
+
+
+*** TODO add Scheduler
+
+
+*** TODO add Transporter
+
+compress
+
+decompress
+
+
+
+https://stackoverflow.com/questions/36091022/how-compress-typedarrays-arraybuffers-for-storage-and-transmission
+
+https://nodejs.org/api/zlib.html#zlib_zlib
+http://www.zlib.net/
+
+
+
+
+
+
+** TODO deploy to cloud(distributed render)
+
+我们希望联合多个GPU(RTX2060及以上的显卡)形成支持光线追踪的渲染农场，从而让我们可以分布式地并行渲染一个大型3D场景(使用光线追踪)
+
+主要目的：
+进行分布式渲染，得到一张3D场景的图片
+
+思路：
+其中一台服务器节点（该节点可以为一个CPU或一般的服务器）作为主节点，进行渲染任务的调配;
+其他服务器节点（该节点可以为一个GPU或者GPU服务器）作为worker节点，负责渲染该图片的某个方块区域；
+他们都共享场景数据；
+
+
+所有服务器共享场景数据（一个buffer数据）；
+主服务器需要传输渲染指令（如渲染该图片的哪个方块区域，使用哪个相机的数据等）；
+GPU服务器节点负责把渲染结果（该图片的某个方块区域的数据）传输给主服务器节点；
+
+
+worker节点需要win10操作系统，因为渲染引擎需要运行在GPU服务器节点上，需要win10系统+vulkan驱动
+
+
+
+solution:
+1.use one compute with multi-gpus
+
+https://github.com/gpuweb/gpuweb/issues/995
+
+now not support it!!! will support in pre-1.0(after MVP)
+
+
+https://github.com/maierfelix/webgpu/issues/26
+
+
+
+2.use multiple computes(each one has one gpu)
+
+
+1、你这边是否可以把一台服务器的多个GPU聚合为一个GPU，让我像一个GPU那样调用？
+如一台服务器有两个显存为11G的RTX 2070s，那么我可以把它当成一个GPU那样来使用（显存为22G）
+
+
+回答：不能
+
+
+2、你这边是否可以给我多台服务器（包含一台主服务器和多台worker服务器），每台服务器都是win10系统+只有一个RTX2070s以上的GPU，每台服务器通过http通信（最好用内网通信，速度要快！）？
+这样我就可以由主服务器负责通过http通信，将渲染任务分派给各个worker服务器（只有一个GPU），然后将最终结果通过http通信传输给外界用户
+
+
+回答：
+可以。
+主服务器和worker服务器的通信速度、主服务器与外部用户的通信速度 要看你的设计要求。
+
+
+
+主服务器和worker服务器的通信、主服务器与外部用户的通信 都使用http通信把？
+
+回答：
+这个没问题
+
+
+
+
+
+
+最终方案：
+租用一台gpu服务器（一个服务器1个RTX 2070s显卡）作为worker服务器（gpu服务器店铺：https://shop392735765.taobao.com/?spm=2013.1.1000126.2.66cf1e6bdi61c0 );
+然后租用一台云服务器作为主服务器，两者通过http传输二进制文件;
+主服务器与Front End Tool通过http通信；
+
+
+
+
+
+
 ** TODO add weixin login
 
 
 ** TODO add weixin payment
+
+
 
 
 ** TODO publish v1.0.0
