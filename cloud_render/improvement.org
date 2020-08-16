@@ -10,6 +10,14 @@ interactive render in editor
 
 
 
+** TODO should solve GPU virtual!
+
+because one user should occupy one worker node for a time!
+so should support at least 10 users use the interactive render service at the same time!
+
+
+should separate interactive render's and picture's worker node!!!
+(picture's worker node not consider about GPU virtual while the interactive render should consider!!!)
 
 
 ** TODO support arcball camera

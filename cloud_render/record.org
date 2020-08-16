@@ -163,7 +163,7 @@ https://nvpro-samples.github.io/vk_raytracing_tutorial_KHR/vkrt_tuto_rayquery.md
 
 
 
-** TODO learn .res
+** DONE learn .res
 
 https://reasonml.org/docs/reason-compiler/latest/new-bucklescript-syntax
 
@@ -171,7 +171,7 @@ https://reasonml.org/docs/reason-compiler/latest/new-bucklescript-syntax
 https://rescript-lang.org/docs/manual/latest/let-binding
 
 
-*** TODO prepare dev env
+*** DONE prepare dev env
 
 
 ////*** TODO update blog!
@@ -196,8 +196,29 @@ give divide domains view
 
 externals:
 WebGPU(so can work with webgpu node and webgpu in browser!!!)(now only inject with webgpu node in the entry!)
+File IO
 
 
+
+
+infrastructure:
+interface
+wonder-re-structure
+
+
+
+rename external to dependency;
+
+
+
+shader files use .vert, ... instead of json;
+job return Stream;
+no loop, use update instead;
+jobs has no own data! get/set data to common data region in DO;
+(e.g. get/set pass->pipelines to WebGPU->objects->pipelines, taa pass->isFirstFrame to 数据结构->通用数据->bool data map;
+no context postfix(e.g. rename ContextContextEntity to ContextEntity)(if duplicate, add context post fix! e.g. rename ContextEntity to ContextContextEntity);
+use Root instead of Entity for Aggregate Root;
+not define Root's type(type t);
 
 
 
@@ -205,12 +226,24 @@ WebGPU(so can work with webgpu node and webgpu in browser!!!)(now only inject wi
 
 unit test
 
-render test(local test, not test in .travis!!!)
+render test
+(local test, not test in .travis!!!)
+(change run test in nodejs to render test)
 
 no perf test!
 
 add .cz, test coverage, travis, code climate, build status ...
 
+
+
+
+
+
+////*** TODO run test
+
+////render a triangle in browser;
+
+render a triangle in node;
 
 
 
@@ -406,6 +439,11 @@ only send ldr file
 
 
 *** TODO add Scheduler
+
+dispatch commands;
+sync;
+(invoke engine's init, update)
+
 
 
 *** TODO add Transporter
