@@ -145,7 +145,7 @@ worker节点需要win10操作系统，因为渲染引擎需要运行在GPU服务
 6.我们后期会上线云游戏服务，因此需要提供良好的网络传输和网络压缩工具等。
 
 
-** TODO learn and use newest rt features
+** DONE learn and use newest rt features
 test VK_KHR_ray_tracing feature! 
 
 https://news.developer.nvidia.com/whats-new-in-nvidia-vkray/
@@ -177,16 +177,16 @@ https://rescript-lang.org/docs/manual/latest/let-binding
 ////*** TODO update blog!
 
 
-** TODO think engine's architecture
+** DONE think engine's architecture
 
-*** TODO recall DDD
-
-
-*** TODO recall engine serials
+*** DONE recall DDD
 
 
+*** DONE recall engine serials
 
-*** TODO design engine
+
+
+*** DONE design engine
 
 give architecture views
 
@@ -209,6 +209,10 @@ wonder-re-structure
 
 rename external to dependency;
 
+Wonder.js should be .res project!(not commit lib/, dist/ files)
+
+remove code climate
+
 
 
 shader files use .vert, ... instead of json;
@@ -221,8 +225,35 @@ use Root instead of Entity for Aggregate Root;
 not define Root's type(type t);
 
 
+split transform to transform + link ?
 
-*** TODO build engine in dev branch
+
+
+
+** DONE learn spir-v unit test
+
+
+** DONE learn https://www.gamasutra.com/blogs/NiklasGray/20190611/344437/Syncing_a_dataoriented_ECS_with_a_stateful_external_system.php
+
+
+
+
+////** TODO write 《3D引擎实战精粹》系列
+
+开发方法
+
+架构
+
+并行
+
+优化
+
+工程化
+
+
+
+
+** TODO develop v2.0.0-alpha.1
 
 unit test
 
@@ -232,19 +263,49 @@ render test
 
 no perf test!
 
-add .cz, test coverage, travis, code climate, build status ...
+add .cz, test coverage, action(instead of travis), code climate, build status ...
 
 
 
+features:
+add job manager, gameObject + transform,link component, empty pass jobs(just render all pixels to blue), unit test, render test
+
+
+then @wang can do:
+geometry component;
+gbuffer pass;
+
+
+*** TODO implement
+
+rescript
+jest
+
+.cz
+
+
+add job manager, gameObject + transform,link component, empty pass jobs(just render all pixels to blue)
+
+unit test
+
+render test
 
 
 
-////*** TODO run test
+prepare for publish:
 
-////render a triangle in browser;
+test coverage
+(> 95%)
 
-render a triangle in node;
+action(instead of travis)
 
+build status, other bars...
+
+publish
+
+
+
+@wang
 
 
 
@@ -289,7 +350,7 @@ use render demo to render ldr model file;
 (remove denoise, taa pass, use accumulate pass to reduce noise)
 
 
-** TODO build engine as renderer(Wonder.js v2.0.0-alpha.1)
+** TODO build engine as renderer
 
 render test
 
@@ -297,7 +358,7 @@ unit test
 
 no perf test!
 
-add test coverage, travis, code climate, build status ...
+add test coverage, travis, build status ...
 
 
 receive the render command for distributed Ray Tracing:
@@ -408,12 +469,17 @@ https://perso.telecom-paristech.fr/boubek/papers/BCD/
 
 ** TODO add taa pass
 
-** TODO add transparent
-
-////** TODO add env map
 
 ** TODO support rounded corner
 
+
+
+
+
+////** TODO add env map
+
+
+** TODO add transparent
 
 
 ** TODO add application
@@ -546,8 +612,9 @@ https://github.com/maierfelix/webgpu/issues/26
 ** TODO add weixin payment
 
 
+** TODO add website, document
 
 
-** TODO publish v1.0.0
+** TODO publish
 
 publish Wonder.js v2.0.0
