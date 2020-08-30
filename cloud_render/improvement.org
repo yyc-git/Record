@@ -10,6 +10,27 @@ interactive render in editor
 
 
 
+one worker node generate one whole picture!!!
+
+
+
+** TODO multi thread in one worker node
+
+cpus and one gpu(only one gpu card) in one worker node should be parallel!!!
+
+cpu:
+thread1: scheduller
+receive render commmands(events);
+send picture
+
+thread2: exec render commands to generate state
+
+
+gpu:
+render picture(may be lag one frame with cpu)
+
+
+
 ** TODO should solve GPU virtual!
 
 because one user should occupy one worker node for a time!
@@ -66,6 +87,14 @@ engine should parse .wd_ldr to .wd!
 
 
 
+* TODO utils multiple gpus in one worker node for interactive render
+
+
+one worker node generate one whole picture;
+one gpu can render one tile of the whole picture.
+
+
+should implement after webgpu support it!?(pre 1.0)
 
 
 

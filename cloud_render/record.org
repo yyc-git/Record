@@ -217,15 +217,34 @@ remove code climate
 
 shader files use .vert, ... instead of json;
 job return Stream;
-no loop, use update instead;
-jobs has no own data! get/set data to common data region in DO;
+no loop, use run instead;
+////jobs has no own data! get/set data to common data region in PO(in Run Domain->PO);
 (e.g. get/set pass->pipelines to WebGPU->objects->pipelines, taa pass->isFirstFrame to 数据结构->通用数据->bool data map;
+
+run->po->job data has each job's data!(e.g. gbuffer job's data)
+
+
+
 no context postfix(e.g. rename ContextContextEntity to ContextEntity)(if duplicate, add context post fix! e.g. rename ContextEntity to ContextContextEntity);
 use Root instead of Entity for Aggregate Root;
 not define Root's type(type t);
 
 
-split transform to transform + link ?
+////split transform to transform + link ?
+
+
+
+
+
+build domain:
+move Repo to dependency;
+treat config to be dependency;
+
+remove infrastructure layer;
+
+convert do to po in do model;
+
+
 
 
 
@@ -253,7 +272,7 @@ split transform to transform + link ?
 
 
 
-** TODO develop v2.0.0-alpha.1
+** TODO develop v2.0.0-alpha.1: work in Wonder.js Project
 
 unit test
 
@@ -281,20 +300,61 @@ gbuffer pass;
 rescript
 jest
 
-.cz
+//.cz
 
 
-add job manager, gameObject + transform,link component, empty pass jobs(just render all pixels to blue)
+//add gameObject + transform component
 
-unit test
+//add job manager, init transform+update transform(need optimize) job:
 
-render test
+set pipeline dp
+register job
+
+set default one
+
+
+
+//set all dp
+
+
+//refactor:
+////rename gameObject->addXXX to setXXX
+rename transform->addGameObject to setGameObject
+
+//remove RepoAt
+
+
+
+
+//finish init pipelines jobs
+
+//finish run pipelines jobs
+
+
+
+
+
+
+//unit test:
+    in Construct:
+
+
+    in CP:
+        add test funcs:
+        let setInitPipelineData = (data: PipelineCPVOType.pipelineData): unit => {};
+        let setRestartPipelineData = (data: PipelineCPVOType.pipelineData): unit => {};
+        let setRunPipelineData = (data: PipelineCPVOType.pipelineData): unit => {};
+
+
+
+
+////render test
 
 
 
 prepare for publish:
 
-test coverage
+//test coverage
 (> 95%)
 
 action(instead of travis)
@@ -309,7 +369,164 @@ publish
 
 
 
-** TODO move Array, Option, Result, ... to Wonder-Re-Structure
+
+** TODO develop v2.0.0-alpha.2
+
+
+add all components:
+
+add pbrMaterial(no shader)
+
+share pbrMaterial
+
+
+
+
+add geometry(custom, sphere geometry)
+
+share geometry
+
+use less geometry container(e.g. the same sphere should in one geometry container)
+
+
+
+
+
+add cameraView, cameraProjection
+
+
+
+add directionLight
+
+
+** TODO develop v2.0.0-alpha.3: work in Wonder-Cloud-Picture project! 
+
+
+
+
+receive the render command for distributed Ray Tracing:
+////input: tile region's width,height + .wd
+input: .wd(render hole picture)
+output: the tile region data(uint8Array)
+
+
+
+use high-performance in requestAdapter:
+[Exposed=(Window, DedicatedWorker)]
+interface GPU {
+    Promise<GPUAdapter?> requestAdapter(optional GPURequestAdapterOptions options = {});
+};
+
+dictionary GPURequestAdapterOptions {
+    GPUPowerPreference powerPreference;
+};
+enum GPUPowerPreference {
+    "low-power",
+    "high-performance"
+};
+
+
+
+add no material shaders
+
+
+
+add init pipeline
+
+
+add restart pipeline
+
+
+
+
+run pipeline add passes:
+update transform,
+(should build transform update VO for perf!)
+gbuffer,
+rt,
+generate picture data,
+clear
+
+
+
+
+
+
+
+render test
+
+
+
+** TODO develop v2.0.0-alpha.4
+
+add wd:
+wd type,
+wd parser
+
+
+render test
+
+
+
+
+
+** TODO develop v2.0.0-alpha.5
+
+
+add gltf to wd converter
+
+
+render test
+
+
+** TODO develop v2.0.0-alpha.6
+
+
+*** TODO add denoise
+
+try to use NVIDIA's Optix Denoiser:
+https://github.com/maierfelix/nvk-optix-denoiser
+https://research.nvidia.com/publication/interactive-reconstruction-monte-carlo-image-sequences-using-recurrent-denoising
+https://developer.nvidia.com/optix-denoiser
+
+
+
+more denoiser:
+https://www.ece.ucsb.edu/~psen/PaperPages/removing_MC_noise.html
+https://studios.disneyresearch.com/wp-content/uploads/2019/03/Denoising-Deep-Monte-Carlo-Renderings-1.pdf
+https://perso.telecom-paristech.fr/boubek/papers/BCD/
+
+
+
+
+**** TODO try fix indirect specular noise
+
+
+
+
+
+*** TODO add taa pass
+
+
+
+
+*** TODO @23 , test render gltf model!
+
+
+
+
+
+** TODO move library out to be new projects
+
+*** TODO move Array, Option, Result, ... to Wonder-Re-Structure
+
+TODO refactor:
+rename ArraySt, ListSt to Array, List
+(because has namespace(WonderReStructure), so not conflict with Array, List!)
+
+
+
+
 
 "bsc-flags": ["-open WonderReStructure"],
 
@@ -318,7 +535,7 @@ the api is like wonder-commonlib, but the implement can use Belt!
 
 
 
-** TODO rewrite ldr loader
+////** TODO rewrite ldr loader
 
 use wrap type(refer to DDD)
 
@@ -328,6 +545,9 @@ add test coverage, travis
 
 
 ** TODO ldr converter
+
+extract from ldr-render1-service
+
 
 use wrap type(refer to DDD)
 
@@ -348,6 +568,10 @@ load scene graph data(.wd);
 use render demo to render ldr model file;
 
 (remove denoise, taa pass, use accumulate pass to reduce noise)
+
+
+*** TODO render test: render ldr model!
+
 
 
 ** TODO build engine as renderer
@@ -443,31 +667,6 @@ use less geometry container(e.g. the same sphere should in one geometry containe
 
 
 
-
-** TODO add denoise
-
-try to use NVIDIA's Optix Denoiser:
-https://github.com/maierfelix/nvk-optix-denoiser
-https://research.nvidia.com/publication/interactive-reconstruction-monte-carlo-image-sequences-using-recurrent-denoising
-https://developer.nvidia.com/optix-denoiser
-
-
-
-more denoiser:
-https://www.ece.ucsb.edu/~psen/PaperPages/removing_MC_noise.html
-https://studios.disneyresearch.com/wp-content/uploads/2019/03/Denoising-Deep-Monte-Carlo-Renderings-1.pdf
-https://perso.telecom-paristech.fr/boubek/papers/BCD/
-
-
-
-
-*** TODO try fix indirect specular noise
-
-
-
-
-
-** TODO add taa pass
 
 
 ** TODO support rounded corner
@@ -598,6 +797,8 @@ https://github.com/maierfelix/webgpu/issues/26
 租用一台gpu服务器（一个服务器1个RTX 2070s显卡）作为worker服务器（gpu服务器店铺：https://shop392735765.taobao.com/?spm=2013.1.1000126.2.66cf1e6bdi61c0 );
 然后租用一台云服务器作为主服务器，两者通过http传输二进制文件;
 主服务器与Front End Tool通过http通信；
+
+一台worker node渲染一整张图片！
 
 
 可考虑把我这台电脑作为worker服务器！（@王影）
