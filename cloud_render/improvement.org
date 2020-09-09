@@ -102,6 +102,25 @@ should implement after webgpu support it!?(pre 1.0)
 parse ldr's texture data;
 render3 support texture;
 
+
+* TODO improve light
+
+** TODO fix: consider direction light's color
+
+////** TODO fix: fix direction light's direction
+
+now pass position and compute it in shader!
+
+should pass direction to shader directly?
+
+
+** TODO feat: add point, rect, sphere light
+
+
+** TODO feat: multiple lights
+
+
+
 * TODO V-RAY COMPATIBILITY
 
 Fully compatible with V-Ray content: materials, lights, environments, geometries, proxies, render options, etc.

@@ -272,7 +272,7 @@ convert do to po in do model;
 
 
 
-** TODO develop v2.0.0-alpha.1: work in Wonder.js Project
+** DONE develop v2.0.0-alpha.1: work in Wonder.js Project
 
 unit test
 
@@ -361,6 +361,8 @@ action(instead of travis)
 
 build status, other bars...
 
+add 1.1 version link
+
 publish
 
 
@@ -373,7 +375,10 @@ publish
 ** TODO develop v2.0.0-alpha.2
 
 
-add all components:
+*** DONE add all components
+
+
+**** DONE logic
 
 add pbrMaterial(no shader)
 
@@ -386,7 +391,6 @@ add geometry(custom, sphere geometry)
 
 share geometry
 
-use less geometry container(e.g. the same sphere should in one geometry container)
 
 
 
@@ -399,15 +403,26 @@ add cameraView, cameraProjection
 add directionLight
 
 
-** TODO develop v2.0.0-alpha.3: work in Wonder-Cloud-Picture project! 
+
+**** DONE test
 
 
+
+*** TODO work in Wonder-Cloud-Picture project! 
+
+**** DONE add ray tracin pass jobs
+
+
+
+
+**** DONE logic
 
 
 receive the render command for distributed Ray Tracing:
 ////input: tile region's width,height + .wd
-input: .wd(render hole picture)
-output: the tile region data(uint8Array)
+input: .wd(render whole picture)
+////output: the tile region data(uint8Array)
+output: the whole picture's data(uint8Array)
 
 
 
@@ -442,7 +457,7 @@ add restart pipeline
 run pipeline add passes:
 update transform,
 (should build transform update VO for perf!)
-gbuffer,
+////gbuffer,
 rt,
 generate picture data,
 clear
@@ -452,12 +467,126 @@ clear
 
 
 
+//pass compile;
+
+
+
+
+
+
+***** TODO publish;
+
+
+
+
+
+**** TODO test
+
+***** TODO unit test
+
+
+***** TODO refactor: cloud-render should use construct's run api instead of do service!
+
+***** TODO refactor: cloud-render should only use construct's run api instead of DPContainer
+
+***** TODO refactor: cloud-render->CPRepo shouldn't dependent on CPRepoDp
+
+
+
+
+***** TODO render test:
+after accumulate, still has noise
+
+
+
+
+
+***** TODO give demo(render spheres)
+
+
+
+
+
+
+**** TODO publish
+
+
+**** TODO add generate pipeline to generate picture data!
+
+init(only once);
+update, render, render, ..., generate;
+update, render, render, ..., generate;
+...
+
+
+
+
+
+
+add jobs
+
+unit test
+
 
 render test
 
 
+**** TODO publish
 
-** TODO develop v2.0.0-alpha.4
+
+
+
+** TODO support textures 
+
+
+*** TODO support pbr maps
+
+
+
+*** TODO support normal map
+
+
+
+** TODO learn usdz, support it instead of wd?
+
+references:
+
+https://developer.nvidia.com/usd
+
+
+
+https://graphics.pixar.com/usd/docs/index.html
+http://graphics.pixar.com/usd/docs/api/index.html
+https://github.com/PixarAnimationStudios/USD
+
+
+
+three.js->issue:
+https://github.com/mrdoob/three.js/issues/14219
+
+
+
+ios:
+https://developer.apple.com/cn/augmented-reality/quick-look/
+
+
+converter:
+https://github.com/google/usd_from_gltf
+https://github.com/TimvanScherpenzeel/gltf-to-usdz-research
+
+https://developer.apple.com/augmented-reality/tools/ -> Download USDZ tools
+(already get tool from wechat->Lin)
+
+
+
+work with nvidia-omniverse-platform;
+https://developer.nvidia.com/nvidia-omniverse-platform
+
+
+
+
+
+** TODO add wd, gltf 
 
 add wd:
 wd type,
@@ -470,16 +599,78 @@ render test
 
 
 
-** TODO develop v2.0.0-alpha.5
-
-
 add gltf to wd converter
 
 
 render test
 
 
+
+
+give demo(render gltf model)
+
+
+
+
+
+
+
+
 ** TODO develop v2.0.0-alpha.6
+
+*** TODO add others
+
+
+**** TODO add blit pass
+
+accu pass should after ray tracing pass
+
+
+**** TODO add taa pass
+
+
+**** TODO add post effect pass
+
+tonemap
+gamma
+
+
+*** TODO @23 , test render gltf model!
+
+
+
+
+
+** TODO dispose
+
+
+*** TODO add dispose jobs
+
+
+*** TODO run test: test memory
+
+
+
+*** TODO unit test
+
+
+** TODO perf
+
+compute time:
+init,update,render pipeline's time;
+the time in [update, render, generate] pipelines;
+
+
+compute memory
+
+
+
+reuse commandBuffer in render raytracing job?
+
+use less geometry container(e.g. the same sphere should in one geometry container)
+
+
+** TODO develop v2.0.0-alpha.3
 
 
 *** TODO add denoise
@@ -492,25 +683,24 @@ https://developer.nvidia.com/optix-denoiser
 
 
 more denoiser:
-https://www.ece.ucsb.edu/~psen/PaperPages/removing_MC_noise.html
-https://studios.disneyresearch.com/wp-content/uploads/2019/03/Denoising-Deep-Monte-Carlo-Renderings-1.pdf
+// https://www.ece.ucsb.edu/~psen/PaperPages/removing_MC_noise.html
+// https://studios.disneyresearch.com/wp-content/uploads/2019/03/Denoising-Deep-Monte-Carlo-Renderings-1.pdf
 https://perso.telecom-paristech.fr/boubek/papers/BCD/
+(should use compute shader!)
+https://groups.csail.mit.edu/graphics/rendernet/
 
 
 
 
-**** TODO try fix indirect specular noise
+////**** TODO try fix indirect specular noise
 
 
 
 
-
-*** TODO add taa pass
-
+**** TODO compare with bmfr(compare with WebGPU-RTX project)
 
 
 
-*** TODO @23 , test render gltf model!
 
 
 
