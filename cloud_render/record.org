@@ -474,7 +474,7 @@ clear
 
 
 
-***** TODO publish;
+***** DONE publish;
 
 
 
@@ -482,33 +482,39 @@ clear
 
 **** TODO test
 
-***** TODO unit test
+***** DONE unit test
+
+jobs:
+webgpu
+
+pass tracing
+
+accumulation
 
 
-***** TODO refactor: cloud-render should use construct's run api instead of do service!
+***** DONE refactor: cloud-render should use construct's run api instead of do service!
 
-***** TODO refactor: cloud-render should only use construct's run api instead of DPContainer
+***** DONE refactor: cloud-render should only use construct's run api instead of DPContainer
 
-***** TODO refactor: cloud-render->CPRepo shouldn't dependent on CPRepoDp
-
-
-
-
-***** TODO render test:
-after accumulate, still has noise
-
-
-
-
-
-***** TODO give demo(render spheres)
+***** DONE refactor: cloud-render->CPRepoDp shouldn't dependent on CPRepo
 
 
 
+***** TODO add Wonder-Example project
+
+use webgpu node to implement webgpu,raytracing interface;
 
 
 
-**** TODO publish
+use file api to implement load shader file:
+write interface:IFile(refer to chrome native file system:https://web.dev/native-file-system/);
+implement IFile with node -> fs;
+
+
+
+
+demo:
+(render spheres + planes)
 
 
 **** TODO add generate pipeline to generate picture data!
@@ -529,6 +535,21 @@ unit test
 
 
 render test
+
+
+
+
+***** TODO render test:
+////after accumulate, still has noise
+
+
+
+
+
+
+
+
+
 
 
 **** TODO publish
@@ -560,6 +581,10 @@ http://graphics.pixar.com/usd/docs/api/index.html
 https://github.com/PixarAnimationStudios/USD
 
 
+youtube:
+https://www.youtube.com/watch?v=x9ikzGQW0ys&t=5s
+
+
 
 three.js->issue:
 https://github.com/mrdoob/three.js/issues/14219
@@ -575,7 +600,7 @@ https://github.com/google/usd_from_gltf
 https://github.com/TimvanScherpenzeel/gltf-to-usdz-research
 
 https://developer.apple.com/augmented-reality/tools/ -> Download USDZ tools
-(already get tool from wechat->Lin)
+(already get tool from wechat->Lin, search "usdpython" in macbook!)
 
 
 
@@ -645,6 +670,8 @@ gamma
 
 
 *** TODO add dispose jobs
+
+should reset geometry buffer;
 
 
 *** TODO run test: test memory
@@ -722,6 +749,13 @@ rename ArraySt, ListSt to Array, List
 
 
 the api is like wonder-commonlib, but the implement can use Belt!
+
+
+
+** TODO refactor: update wonder-bs-most,wonder-bs-sinon
+
+stream first!
+
 
 
 
