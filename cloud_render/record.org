@@ -480,7 +480,7 @@ clear
 
 
 
-**** TODO test
+**** DONE test
 
 ***** DONE unit test
 
@@ -500,7 +500,7 @@ accumulation
 
 
 
-***** TODO add Wonder-Example project
+***** DONE add Wonder-Example project
 
 use webgpu node to implement webgpu,raytracing interface;
 
@@ -517,30 +517,6 @@ demo:
 (render spheres + planes)
 
 
-**** TODO add generate pipeline to generate picture data!
-
-init(only once);
-update, render, render, ..., generate;
-update, render, render, ..., generate;
-...
-
-
-
-
-
-
-add jobs
-
-unit test
-
-
-render test
-
-
-
-
-***** TODO render test:
-////after accumulate, still has noise
 
 
 
@@ -549,10 +525,7 @@ render test
 
 
 
-
-
-
-**** TODO publish
+**** DONE publish
 
 
 
@@ -661,6 +634,38 @@ gamma
 
 
 *** TODO @23 , test render gltf model!
+
+** TODO generate picture data
+
+*** TODO add generate pipeline to generate picture data!
+
+init(only once);
+update, render, render, ..., generate;
+update, render, render, ..., generate;
+...
+
+
+user can specify:
+picture size
+sampleCount
+camera data(near,far,fovy,aspect; position, target, up)
+direction light data(direction, intensity)
+
+
+
+
+add jobs
+
+unit test
+
+
+render test
+
+
+
+
+*** TODO render test:
+
 
 
 
