@@ -533,11 +533,103 @@ demo:
 ** TODO support textures 
 
 
-*** TODO support pbr maps
+*** DONE write demo
+
+////descriptor index
+
+////virtual texture
 
 
 
-*** TODO support normal map
+
+
+
+onion texture demo:
+update texture in layers in different frames
+
+scale to max size(2048 x 2048)
+
+
+
+not support repeat/clamp-to-edge/mirror-repeat
+(should check texCoord in [0.0, 1.0])
+
+
+*** DONE learn normal map
+
+*** TODO implement
+
+network dp;
+
+storage image uint8Array to hash map(key:image id);
+
+test
+
+add init pbrMaterial texture job
+(create texture view, sampler)
+
+test
+
+pbr material add textures(diffuseMap, metalRoughnessMap, normalMap, emissionMap)
+(setXXXMap(material, imageId))
+
+test
+
+geometry add a_texCoord data
+add init geometry job
+(compute a_tangent data if has normap map)
+
+test
+
+edit init, update path tracing job;
+(edit glsl)
+
+edit render path tracing job;
+
+test
+
+
+*** TODO run test
+floor
+boomBox
+
+
+# *** TODO write demo(triangle)
+
+# floor
+
+# *** TODO learn emission map
+
+
+
+# *** TODO write demo(rect)
+
+# boombox
+
+
+
+# *** TODO support pbr maps
+
+
+
+
+# *** TODO support normal map
+
+
+# *** TODO support emission map
+
+
+
+** TODO publish
+
+
+
+** TODO add transparent
+
+
+
+
+** TODO publish
 
 
 
@@ -907,7 +999,6 @@ use less geometry container(e.g. the same sphere should in one geometry containe
 ////** TODO add env map
 
 
-** TODO add transparent
 
 
 ** TODO add application
