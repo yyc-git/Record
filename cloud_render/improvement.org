@@ -1,3 +1,8 @@
+
+
+
+
+
 * TODO interactive render
 
 https://www-file.huawei.com/-/media/corporate/pdf/ilab/2019/cloud_game_whitepaper.pdf
@@ -135,6 +140,20 @@ refer to https://www.cl3ver.com/
 * TODO texture lod
 https://media.contentapi.ea.com/content/dam/ea/seed/presentations/2019-ray-tracing-gems-chapter-20-akenine-moller-et-al.pdf
 
+
+* TODO improve map
+
+now only support linear filter, not support wrap! not consider about mipmap!
+
+
+so can support nearest filter(use more samplers-bindGroups?);support wrap(texCoord < 0.0 || texCoord > 1.0); consider mipmap;
+
+
+* TODO improve normal map
+
+https://www.zhihu.com/question/316029127
+https://zhuanlan.zhihu.com/p/63419999
+https://blogs.unity3d.com/cn/2017/10/02/microfacet-based-normal-mapping-for-robust-monte-carlo-path-tracing/
 
 
 * TODO sample VNDF instead of NDF
