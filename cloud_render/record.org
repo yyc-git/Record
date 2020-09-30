@@ -649,6 +649,7 @@ compare asset->texture(plane)
 
 
 
+////* TODO fix firefly
 
 
 
@@ -725,6 +726,15 @@ give demo(render gltf model)
 
 *** TODO refactor: CP Example should only invoke CP API instead of Run API of Wonder.js!
 
+
+
+
+** TODO add blit render job(@wy)
+
+
+** TODO create Webgl1Renderer project(@wy)
+
+add render_webgl1  pipeline
 
 
 
@@ -1045,6 +1055,9 @@ use less geometry container(e.g. the same sphere should in one geometry containe
 
 
 
+** TODO publish Wonder 2.0.0-beta
+
+use docker for webgpu env install(e.g. vulkan driver)
 
 ** TODO add application
 

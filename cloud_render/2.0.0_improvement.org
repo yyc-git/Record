@@ -1,2 +1,29 @@
-* TODO fix firefly
+* TODO fix firefly without clamp
+
+learn:
+Path Space Regularization for Holistic and Robust Light Transport
+
+Reweighting Firefly Samples for Improved Finite-Sample Monte Carlo Estimates
+(refer to webgpu->commit: 562660)
+
+
+
+
+fireflies : 
+One source of noise is “fireflies”
+A problem with Monte Carlo is that if you happen to sample a low probability part of the
+PDF and then that ray hits something bright in the scene, you’ll end up dividing the bright
+value by a really small number and the result can explode. On average, this is indeed
+correct and that energy should be in the scene, but in practice it means that every now and
+then you get one super bright pixel for one frame, and it flickers and looks terrible. So,
+don’t do that. Clamp the minimum PDF value, the maximum radiance, run an outlier
+detection at the end…and just throw away that energy to make the scene stable.
+Production renderers all do this.
+
+refer to:
+https://alain.xyz/blog/raytracing-denoising -> firefly-rejection
+(https://alain.xyz/blog/raytracing-denoising#firefly-rejection)
+
+https://www.google.com/search?ei=P3zoXqLuOJHr-wTE47qgDw&q=raytracing+noise+fireflies&oq=raytracing+noise+fireflies&gs_lcp=CgZwc3ktYWIQAzIGCAAQBxAeMggIABAIEAcQHjIICAAQCBAHEB4yCAgAEAgQBxAeMggIABAIEAcQHjIICAAQCBAHEB4yCAgAEAgQBxAeMggIABAIEAcQHjIICAAQCBAHEB4yCAgAEAgQBxAeOgQIABBDOgIIAFDtBViKKmCPK2gAcAB4AIABuwKIAbkokgEGMi0xNC40mAEAoAEBqgEHZ3dzLXdpeg&sclient=psy-ab&ved=0ahUKEwjiiZqP74XqAhWR9Z4KHcSxDvQQ4dUDCAw&uact=5
+
 
