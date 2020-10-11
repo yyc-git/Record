@@ -86,3 +86,7 @@ https://belcour.github.io/blog/research/2019/06/17/sampling-bluenoise.html
 Distributing Monte Carlo Errors as a Blue Noise in Screen Space by Permuting Pixel Seeds Between Frames:
 https://belcour.github.io/blog/research/2019/06/18/animation-bluenoise.html
 
+
+**** TODO learn path tracer architecture
+
+[The Design and Evolution of Disney’s Hyperion Renderer](https://www.yiningkarlli.com/projects/hyperiondesign/hyperiondesign.pdf)

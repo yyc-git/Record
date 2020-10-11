@@ -652,6 +652,135 @@ compare asset->texture(plane)
 ////* TODO fix firefly
 
 
+** DONE rethink architecture
+
+////refactor: rename cloud-picture to path tracer
+
+
+different external should only know its own data:
+
+dependency:
+config(implement):
+    (refactor: po config should be external(remove setXXXCount))
+    (setXxxConfigDp)
+external(all inject):
+    (setXxxExternalDp)
+repo(only implement):
+    ////map to domains(scene, statics, webgpu core, webgpu rt, ...)
+    (get/setXxxRepoDp)
+        ( but for pipeline domain, map to context: get/setXxxJobRepoDp )
+
+//move job down
+//change job integration test to unit test(change to upper case)
+
+////Job shouldn't invoke repo(should through domain)
+
+////remove some cp do service
+
+////merge:
+src
+test
+
+////remove run api
+
+
+//cp api should include run api(user shouldn't invoke run api!)
+
+
+
+
+////external:
+prepare pipeline json data(in director?)
+
+
+
+/*
+api/ap service should map to domains(scene, statics, ...)
+    (use module. e.g. module GameObject = {...} in SceneApService)
+*/
+
+
+
+
+
+** DONE refactor: rename pbr material to brdf material
+
+
+** TODO add bsdf material(only Transmittance)
+
+BSDF(specTrans, ...)
+
+refer to  blender:
+https://github.com/KhronosGroup/glTF-Blender-IO/issues/123
+disney
+...
+
+*** DONE learn 1(unity)
+
+////*** TODO learn 2(temp3)
+
+////*** TODO learn 3(temp1)
+
+
+bias for normal map?(now not bias!)
+
+
+
+*** TODO change brdf material to bsdf material
+
+
+
+////** TODO brdf material support transparent?
+
+
+
+
+*** TODO refactor
+
+rename ray-xxx.rgen/rchit/... to ray_xxx.xxx
+
+
+** TODO add gltf 
+
+add wdd(wonder description):
+wdd type(not has buffer,bufferView,accessor! directly use primitive data!)
+wdd parser;
+
+
+
+
+
+
+add gltf to wdd converter
+
+
+////directly load gltf and build scene graph!
+
+support extensions:
+KHR_materials_transmission(to support bsdf)
+
+
+
+give demo(render gltf model)
+
+
+
+
+
+*** TODO support KHR_materials_transmission and KHR_materials_ior
+
+transmission = specTrans
+
+other value(e.g. flatness) use default value!!!(implement in [KHR_materials_volume](https://github.com/KhronosGroup/glTF/blob/3af4caa98cfb8bb2da4d49804a7e7947e29ad4fe/extensions/2.0/Khronos/KHR_materials_volume/README.md))
+
+
+
+**** TODO test in blender(export to gltf)
+
+https://github.com/KhronosGroup/glTF-Blender-IO/pull/1094
+
+
+
 
 ** TODO learn usdz, support it instead of wd?
 
@@ -696,43 +825,12 @@ https://developer.nvidia.com/nvidia-omniverse-platform
 
 
 
-** TODO add wd, gltf 
-
-add wd:
-wd type,
-wd parser
-
-
-render test
-
-
-
-
-
-add gltf to wd converter
-
-
-render test
-
-
-
-
-give demo(render gltf model)
-
-
-
-
-
-
-*** TODO refactor: CP Example should only invoke CP API instead of Run API of Wonder.js!
-
-
 
 
 ** TODO add blit render job(@wy)
 
 
-** TODO create Webgl1Renderer project(@wy)
+** TODO create Rasterizer project(@wy)
 
 add render_webgl1  pipeline
 
@@ -831,19 +929,6 @@ use less geometry container(e.g. the same sphere should in one geometry containe
 
 
 
-** TODO add transparent
-
-BSDF
-
-refer to  blender:
-https://github.com/KhronosGroup/glTF-Blender-IO/issues/123
-disney
-...
-
-
-
-
-** TODO publish
 
 
 

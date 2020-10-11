@@ -185,3 +185,53 @@ https://belcour.github.io/blog/research/2019/06/18/animation-bluenoise.html
 https://zhuanlan.zhihu.com/p/90017623
 
 
+
+* TODO support volumn(consider scattering) for bsdf(should wait for KHR_materials_volume be official extensions(should in https://github.com/KhronosGroup/glTF/tree/master/extensions/2.0/Khronos) and glTF-Blender-IO to support KHR_materials_volume!)
+
+refer to:
+https://zhuanlan.51cto.com/art/201904/594881.htm
+https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_slides.pdf
+[Rendering the Moana Island Scene Part 1: Implementing the Disney BSDF](https://schuttejoe.github.io/post/disneybsdf/)
+https://github.com/KhronosGroup/glTF/pull/1726
+https://github.com/KhronosGroup/glTF/blob/3af4caa98cfb8bb2da4d49804a7e7947e29ad4fe/extensions/2.0/Khronos/KHR_materials_volume/README.md
+https://computergraphics.stackexchange.com/questions/2563/full-monte-carlo-volumetric-scattering?rq=1
+
+
+** TODO support clearcoat, sheen, flatness, ...
+
+refer to:
+[Rendering the Moana Island Scene Part 1: Implementing the Disney BSDF](https://schuttejoe.github.io/post/disneybsdf/)
+
+
+
+* TODO support multiple layer material
+
+refer to:
+https://zhuanlan.zhihu.com/p/51398301
+https://www.google.com/search?q=Practical+Multilayered+Materials+in+Call+of+Duty%3A+Infinite+Warfare&oq=Practical+Multilayered+Materials+in+Call+of+Duty%3A+Infinite+Warfare&aqs=chrome..69i57.293j0j1&sourceid=chrome&ie=UTF-8
+https://research.cs.cornell.edu/layered-sg14/
+https://computergraphics.stackexchange.com/questions/5758/path-tracing-materials
+https://computergraphics.stackexchange.com/questions/8013/pbr-how-to-handle-multiple-bsdfs-and-material-type?noredirect=1&lq=1
+
+
+** TODO support thin fim layer
+
+gltf has this extension:
+https://github.com/KhronosGroup/glTF/issues/1221
+https://github.com/KhronosGroup/glTF/pull/1742
+
+
+
+* TODO load big scene file(e.g. > 1 GB?)
+
+
+refer to:
+[Rendering the Moana Island Scene Part 2: A production scene from a hobby renderer](https://schuttejoe.github.io/post/disneypostmortem/)
+
+
+* TODO render water
+
+refer to:
+[Rendering the Moana Island Scene Part 2: A production scene from a hobby renderer](https://schuttejoe.github.io/post/disneypostmortem/) -> Next steps
+
+
