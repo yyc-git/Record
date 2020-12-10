@@ -1,8 +1,4 @@
 
-
-
-
-
 * TODO interactive render
 
 https://www-file.huawei.com/-/media/corporate/pdf/ilab/2019/cloud_game_whitepaper.pdf
@@ -108,22 +104,6 @@ parse ldr's texture data;
 render3 support texture;
 
 
-* TODO improve light
-
-** TODO fix: consider direction light's color
-
-////** TODO fix: fix direction light's direction
-
-now pass position and compute it in shader!
-
-should pass direction to shader directly?
-
-
-** TODO feat: add point, rect, sphere light
-
-
-** TODO feat: multiple lights
-
 
 
 * TODO V-RAY COMPATIBILITY
@@ -189,6 +169,8 @@ https://zhuanlan.zhihu.com/p/90017623
 * TODO support volumn(consider scattering) for bsdf(should wait for KHR_materials_volume be official extensions(should in https://github.com/KhronosGroup/glTF/tree/master/extensions/2.0/Khronos) and glTF-Blender-IO to support KHR_materials_volume!)
 
 refer to:
+[pbrt](book(2010version))->11,14.7,16 chapter
+
 https://zhuanlan.51cto.com/art/201904/594881.htm
 https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_slides.pdf
 [Rendering the Moana Island Scene Part 1: Implementing the Disney BSDF](https://schuttejoe.github.io/post/disneybsdf/)
@@ -212,6 +194,13 @@ https://www.google.com/search?q=Practical+Multilayered+Materials+in+Call+of+Duty
 https://research.cs.cornell.edu/layered-sg14/
 https://computergraphics.stackexchange.com/questions/5758/path-tracing-materials
 https://computergraphics.stackexchange.com/questions/8013/pbr-how-to-handle-multiple-bsdfs-and-material-type?noredirect=1&lq=1
+https://autodesk.github.io/standard-surface/#discussion/layeringmodel
+https://www.google.com/search?newwindow=1&safe=strict&sxsrf=ALeKk03hgnTbzH6pLqnUO0Hv_qbVDs3MsA%3A1602578613012&ei=tWiFX8ArkdD6BK2MgqAH&q=bssrdf&oq=bssrdf&gs_lcp=CgZwc3ktYWIQAzIECCMQJzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIAFCyCljlE2DjFGgAcAF4AIABwQKIAfQJkgEDMy00mAEAoAEBqgEHZ3dzLXdpesABAQ&sclient=psy-ab&ved=0ahUKEwiA2s_HlrHsAhURqJ4KHS2GAHQQ4dUDCA0&uact=5
+
+
+consider reciprocal?
+
+
 
 
 ** TODO support thin fim layer
@@ -219,6 +208,18 @@ https://computergraphics.stackexchange.com/questions/8013/pbr-how-to-handle-mult
 gltf has this extension:
 https://github.com/KhronosGroup/glTF/issues/1221
 https://github.com/KhronosGroup/glTF/pull/1742
+
+
+
+** TODO support KHR_materials_clearcoat, KHR_materials_sheen gltf extension
+
+https://github.com/KhronosGroup/glTF/tree/master/extensions/2.0/Khronos/KHR_materials_clearcoat
+https://github.com/KhronosGroup/glTF/tree/master/extensions/2.0/Khronos/KHR_materials_sheen
+
+
+Blender 2.90 already support KHR_materials_clearcoat!
+
+wait for blender to support KHR_materials_sheen???
 
 
 
@@ -234,4 +235,84 @@ refer to:
 refer to:
 [Rendering the Moana Island Scene Part 2: A production scene from a hobby renderer](https://schuttejoe.github.io/post/disneypostmortem/) -> Next steps
 
+
+
+
+
+* TODO use more sample way to reduce noise
+
+refer to https://zhuanlan.zhihu.com/p/72673165:
+BidirectionalPath Tracing
+Metropolis Light Transport
+
+Energy Redistribution Path Tracing
+https://www.google.com/search?q=Energy+Redistribution+Path+Tracing&oq=Energy+Redistribution+Path+Tracing&aqs=chrome..69i57j69i59l2.154j0j7&sourceid=chrome&ie=UTF-8
+http://raytracey.blogspot.com/2010/07/energy-redistribution-path-tracing-in.html
+
+Manifold Exploration
+
+
+
+refer to:
+https://zhuanlan.zhihu.com/p/28407938
+
+comparision:
+http://maverick.inria.fr/~Nicolas.Holzschuch/Comparison/
+
+
+
+** TODO more
+*** TODO photon mapping
+
+*** TODO 自适应采样
+refer to:
+https://www.zhihu.com/question/35640573
+
+
+现代路径追踪算法中使用的自适应采样主要集中于两个地方：
+
+对摄像机光线的自适应采样
+靠近光源一段的末端路径对海量光源的自适应采样
+
+
+
+
+* TODO learn usdz, support it instead of wd?
+
+references:
+
+https://developer.nvidia.com/usd
+
+
+
+https://graphics.pixar.com/usd/docs/index.html
+http://graphics.pixar.com/usd/docs/api/index.html
+https://github.com/PixarAnimationStudios/USD
+
+
+youtube:
+https://www.youtube.com/watch?v=x9ikzGQW0ys&t=5s
+
+
+
+three.js->issue:
+https://github.com/mrdoob/three.js/issues/14219
+
+
+
+ios:
+https://developer.apple.com/cn/augmented-reality/quick-look/
+
+
+converter:
+https://github.com/google/usd_from_gltf
+https://github.com/TimvanScherpenzeel/gltf-to-usdz-research
+
+https://developer.apple.com/augmented-reality/tools/ -> Download USDZ tools
+(already get tool from wechat->Lin, search "usdpython" in macbook!)
+
+
+
+work with nvidia-omniverse-platform;
+https://developer.nvidia.com/nvidia-omniverse-platform
 

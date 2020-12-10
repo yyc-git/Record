@@ -1,0 +1,14 @@
+* TODO @y 你将这数据放进你的3D平台， 看看是否可以展示，
+
+@warren wong:
+
+我这边有些客户试过了， NavVis 的数据是可以放在其他3D引擎上的 ， 华为就是用NavVis 扫描， 放在他们的自己的3D引擎上的， 其他几个Partner 也说可行的
+
+链接: https://pan.baidu.com/s/1eUlpIUHIK4s2MLB8pTyLpg 提取码: 7fu5 复制这段内容后打开百度网盘手机App，操作更方便哦
+
+@y 你将这数据放进你的3D平台， 看看是否可以展示，
+
+
+* TODO test point cloud data
+
+使用threejs+wonder，加载从点云数据转换而来的模型数据（如gltf、fbx等threejs支持加载的模型格式），进行光追云端渲染

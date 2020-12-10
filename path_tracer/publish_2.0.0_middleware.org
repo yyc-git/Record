@@ -1,0 +1,8 @@
+* TODO publish middleware
+
+** TODO threejs + webgpu + compute(in browser)
+
+*** TODO run test: use threejs renderer to render real-time and use wonder renderer to render one path tracing image!
+
+
+** TODO babylonjs,playcanvas + webgpu + compute(in browser)

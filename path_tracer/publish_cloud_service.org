@@ -1,0 +1,16 @@
+
+* user concern
+
+** TODO data security
+
+
+* TODO publish
+
+** TODO 注册知乎机构号
+
+https://www.zhihu.com/org/signup
+
+
+* TODO 自建服务器
+
+淘宝上找人装软件！

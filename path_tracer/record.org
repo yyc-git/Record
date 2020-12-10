@@ -649,7 +649,6 @@ compare asset->texture(plane)
 
 
 
-////* TODO fix firefly
 
 
 ** DONE rethink architecture
@@ -706,7 +705,7 @@ api/ap service should map to domains(scene, statics, ...)
 ** DONE refactor: rename pbr material to brdf material
 
 
-** TODO add bsdf material(only Transmittance)
+** DONE add bsdf material(only Transmittance)
 
 BSDF(specTrans, ...)
 
@@ -726,7 +725,50 @@ bias for normal map?(now not bias!)
 
 
 
-*** TODO change brdf material to bsdf material
+*** DONE change brdf material to bsdf material
+
+//add transmission, ior, transmissionMap
+
+//pass test
+
+
+
+# add specularColor, specularMap
+
+# pass test
+
+# add test case(material_test)
+
+
+# edit glsl
+# (improve glsl by temp1.glsl)
+
+# perf:pow5
+
+
+# add comment:
+# multiply NdotL for:
+#     https://www.undefinedgames.org/2019/05/10/shaders-and-lighting-models/
+#     c.rgb = s.Albedo * _LightColor0.rgb * (NdotL * atten);
+#     NdotL multiplied with atten is where the light is applied. If either of these are zero, the whole expression becomes zero and the colour of the pixel turns black. So if the surface is no longer at an angle where it receives light, or if the light source is too far away, is when that will happen.
+
+
+# etai, etat:
+#      float etai = 1, etat = ior; // etai is the index of refraction of the medium the ray is in before entering the second medium 
+#      in https://github.com/KhronosGroup/glTF/blob/5883dc7495754a82ef33fb635e1fc7259d472123/extensions/2.0/Khronos/KHR_materials_ior/README.md, etai = outside_ior!
+
+
+pass run test(add scene3):
+test default;
+test only bsdf(specular brdf + refraction btdf);
+test direct/indirect separatly;
+test transmission + specular;
+test btdf inverse effect for transmission;
+
+
+
+
+
 
 
 
@@ -735,91 +777,521 @@ bias for normal map?(now not bias!)
 
 
 
-*** TODO refactor
+
+
+** DONE publish
+
+
+
+
+** DONE open 1st course
+
+
+
+
+*** DONE prepare summary blog article, yuque, github repo(put code here)
+
+give cource content arrange
+
+
+*** DONE contact, self introduction
+
+add print(QQgroup:Wonder.js, QQ group 二维码)
+
+
+
+*** DONE pass zhibo run test
+
+
+
+*** DONE prepare content ppt
+
+实时混合光追追踪、离线路径追踪
+
+give cource content(main, other, selective contents) picture!
+
+*** DONE prepare investigation to collect domains users care about;
+
+
+
+** DONE refactor
 
 rename ray-xxx.rgen/rchit/... to ray_xxx.xxx
 
 
-** TODO add gltf 
 
-add wdd(wonder description):
-wdd type(not has buffer,bufferView,accessor! directly use primitive data!)
-wdd parser;
+** DONE finish book catalog!!!
 
+origin book content! not change!
 
 
+** TODO separate path tracer as middleware!!!???
 
-
-
-add gltf to wdd converter
-
-
-////directly load gltf and build scene graph!
-
-support extensions:
-KHR_materials_transmission(to support bsdf)
+integrate with:
+open source web3d engine(e.g. threejs, babylonjs, playcanvas, cocos creator, laya, egret, ...)
+open source 3d engine(e.g. godot, ...)
+unity
+unreal
 
 
 
-give demo(render gltf model)
+# interface between engine and renderer:
+engine should implement:
+# convert engine scenegraph(e.g. for threejs -> .bin) to WDD
+scene repo dp
+(adapter)
+(
+   only get component:
+   getMaterial: IBSDFMaterialData,
+   getGeometry: IGeometryData,
+   ...
+)
+
+use renderer in engine:
+install renderer, adapter;
+invoke director's api: init, update, render
+(return promise instead of stream)
+
+
+
+renderer dp:
+webgpu + ray tracing(in node.js)
+webgpu + compute(in browser)
+network dp
+time dp
+
+
+
+renderer implement:
+# assemble WDD
+# render pipeline(single thread; multiple thread)
+webgpu + ray tracing ->path tracing pipeline;
+webgpu + compute ->path tracing pipeline;
+(more:
+webgpu + ray tracing ->hybrid ray tracing pipeline;
+)
+merge construct and run!
+construct only has get function.
+remove set function, po/repo implement, ...
+
+
+
+extend renderer:
+custom pipeline
+
+
+
+
+wonder provide:
+renderer middleware:webgpu+compute(free)
+renderer middleware:webgpu+ray tracing(charge)
+cloud path trace render servive(charge)
+
+
+about code source:
+renderer, render service not open source
+renderer apadater open source
+
+*** TODO rewrite wonder(threejs + webgpu + ray tracing(in node.js)
+
+
+**** DONE first demo(only implement time job:start)
+
+only implement init pipeline
+
+
+ISceneRepo
+(
+    remove sceneRepo, hierachy
+)
+
+SceneRepo:
+transform:{
+    getTranslation(transform)
+}
+
+
+
+IJobRepo:
+timeJobRepo
+
+
+
+***** DONE rewrite wonder draft and pass compile
+
+
+***** DONE unit test
+
+test start job
+
+
+test adapter?
+
+
+***** DONE run test
+
+# copy threejs node module to Wonder.js/node_modules/
+
+
+write threejs adapter
+
+run test
 
 
 
 
 
-*** TODO support KHR_materials_transmission and KHR_materials_ior
+**** TODO render scene1,2,3
 
-transmission = specTrans
+***** DONE rewrite wonder draft and pass compile
 
-other value(e.g. flatness) use default value!!!(implement in [KHR_materials_volume](https://github.com/KhronosGroup/glTF/blob/3af4caa98cfb8bb2da4d49804a7e7947e29ad4fe/extensions/2.0/Khronos/KHR_materials_volume/README.md))
-
-
-
-**** TODO test in blender(export to gltf)
-
-https://github.com/KhronosGroup/glTF-Blender-IO/pull/1094
+# init
 
 
+# rename SceneGraphType to SceneGraphRepoType
 
 
-** TODO learn usdz, support it instead of wd?
-
-references:
-
-https://developer.nvidia.com/usd
+# update
 
 
-
-https://graphics.pixar.com/usd/docs/index.html
-http://graphics.pixar.com/usd/docs/api/index.html
-https://github.com/PixarAnimationStudios/USD
+# fix: path trace scene buffer->geometry/material index
 
 
-youtube:
-https://www.youtube.com/watch?v=x9ikzGQW0ys&t=5s
+# render
+
+
+***** DONE unit test
+
+
+***** DONE run test
+
+
+***** TODO refactor: SparseMap, HashMap->reduce should move inital value be second param like ListSt!
+
+***** TODO refactor: rename cloud picture(CP) to webgpu ray_tracing pipeline path tracer(WRPT)
 
 
 
-three.js->issue:
-https://github.com/mrdoob/three.js/issues/14219
+**** DONE render model!
+
+load gltf model by threejs!
+
+
+read from MeshPhysicalMaterial!
+
+https://threejs.org/docs/#api/en/materials/MeshPhysicalMaterial
 
 
 
-ios:
-https://developer.apple.com/cn/augmented-reality/quick-look/
-
-
-converter:
-https://github.com/google/usd_from_gltf
-https://github.com/TimvanScherpenzeel/gltf-to-usdz-research
-
-https://developer.apple.com/augmented-reality/tools/ -> Download USDZ tools
-(already get tool from wechat->Lin, search "usdpython" in macbook!)
 
 
 
-work with nvidia-omniverse-platform;
-https://developer.nvidia.com/nvidia-omniverse-platform
+# ** TODO remove firefly
+
+
+
+** DONE publish
+
+
+
+
+
+# ** TODO add gltf 
+
+
+
+
+# *** DONE add wdd(wonder description):
+# wdd type(not has buffer,bufferView,accessor! directly use primitive data!)
+# wdd parser;
+
+
+
+# store po type
+
+
+# arrayBuffer data:
+# image
+# position
+# normal
+# texCoord
+# index
+
+
+
+# indexMap:
+
+
+
+
+# *** TODO assemble wdd
+
+# # draft 
+
+# pass compile
+
+# commit
+
+
+
+# # *** TODO refactor: SparseMap, HashMap->reduce should move inital value be second param like ListSt!
+
+
+
+# *** TODO convert glb to wdd
+
+# (no need to load glb)
+
+
+# **** TODO support KHR_materials_transmission and KHR_materials_ior, KHR_materials_specular
+
+# transmission = specTrans
+
+# other value(e.g. flatness) use default value!!!(implement in [KHR_materials_volume](https://github.com/KhronosGroup/glTF/blob/3af4caa98cfb8bb2da4d49804a7e7947e29ad4fe/extensions/2.0/Khronos/KHR_materials_volume/README.md))
+
+
+
+
+
+
+# draft 
+
+# pass compile
+
+# commit
+
+
+# *** TODO unit test
+
+
+
+
+# *** TODO run test
+
+
+# **** TODO test in blender(export to gltf)
+
+# https://github.com/KhronosGroup/glTF-Blender-IO/pull/1094
+
+
+
+# *** TODO convert gltf zip to glb
+
+
+
+
+
+# ////directly load gltf and build scene graph!
+
+
+
+
+
+
+
+
+# **** TODO test in blender(export to gltf)
+
+# https://github.com/KhronosGroup/glTF-Blender-IO/pull/1094
+
+# **** TODO test specular map, transmission map
+
+
+# *** TODO give demo(render gltf model)
+
+
+
+
+
+
+
+
+
+# ** TODO remove firefly
+
+
+
+
+
+
+# ** TODO publish
+
+
+
+
+** TODO IBL
+
+
+*** TODO IBL
+
+# refer to:
+# https://learnopengl.com/PBR/IBL/Diffuse-irradiance
+# https://learnopengl.com/PBR/IBL/Specular-IBL
+
+learn rayTrace.frag
+
+
+
+learn from pbrt
+
+
+importance sampling with the HDR image
+
+
+
+refer to github code:
+https://github.com/hoverinc/ray-tracing-renderer
+
+
+
+*** TODO optimize IBL importance sample
+
+别名法 Alias Method 优化？
+https://zhuanlan.zhihu.com/p/66518450
+
+
+
+http://www.aconty.com/pdf/fast-product-importance-abstract.pdf
+
+[Structured Importance Sampling of Environment Maps](https://vision.cornell.edu/se3/wp-content/uploads/2014/09/54_structured.pdf)
+
+
+
+
+
+
+** TODO multiple lights
+
+*** TODO area, sphere light
+
+
+*** TODO point light
+
+
+*** TODO soft shadow
+
+
+*** TODO many lights
+
+
+** TODO fix: consider direction light's color
+
+////** TODO fix: fix direction light's direction
+
+now pass position and compute it in shader!
+
+should pass direction to shader directly?
+
+
+
+
+
+** TODO gltf with ibl, area, sphere light, point/direction light
+
+
+https://github.com/KhronosGroup/glTF/issues/946
+
+https://github.com/KhronosGroup/glTF/pull/1850
+
+
+
+** TODO consider model from vray, 3ds
+
+
+
+
+
+
+** TODO run test
+
+render indoor!
+
+compare with:
+http://www.colble.com:8888/#/
+
+
+
+
+
+** TODO publish
+
+
+
+
+
+
+
+
+
+
+** TODO support render Caustics
+
+
+*** TODO learn MLT
+
+refer to:
+https://www.zhihu.com/question/30016848
+https://www.cnblogs.com/starfallen/p/3509234.html
+
+
+
+learn Robust Light Transport Simulation via Metropolized Bidirectional Estimators:
+https://zhuanlan.zhihu.com/p/24316493
+
+
+*** TODO Manifold Exploration
+
+https://zhuanlan.zhihu.com/p/72673165 ->Manifold Exploration
+
+https://www.zhihu.com/question/29316802/answer/205988507
+
+
+**** TODO handle Caustics
+[Specular Manifold Sampling for Rendering High-Frequency Caustics and Glints](http://rgl.epfl.ch/publications/Zeltner2020Specular)
+
+https://devtalk.blender.org/t/specular-manifold-sampling-for-cycles-caustics-and-speed/15646/14
+
+
+
+*** TODO fix transmission shadow(BSDF)
+
+refer to:
+https://zhuanlan.zhihu.com/p/58692781
+<<Ray Tracing Gems>> -> part 3?
+https://stackoverflow.com/questions/13456738/shadow-rays-through-light-bending-objects
+https://www.google.com/search?newwindow=1&safe=strict&sxsrf=ALeKk001aYCN6cbHsLBJnMsR2rvt6_tEKQ%3A1603448448747&ei=gK6SX5mTLcTn9QPiiKzYAQ&q=transparent+Shadow+path+trace&oq=transparent+Shadow+path+trace&gs_lcp=CgZwc3ktYWIQAzIECCMQJ1DjvgRY474EYPzJBGgAcAB4AoABpAaIAY0OkgEJMy0xLjAuMS4xmAEAoAECoAEBqgEHZ3dzLXdpesABAQ&sclient=psy-ab&ved=0ahUKEwiZ08_5vsrsAhXEc30KHWIECxsQ4dUDCA0&uact=5
+
+
+this is caused with Caustics? see the Manifold Exploration or photon mapping!!!
+
+
+
+
+
+
+** TODO publish
+
+
+
+
+
+
+** TODO add LDR support
+
+convert LDR to gltf, load it by three.js!
+
+*** TODO 圆角/直角转换
+
+
+
+*** TODO load ldr
+
+
+
+
+
+
+** TODO after https://github.com/maierfelix/webgpu/pull/34 is merged and update npm, use webgpu insead of wonder-webgpu!
 
 
 
@@ -886,7 +1358,6 @@ render test
 
 
 
-*** TODO render test:
 
 
 
@@ -936,32 +1407,6 @@ use less geometry container(e.g. the same sphere should in one geometry containe
 
 ** TODO develop v2.0.0-alpha.3
 
-
-*** TODO add denoise
-
-try to use NVIDIA's Optix Denoiser:
-https://github.com/maierfelix/nvk-optix-denoiser
-https://research.nvidia.com/publication/interactive-reconstruction-monte-carlo-image-sequences-using-recurrent-denoising
-https://developer.nvidia.com/optix-denoiser
-
-
-
-more denoiser:
-// https://www.ece.ucsb.edu/~psen/PaperPages/removing_MC_noise.html
-// https://studios.disneyresearch.com/wp-content/uploads/2019/03/Denoising-Deep-Monte-Carlo-Renderings-1.pdf
-https://perso.telecom-paristech.fr/boubek/papers/BCD/
-(should use compute shader!)
-https://groups.csail.mit.edu/graphics/rendernet/
-
-
-
-
-////**** TODO try fix indirect specular noise
-
-
-
-
-**** TODO compare with bmfr(compare with WebGPU-RTX project)
 
 
 
@@ -1171,6 +1616,28 @@ only send ldr file
 dispatch commands;
 sync;
 (invoke engine's init, update)
+
+
+
+.gltf
+config json
+
+
+one gpu server node
+
+one gpu server node
+
+
+three.init
+wonder.init
+
+render
+
+
+let picture = arrayBuffer;
+
+picture -> base64
+
 
 
 

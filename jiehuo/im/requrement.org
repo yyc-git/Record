@@ -1,0 +1,35 @@
+* TODO IM Commucate App
+
+
+** introduce
+
+based on yunxin:
+https://netease.im/
+
+
+** limit
+
+neiwang remote develop
+
+
+** front end tech choose
+
+react 
+
+
+** TODO 表情等小功能
+////emoj,..., 
+
+
+
+国际化
+
+发送表情
+
+会议纪要 textarea
+
+截图
+
+
+
+

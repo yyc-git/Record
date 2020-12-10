@@ -1,0 +1,113 @@
+
+* TODO write editor plugin to use cloud service to render
+
+write plugin, can integrate with threejs editor, babylonjs editor, playcanvas editor!
+(
+云渲染插件也是中间件，是编辑器的中间件。
+
+wonder是引擎的中间件
+)
+
+
+简易版的编辑器(threejs editor + plugin)，只有下面的功能：
+上传gltf模型；
+修改/加入相机；
+使用云渲染渲染(plugin)；
+
+
+用户使用该编辑器，来调整相机的位置（后面可加入灯光）
+
+
+
+
+
+
+
+* TODO soft shadow
+
+
+* TODO AA
+
+
+
+
+
+* TODO add render test
+
+
+
+
+
+
+
+
+* TODO add denoiser
+
+try to use NVIDIA's Optix Denoiser:
+https://github.com/maierfelix/nvk-optix-denoiser
+https://research.nvidia.com/publication/interactive-reconstruction-monte-carlo-image-sequences-using-recurrent-denoising
+https://developer.nvidia.com/optix-denoiser
+
+
+
+more denoiser:
+// https://www.ece.ucsb.edu/~psen/PaperPages/removing_MC_noise.html
+// https://studios.disneyresearch.com/wp-content/uploads/2019/03/Denoising-Deep-Monte-Carlo-Renderings-1.pdf
+https://perso.telecom-paristech.fr/boubek/papers/BCD/
+(should use compute shader!)
+https://groups.csail.mit.edu/graphics/rendernet/
+
+
+
+
+////**** TODO try fix indirect specular noise
+
+
+
+
+** TODO compare with bmfr(compare with WebGPU-RTX project)
+
+
+
+* TODO fix firefly without clamp(test scene1)
+
+learn:
+Path Space Regularization for Holistic and Robust Light Transport
+
+Reweighting Firefly Samples for Improved Finite-Sample Monte Carlo Estimates
+(refer to webgpu->commit: 562660)
+
+
+
+
+fireflies : 
+One source of noise is “fireflies”
+A problem with Monte Carlo is that if you happen to sample a low probability part of the
+PDF and then that ray hits something bright in the scene, you’ll end up dividing the bright
+value by a really small number and the result can explode. On average, this is indeed
+correct and that energy should be in the scene, but in practice it means that every now and
+then you get one super bright pixel for one frame, and it flickers and looks terrible. So,
+don’t do that. Clamp the minimum PDF value, the maximum radiance, run an outlier
+detection at the end…and just throw away that energy to make the scene stable.
+Production renderers all do this.
+
+refer to:
+https://alain.xyz/blog/raytracing-denoising -> firefly-rejection
+(https://alain.xyz/blog/raytracing-denoising#firefly-rejection)
+
+https://www.google.com/search?ei=P3zoXqLuOJHr-wTE47qgDw&q=raytracing+noise+fireflies&oq=raytracing+noise+fireflies&gs_lcp=CgZwc3ktYWIQAzIGCAAQBxAeMggIABAIEAcQHjIICAAQCBAHEB4yCAgAEAgQBxAeMggIABAIEAcQHjIICAAQCBAHEB4yCAgAEAgQBxAeMggIABAIEAcQHjIICAAQCBAHEB4yCAgAEAgQBxAeOgQIABBDOgIIAFDtBViKKmCPK2gAcAB4AIABuwKIAbkokgEGMi0xNC40mAEAoAEBqgEHZ3dzLXdpeg&sclient=psy-ab&ved=0ahUKEwjiiZqP74XqAhWR9Z4KHcSxDvQQ4dUDCAw&uact=5
+
+
+
+
+
+
+* TODO handle emissive + transparent
+
+refer to:
+https://blog.demofox.org/2016/09/21/path-tracing-getting-started-with-diffuse-and-emissive/
+https://blender.stackexchange.com/questions/98403/how-to-control-the-mix-of-emission-and-transparency-materials
+https://docs.chaosgroup.com/display/MTLEDITOR/Emissive+Material+%7C+BRDFLight
+
+
+need find the way to implement in path tracing!!!

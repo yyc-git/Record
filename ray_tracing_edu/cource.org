@@ -1,0 +1,359 @@
+* TODO cource content
+
+** TODO hybrid ray tracing and path tracer without DXR!
+
+refer to https://github.com/hoverinc/ray-tracing-renderer, use fake code to explain path tracer(without DXR! it means I should use fake code to show BVH,rmiss,...!)
+
+support multiple material types?
+
+
+
+** TODO support point light after implement direction light
+
+how to compute brdf/bsdf for point light?(default is for direction light!)
+
+@23
+
+
+
+** TODO 蒙托卡洛积分理论
+
+pdf
+
+direct light sample
+
+
+
+** TODO BSDF
+
+http://casual-effects.com/research/McGuire2020BSDF/index.html
+
+
+* TODO arrange
+
+
+# ** TODO path trace and ray trace
+
+# 重录：
+# use glsl instead of reason!(use mutable for instead reduce/forEach)
+
+# 修改path trace fake code:
+# change 直接光照采样 to:
+# based on  sample dir;
+# += emission * energy;
+
+
+# ** TODO 删除第2课（Reason语言介绍）
+
+
+
+
+** DONE 彻底搞懂渲染方程
+
+基础概念：
+辐射度
+。。。。。。
+
+
+详细说明：
+渲染方程
+    按照经典的渲染方程的形式，我们为了某个表面的点的颜色，首先要以它的法线为中心向半球内发射若干条光线，求出每条光线和场景的交点，要进一步以交点的法线为中心发射若干条光线，这是一个极难求解的递归过程。
+    （为什么非常难解？需要搞清楚！！！
+    refer to:https://zhuanlan.zhihu.com/p/56443239
+    ）
+
+refer to:
+https://en.wikipedia.org/wiki/Rendering_equation
+https://blog.csdn.net/weixin_39548859/article/details/107508536
+https://zhuanlan.zhihu.com/p/168725068
+https://cgg.mff.cuni.cz/~jaroslav/teaching/2015-npgr010/slides/07%20-%20npgr010-2015%20-%20rendering%20equation.pdf
+https://www.youtube.com/watch?v=AODo_RjJoUA
+https://zhuanlan.zhihu.com/p/52497510
+
+
+
+
+# ** TODO 介绍Ray tracing pipeline管线
+
+
+** TODO 回顾总结
+
+注意下面几点：
+主要是我讲这个函数时：
+1、牵扯了一些新的概念，如BRDF。然后又没有解释它
+2、没有讲解为什么要乘以cos
+3、入射光线是从哪里射过来的？
+4、12:30开始，积分空间不能理解
+
+
+问题：
+“积分空间里能量的总和”,这个是什么意思？
+答：
+就是指，在半球面内，从其它地方射向p点的射线能量的总和
+
+
+
+
+
+关于视频的讲解方式，可以学习：https://space.bilibili.com/512313464?spm_id_from=333.788.b_765f7570696e666f.2
+
+
+
+
+
+
+
+
+
+
+** DONE 实现蒙托卡洛积分路径追踪
+
+refer to:
+https://zhuanlan.zhihu.com/p/56443239
+https://blog.csdn.net/weixin_39548859/article/details/107508536
+
+
+
+*** TODO 实现
+
+# 使用 Ray tracing pipeline管线
+
+# 用glsl实现，其余部分用reason伪代码
+
+继续为伪代码
+
+继续在4_PathTrace.re的基础上修改
+
+BRDF着色部分，直接返回一个固定的颜色
+（假实现）
+
+其它未实现的函数(e.g. intersect)，要写type!
+
+
+# 给出运行截图
+
+
+*** TODO 疑问
+
+
+**** TODO 渲染方程中的Le怎么加入到路径追踪的蒙托卡洛公式中？
+(Le对应emissionColor???)
+
+
+
+
+后面课程：
+实现路径追踪
+重要性采样
+直接光照采样
+为什么会产生噪点？
+https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_16.pdf
+公式推导：https://airguanz.github.io/2018/10/12/direct-indirect-path-tracing.html
+
+
+
+# ** TODO 实现路径追踪伪代码
+
+** DONE 渲染方程推导
+
+
+** DONE 重要性采样
+
+
+提出问题：
+why pdf = 1/2pi
+
+a-b pdf?
+
+
+
+
+详细讲解pdf
+
+
+refer to:
+https://www.cnblogs.com/lv-anchoret/p/10327692.html
+https://www.cnblogs.com/lv-anchoret/p/10332262.html
+https://www.cnblogs.com/lv-anchoret/p/10500918.html
+
+** DONE 介绍wonder新版本
+
+发模型图哈哈！
+
+** DONE 路径追踪调研
+
+
+
+** TODO 随机采样方向
+
+refer to:
+https://www.cnblogs.com/lv-anchoret/p/10518961.html
+
+
+
+
+** TODO 改进：直接光照采样
+
+refer to:
+https://www.cnblogs.com/lv-anchoret/p/10534492.html
+公式推导：https://airguanz.github.io/2018/10/12/direct-indirect-path-tracing.html
+
+
+
+提出问题：
+
+
+
+*** TODO 说明"为什么会产生噪点？"
+
+
+
+*** TODO 理论：如何将上课的“累计计算辐照度”的公式改造为直接光照采样的公式？
+
+
+
+*** TODO 实现
+
+https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_16.pdf
+
+
+
+伪代码
+
+实现代码
+
+
+
+
+
+shadow ray
+
+
+
+
+
+** TODO 重要性材质及其实现
+
+refer to:
+https://www.cnblogs.com/lv-anchoret/p/10500918.html
+https://www.cnblogs.com/lv-anchoret/p/10508352.html
+
+
+伪代码
+
+
+
+介绍Ray tracing pipeline
+
+基于Wonder.js的实现代码及其截图
+（增加一个pipeline）
+
+
+
+
+
+** TODO 讲解Fr函数
+
+refer to:
+《全局》->1.5 section
+
+
+BRDF
+
+...
+
+
+
+
+** TODO 改进：抗锯齿
+
+
+*** TODO 实现
+
+
+
+
+** TODO 改进：多个平行光
+
+*** TODO 理论：复合pdf
+
+
+*** TODO 实现
+
+
+
+
+
+
+** TODO 彻底搞懂蒙托卡洛积分
+
+
+详细说明：
+蒙托卡洛积分
+重要性采样
+路径追踪
+    如何将渲染方程，通过蒙托卡洛积分，转换为路径追踪的公式？
+    refer to:
+    https://zhuanlan.zhihu.com/p/101125348
+    https://www.cnblogs.com/wickedpriest/p/12463695.html
+    https://en.wikipedia.org/wiki/Path_tracing
+    http://graphics.stanford.edu/courses/cs348b-10/lectures/path/path.pdf?fbclid=IwAR332BkovXJvg9eXPUA5zzTGdYssroq3YnSUAmp8X63l09rllUcB6cUBESM
+    https://blog.demofox.org/2016/09/21/path-tracing-getting-started-with-diffuse-and-emissive/
+
+
+直接光照采样？
+混合概率密度？
+
+
+refer to:
+https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/monte-carlo-methods-mathematical-foundations
+https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/monte-carlo-methods-in-practice/monte-carlo-methods
+https://www.cnblogs.com/lv-anchoret/p/10327692.html
+http://www.cs.kuleuven.be/publicaties/doctoraten/cw/CW1995_05.pdf
+https://zhuanlan.zhihu.com/p/61611088
+
+
+算法伪代码：
+如加入pdf
+
+
+
+** TODO 彻底搞懂基于物理的渲染（理论篇）
+
+
+从渲染方程开始，推出：
+GGX的计算公式
+BSDF中refraction(微表面)的计算公式
+。。。。。。
+
+
+
+
+
+
+** TODO 光线追踪基本原理
+
+refer to:
+https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/mathematics-of-shading
+https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-overview/ray-tracing-rendering-technique-overview
+
+
+** TODO 开始实现光线追踪/路径追踪
+
+# 如着色、采样等是什么意思？
+
+
+refer to:
+https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-generating-camera-rays
+https://www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-shading/what-is-shading-light-matter-interaction
+https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-rendering-a-triangle
+
+
+
+
+
+
+# ** TODO 实现一个路径追踪渲染器
+
+# 每节课先讲需要的理论；然后讲实现思路
+

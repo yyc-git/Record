@@ -1,0 +1,123 @@
+* DONE test remote link in home
+
+* DONE run test
+
+pass run test;
+
+
+
+
+* DONE first commit and run test with peers
+
+add one simplest ui: add one emoji
+
+svn commit;
+
+pass run test;
+
+# need peer check;
+
+
+
+* check screenshot
+
+
+
+* DONE finish emoji
+
+
+** DONE verify
+
+
+# ui
+
+
+# click, show in chat edit
+
+#     insert in cursor
+
+
+////send, show in chat content
+
+
+
+# fix focus->cursor
+
+
+# commit
+
+
+# improve ui css
+
+
+# commit
+
+
+
+# add more emoji data
+
+
+# commit
+
+
+# fix css:unread flag should be visible and left!
+
+
+
+
+** DONE show basic ui
+
+add two emoji
+
+
+** DONE click, show in chat edit
+
+
+
+
+** DONE add remain emoji
+
+
+** DONE improve ui css
+
+
+** DONE should not edit emoji in chat edit!
+
+
+
+* DONE 提测
+
+
+
+
+* DONE finish screenshot
+
+
+
+* DONE 提测
+
+
+
+* DONE refactor screenshot(extract ui)
+
+
+* DONE refactor emoji(extract ui)
+
+
+* DONE fix emoji bug
+
+
+
+# * TODO finish meeting minute
+
+
+
+# * TODO 提测
+
+
+
+
+* TODO try https://github.com/maierfelix/chromium-ray-tracing
+
+https://app.element.io/#/room/#webgpu-ray-tracing:matrix.org:
+> download the chromium RT build from the repository and run it from the command line with "chrome.exe --disable-gpu-sandbox"
