@@ -184,14 +184,6 @@ https://www.cnblogs.com/lv-anchoret/p/10500918.html
 
 
 
-** TODO 随机采样方向
-
-refer to:
-https://www.cnblogs.com/lv-anchoret/p/10518961.html
-
-
-
-
 ** TODO 改进：直接光照采样
 
 refer to:
@@ -201,6 +193,7 @@ https://www.cnblogs.com/lv-anchoret/p/10534492.html
 
 
 提出问题：
+
 
 
 
@@ -227,6 +220,59 @@ https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_16.pdf
 
 
 shadow ray
+
+
+
+
+** TODO specular、像素渲染
+
+
+
+
+
+
+
+** TODO 多重重要性采样
+
+refer to:
+https://airguanz.github.io/2018/10/15/multiple-importance-sampling.html
+https://www.cnblogs.com/lv-anchoret/p/10604712.html
+《全局》 
+
+
+
+
+** TODO 多光源
+
+所有光源发送射线:
+http://cwyman.org/code/dxrTutors/tutors/Tutor9/tutorial09.md.html
+
+
+
+随机向一个光源发送射线:
+http://cwyman.org/code/dxrTutors/tutors/Tutor9/tutorial09.md.html
+
+
+
+
+** TODO IBL
+
+refer to:
+https://airguanz.github.io/2018/10/15/multiple-importance-sampling.html
+
+
+
+
+
+** TODO 随机采样方向
+采样技术之： 路径采样（间接光照采样）
+
+
+
+refer to:
+https://www.cnblogs.com/lv-anchoret/p/10518961.html
+
+
 
 
 
@@ -261,6 +307,13 @@ refer to:
 BRDF
 
 ...
+
+
+
+
+** TODO BSDF
+
+
 
 
 

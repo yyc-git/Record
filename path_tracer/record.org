@@ -1117,6 +1117,18 @@ https://threejs.org/docs/#api/en/materials/MeshPhysicalMaterial
 # ** TODO publish
 
 
+** TODO verify and fix specular
+
+
+
+
+** TODO use RR instead of max bounce?
+
+
+
+** TODO derive ibl, multiple lights, mis(handle specular?)
+
+
 
 
 ** TODO IBL
@@ -1192,6 +1204,21 @@ should pass direction to shader directly?
 https://github.com/KhronosGroup/glTF/issues/946
 
 https://github.com/KhronosGroup/glTF/pull/1850
+
+
+
+** TODO test models
+
+from:
+https://github.com/AirGuanZ/Atrc
+https://casual-effects.com/g3d/data10/index.html#
+https://blendswap.com/
+
+
+(edit in blender! export gltf from blender?)
+
+
+
 
 
 
