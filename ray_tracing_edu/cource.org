@@ -184,7 +184,7 @@ https://www.cnblogs.com/lv-anchoret/p/10500918.html
 
 
 
-** TODO 改进：直接光照采样
+** DONE 改进：直接光照采样
 
 refer to:
 https://www.cnblogs.com/lv-anchoret/p/10534492.html

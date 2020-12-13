@@ -1117,8 +1117,23 @@ https://threejs.org/docs/#api/en/materials/MeshPhysicalMaterial
 # ** TODO publish
 
 
+
+** TODO merge wonder-rtx-pathtracer to wonder.js
+
+
+
+** TODO add camera adapter get from arcball, fly camera
+
+
+
+
 ** TODO verify and fix specular
 
+
+** TODO fix damet model's firefly
+
+
+** TODO publish new cource
 
 
 
@@ -1126,7 +1141,11 @@ https://threejs.org/docs/#api/en/materials/MeshPhysicalMaterial
 
 
 
-** TODO derive ibl, multiple lights, mis(handle specular?)
+
+
+
+
+** TODO derive multiple lights, mis(handle specular?), ibl
 
 
 
@@ -1245,6 +1264,7 @@ http://www.colble.com:8888/#/
 
 
 
+** TODO publish new cource: multplie lights(direct light sample); mis; ibl;
 
 
 
@@ -1297,6 +1317,56 @@ this is caused with Caustics? see the Manifold Exploration or photon mapping!!!
 
 
 ** TODO publish
+
+
+
+
+
+** TODO publish new cource: MLT, Manifold Exploration
+
+
+
+
+
+
+** TODO support volumn(consider scattering) for bsdf(should wait for KHR_materials_volume be official extensions(should in https://github.com/KhronosGroup/glTF/tree/master/extensions/2.0/Khronos) and glTF-Blender-IO to support KHR_materials_volume!)
+
+refer to:
+[pbrt](book(2010version))->11,14.7,16 chapter
+
+https://zhuanlan.51cto.com/art/201904/594881.htm
+https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_slides.pdf
+[Rendering the Moana Island Scene Part 1: Implementing the Disney BSDF](https://schuttejoe.github.io/post/disneybsdf/)
+https://github.com/KhronosGroup/glTF/pull/1726
+https://github.com/KhronosGroup/glTF/blob/3af4caa98cfb8bb2da4d49804a7e7947e29ad4fe/extensions/2.0/Khronos/KHR_materials_volume/README.md
+https://computergraphics.stackexchange.com/questions/2563/full-monte-carlo-volumetric-scattering?rq=1
+
+
+
+** TODO publish new cource: 微表面; bsdf;
+
+** TODO publish new cource: volumn scattering
+
+
+
+** TODO support disney brdf/bsdf: clearcoat, sheen, flatness, ...
+
+refer to:
+[Rendering the Moana Island Scene Part 1: Implementing the Disney BSDF](https://schuttejoe.github.io/post/disneybsdf/)
+
+
+
+
+
+** TODO publish new cource: disney brdf/bsdf
+
+
+
+
+
+** TODO open source(only has rtx pipeline, not need webgpu+compute shader pipeline!)
+
+
 
 
 
