@@ -1118,34 +1118,102 @@ https://threejs.org/docs/#api/en/materials/MeshPhysicalMaterial
 
 
 
-** TODO merge wonder-rtx-pathtracer to wonder.js
+** DONE merge wonder-rtx-pathtracer to wonder.js
 
 
 
-** TODO add camera adapter get from arcball, fly camera
+# ** TODO publish new cource
 
 
 
 
-** TODO verify and fix specular
 
 
-** TODO fix damet model's firefly
 
 
-** TODO publish new cource
+
+** TODO handle delta lights
+
+light types:
+enum class LightFlags : int {
+    DeltaPosition = 1, DeltaDirection = 2, Area = 4, Infinite = 8
+};
+
+
+<<Light Declarations>>= 
+class Light {
+public:
+    <<Light Interface>> 
+       virtual ~Light();
+       Light(int flags, const Transform &LightToWorld,
+             const MediumInterface &mediumInterface, int nSamples = 1)
+           : flags(flags), nSamples(std::max(1, nSamples)),
+             mediumInterface(mediumInterface), LightToWorld(LightToWorld),
+             WorldToLight(Inverse(LightToWorld))  { 
+           <<Warn if light has transformation with non-uniform scale>> 
+       }
+       virtual Spectrum Sample_Li(const Interaction &ref, const Point2f &u, 
+                     Vector3f *wi, Float *pdf, VisibilityTester *vis) const = 0;
+       virtual Spectrum Power() const = 0;
+       virtual void Preprocess(const Scene &scene) { }
+       virtual Spectrum Le(const RayDifferential &r) const;
+       virtual Float Pdf_Li(const Interaction &ref,
+                            const Vector3f &wi) const = 0;
+       virtual Spectrum Sample_Le(const Point2f &u1, const Point2f &u2,
+                                  Float time, Ray *ray, Normal3f *nLight,
+                                  Float *pdfPos, Float *pdfDir) const = 0;
+       virtual void Pdf_Le(const Ray &ray, const Normal3f &nLight,
+                           Float *pdfPos, Float *pdfDir) const = 0;
+
+    <<Light Public Data>> 
+       const int flags;
+       const int nSamples;
+       const MediumInterface mediumInterface;
+
+protected:
+    <<Light Protected Data>> 
+       const Transform LightToWorld, WorldToLight;
+
+};
+
+
+*** TODO edit Distant Lights(directional light)
+
+*** TODO add point light
+
+
+
+
+** TODO handle area lights
+
+
+*** TODO add rect light
+
+
+# *** TODO add sphere light
+
+
+
+** TODO handle Infinite
+
+q:
+direction to sphere to uv coordinate, not + 0.5???
+
+
+
+** TODO mis
+
+
+** TODO verify and fix specular for direct light sample
+
+*** TODO do
+
+*** TODO fix damet model's firefly
+
 
 
 
 ** TODO use RR instead of max bounce?
-
-
-
-
-
-
-
-** TODO derive multiple lights, mis(handle specular?), ibl
 
 
 
@@ -1188,7 +1256,75 @@ http://www.aconty.com/pdf/fast-product-importance-abstract.pdf
 
 
 
+# ** TODO remove direction light?
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ** TODO derive multiple lights, mis(handle specular?), ibl
+** TODO derive mis(handle specular?), ibl
+
+
+
+
+
+** TODO gltf with ibl
+
+
+https://github.com/KhronosGroup/glTF/issues/946
+
+https://github.com/KhronosGroup/glTF/pull/1850
+
+
+
+** TODO test models
+
+from:
+https://github.com/AirGuanZ/Atrc
+https://casual-effects.com/g3d/data10/index.html#
+https://blendswap.com/
+
+
+(edit in blender! export gltf from blender?)
+
+
+
+
+
+
+
+** TODO publish
+
+
+
+
+** TODO finish path tracer edu cource!
+
+
+
+
+** TODO publish new cource: multplie lights(direct light sample); mis; ibl;
+
+
+
+
+** TODO add camera adapter get from fly camera
 
 
 ** TODO multiple lights
@@ -1214,28 +1350,12 @@ now pass position and compute it in shader!
 should pass direction to shader directly?
 
 
-
-
-
-** TODO gltf with ibl, area, sphere light, point/direction light
+** TODO gltf with area, sphere light, point/direction light
 
 
 https://github.com/KhronosGroup/glTF/issues/946
 
 https://github.com/KhronosGroup/glTF/pull/1850
-
-
-
-** TODO test models
-
-from:
-https://github.com/AirGuanZ/Atrc
-https://casual-effects.com/g3d/data10/index.html#
-https://blendswap.com/
-
-
-(edit in blender! export gltf from blender?)
-
 
 
 
@@ -1256,15 +1376,6 @@ compare with:
 http://www.colble.com:8888/#/
 
 
-
-
-
-** TODO publish
-
-
-
-
-** TODO publish new cource: multplie lights(direct light sample); mis; ibl;
 
 
 

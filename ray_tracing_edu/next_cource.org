@@ -1,0 +1,8 @@
+* TODO learn Reyes渲染架构 and RIS架构
+
+refer to:
+https://baike.baidu.com/item/Reyes%E6%B8%B2%E6%9F%93%E6%9E%B6%E6%9E%84/15817000?fr=aladdin&qq-pf-to=pcqq.group
+https://www.zhihu.com/question/45202700/answer/102510208
+https://blog.csdn.net/weixin_43826113/article/details/107879498
+https://render.vsochina.com/h5/news/techarticle/show/857.html
+https://www.zhihu.com/question/24784983
