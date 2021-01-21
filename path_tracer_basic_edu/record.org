@@ -220,9 +220,13 @@ can use its loader(e.g. GLTFLoader) to load model;
 - 数学基础介绍
 微积分
 
-球面坐标系
+refer to:
+https://zhuanlan.zhihu.com/p/260828634 :
+Fundamentals Of Computer Graphics，计算机图形学原理 -> ->14.1
 
-立体角
+# 球面坐标系
+
+# 立体角
 
 - 渲染基础介绍
 1.1
@@ -230,6 +234,8 @@ can use its loader(e.g. GLTFLoader) to load model;
 ...
 
 辐射度
+
+立体角
 
 - 渲染方程推导
 (第五、七、节课)
@@ -253,19 +259,36 @@ can use its loader(e.g. GLTFLoader) to load model;
 
 
 
+- 最简单的实现？
+
+引出很多问题（如采样方向的选择等），进行简化实现
+
+
+
+
 
 ** 最小实现
 
 
 
-- 一个像素的颜色计算
 - 半球面随机方向生成
 - 用Lambertian模型实现BRDF和LambertianBRDF材质加入
 
+refer to:
+https://zhuanlan.zhihu.com/p/166154814
+
+
+- 一个像素的颜色计算
+
+
 - 1个矩形光源加入
+
+场景中增加平面，构成类似于conner box的场景
+
 给出运行效果
 
 
+- 加上fly相机？
 
 
 
@@ -273,6 +296,20 @@ can use its loader(e.g. GLTFLoader) to load model;
 
 
 ** 进一步完善
+
+# - 场景中增加平面和球，构成类似于conner box的场景
+
+#     - for compute shader
+# ray intersect with triangle mesh:
+# refer to https://www.bilibili.com/video/BV1X7411F744?p=13 -> 38:44
+
+# 介绍和实现BVH
+
+
+
+
+
+
 
 - 直接光源采样数学推导
 
@@ -291,6 +328,10 @@ need handle specular reflection
 
 
 - 用微面元模型实现BRDF
+
+refer to:
+https://zhuanlan.zhihu.com/p/187569004
+
 
 - MicrofacetBRDF材质加入
 
@@ -317,24 +358,6 @@ https://airguanz.github.io/2019/02/20/disney-brdf.html
 
 
 
-** 更多功能加入
-
-- 模型加载
-gltf
-
-
-
-- 纹理基础介绍
-srgb, linear space
-texture array
-- 法线纹理加入
-tbn
-handle double side
-- 其余纹理加入
-diffuse, ...
-
-- Gamma矫正
-
 
 
 
@@ -346,8 +369,47 @@ diffuse, ...
 - 多个方向光加入
 - 多个点光源加入
 
+
+- 纹理基础介绍
+srgb, linear space
+texture array
+
 - 1个无限远的面积光加入
 
+
+** 更多功能加入
+
+- 处理单面/双面
+
+handle normal
+
+handle intersect with triangle:
+    compute shader:
+    refer to 
+    https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-rendering-a-triangle/single-vs-double-sided-triangle-backface-culling
+
+    ray tracing pipeline:
+    use GPURayTracingAccelerationInstanceUsage-TRIANGLE_CULL_DISABLE,TRIANGLE_FRONT_COUNTERCLOCKWISE ?
+    refer to
+    https://github.com/maierfelix/dawn-ray-tracing/blob/master/RT_SPEC.md#gpuraytracingaccelerationinstanceusage
+
+
+
+- 模型加载
+gltf
+
+
+
+# - 纹理基础介绍
+# srgb, linear space
+# texture array
+- 法线纹理加入
+tbn
+handle double side
+- 其余纹理加入
+diffuse, ...
+
+- Gamma矫正
 
 
 
