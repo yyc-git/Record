@@ -281,6 +281,142 @@ https://zhuanlan.zhihu.com/p/166154814
 - 一个像素的颜色计算
 
 
+
+优化：少计算一次bounce(compute direct light)
+
+参考下面的.rgen:
+#version 460
+#extension GL_EXT_ray_tracing : require
+#extension GL_EXT_nonuniform_qualifier : enable
+#extension GL_GOOGLE_include_directive : enable
+#pragma shader_stage(raygen)
+
+#include "../common/camera.glsl"
+#include "random.glsl"
+#include "raycommon.glsl"
+
+layout(location = 0) rayPayloadEXT hitPayload prd;
+
+layout(set = 0, binding = 0) uniform accelerationStructureEXT topLevelAS;
+layout(std140, set = 0, binding = 1) buffer PixelBuffer { vec4 pixels[]; }
+pixelBuffer;
+
+layout(std140, set = 0, binding = 2) uniform CommonData {
+  uint sampleCount;
+  uint totalSampleCount;
+  uint pad_0;
+  uint pad_1;
+}
+pushC;
+
+void main() {
+  const ivec2 ipos = ivec2(gl_LaunchIDEXT.xy);
+  const ivec2 resolution = ivec2(gl_LaunchSizeEXT.xy);
+
+  const uint sampleCount = pushC.sampleCount;
+  const uint totalSampleCount = pushC.totalSampleCount;
+
+  const uint bounceCount = 5;
+
+  prd.seed = tea(tea(ipos.x, ipos.y), totalSampleCount);
+
+  const uint cullMask = 0xFF;
+  vec3 pixelColor = vec3(0.0);
+
+  const vec2 offset = vec2(0.0);
+  // const vec2 pixel = vec2(ipos.x, ipos.y);
+  const vec2 pixel = vec2(ipos.x + rnd(prd.seed), ipos.y + rnd(prd.seed));
+  const vec2 uv = (pixel / gl_LaunchSizeEXT.xy) * 2.0 - 1.0;
+
+  vec4 firstOrigin = uCamera.viewInverse * vec4(offset, 0, 1);
+  vec4 firstTarget = uCamera.projectionInverse * (vec4(uv.x, uv.y, 1, 1));
+  vec4 firstDirection =
+      normalize(uCamera.viewInverse *
+                vec4(normalize(firstTarget.xyz * 1.0 - vec3(offset, 0)), 0));
+
+  // prd.throughput = vec3(1.0);
+  // prd.bias = vec3(0.0);
+  // prd.t = -1.0;
+
+  // TODO fix:use another .rchit(handle direct light; set V,worldNormal, shading
+  // data to prd;)
+  traceRayEXT(topLevelAS, gl_RayFlagsOpaqueEXT, cullMask, 0, 0, 0,
+              firstOrigin.xyz, uCamera.near, firstDirection.xyz, uCamera.far,
+              0);
+
+  vec3 directRadiance = prd.radiance;
+
+  const float t = prd.t;
+  if (t < 0.0) {
+    pixelColor += directRadiance * sampleCount;
+  } else {
+    for (uint ss = 0; ss < sampleCount; ++ss) {
+      /*TODO fix: use prd data(V, worldNormal, shading data) to compute t,scatterDirection,throughput,bias
+
+      vec3 bsdfDir = sample_(prd.seed, prd.V, data.worldNormal, EPSILON,
+                             shading, isBRDFDir);
+
+      computeIndirectLight(seed, EPSILON, data.V, bsdfDir, data.worldNormal,
+                           shading, isBRDFDir, throughput, t);
+
+      vec3 bias = 0.001 * (shading.isFromOutside ? data.worldNormal
+                                                 : -data.worldNormal);
+      if (isBRDFDir) {
+        prd.bias = bias;
+      } else {
+        prd.bias = -bias;
+      }
+      */
+
+      vec4 origin = firstOrigin + prd.t * firstDirection + vec4(prd.bias, 0.0);
+      vec4 direction = vec4(prd.scatterDirection, 0.0);
+
+
+
+
+      vec3 radiance = directRadiance;
+
+      for (uint bb = 1; bb < bounceCount; ++bb) {
+        prd.bias = vec3(0.0);
+        prd.t = -1.0;
+
+        traceRayEXT(topLevelAS, gl_RayFlagsOpaqueEXT, cullMask, 0, 0, 0,
+                    origin.xyz, uCamera.near, direction.xyz, uCamera.far, 0);
+
+        radiance += prd.radiance;
+
+        // abort if the ray is either invalid or didn't hit anything
+        const float t = prd.t;
+        if (t < 0.0)
+          break;
+
+        // move the ray based on the bsdf direction
+        origin = origin + t * direction + vec4(prd.bias, 0.0);
+        direction = vec4(prd.scatterDirection, 0.0);
+      };
+
+      pixelColor += radiance;
+    };
+  }
+
+  // move the ray based on the bsdf direction
+  // origin = origin + t * direction + vec4(prd.bias, 0.0);
+  // direction = vec4(prd.scatterDirection, 0.0);
+
+  pixelColor = max(vec3(0), pixelColor);
+
+  const uint pixelIndex = ipos.y * resolution.x + ipos.x;
+
+  pixelBuffer.pixels[pixelIndex] = vec4(pixelColor, 1.0);
+}
+
+
+
+
+
+
+
+
 - 1个矩形光源加入
 
 场景中增加平面，构成类似于conner box的场景
@@ -297,13 +433,32 @@ https://zhuanlan.zhihu.com/p/166154814
 
 ** 进一步完善
 
-# - 场景中增加平面和球，构成类似于conner box的场景
+- Geometry的快速学习
 
-#     - for compute shader
+显式、隐式
+
+geometry的几种表达方式
+
+
+构造球的geometry:
+why?
+场景中要增加一个球
+
+
+面分解法
+经纬度法
+
+
+- 场景中增加平面和球，构成类似于conner box的场景
+
+    - for compute shader
 # ray intersect with triangle mesh:
 # refer to https://www.bilibili.com/video/BV1X7411F744?p=13 -> 38:44
 
-# 介绍和实现BVH
+add instanceIndex, primitiveIndex
+
+
+    - for ray tracing pipeline
 
 
 

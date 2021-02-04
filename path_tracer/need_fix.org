@@ -1,0 +1,2 @@
+* TODO optimize "一个像素的颜色计算"
+优化：少计算一次bounce(compute direct light)

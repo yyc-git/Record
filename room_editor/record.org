@@ -1,0 +1,71 @@
+* TODO Demo
+
+** DONE add real-time-ray-tracing pipeline
+
+no test
+
+
+** TODO use three.js to render(in Room-Demo)
+
+
+*** TODO no taa, no bmfr postprocess pass
+
+**** TODO pass no texture + no denoise
+**** TODO pass texture + no denoise 
+**** TODO pass no texture + denoise 
+**** TODO pass texture + denoise 
+
+
+
+*** TODO add bmfr postprocess pass
+
+
+
+*** TODO add fly camera control
+
+
+*** TODO with taa
+
+need add gbuffer pass, taa pass
+
+
+
+*** TODO test transparent
+
+
+
+
+*** TODO test gltf model scene
+
+
+
+
+
+** TODO edit path-tracer pipeline
+use gbuffer
+
+no test
+
+** TODO use path-tracer pipeline to render when camera stop(in Room-Demo)
+
+
+
+** TODO refactor the two pipeline
+
+*** TODO extract duplicate repo, job, ...
+
+
+
+
+** TODO extract wonder-scenegraph from wonder@1.1, use it to replace three.js
+
+with test
+
+
+
+
+** TODO use electron to pack
+
+
+
+
