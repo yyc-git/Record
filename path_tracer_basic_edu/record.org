@@ -513,25 +513,6 @@ https://airguanz.github.io/2019/02/20/disney-brdf.html
 
 
 
-
-
-
-** 更多的光源加入
-
-
-
-- 多个矩形光源加入
-- 多个方向光加入
-- 多个点光源加入
-
-
-- 纹理基础介绍
-srgb, linear space
-texture array
-
-- 1个无限远的面积光加入
-
-
 ** 更多功能加入
 
 - 处理单面/双面
@@ -555,9 +536,10 @@ gltf
 
 
 
-# - 纹理基础介绍
-# srgb, linear space
-# texture array
+- 纹理基础介绍
+srgb, linear space
+texture array
+
 - 法线纹理加入
 tbn
 handle double side
@@ -565,6 +547,22 @@ handle double side
 diffuse, ...
 
 - Gamma矫正
+
+
+
+
+
+
+** 更多的光源加入
+
+
+
+- 多个矩形光源加入
+- 多个方向光加入
+- 多个点光源加入
+
+
+- 1个无限远的面积光加入
 
 
 
