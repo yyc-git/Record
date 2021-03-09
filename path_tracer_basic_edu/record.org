@@ -133,50 +133,50 @@ metallic-roughness material:
 
 * TODO cource catalog
 
-** 初步上手
+** DONE 初步上手
 
-# - 课程介绍
+- 课程介绍
 
-# # 回顾相关课程相关内容
-
-
-# # 提出问题
+# 回顾相关课程相关内容
 
 
-# 内容预览
-# （一级标题）
+# 提出问题
 
 
-# 说明实现方式：
-# Javascript
-# 基于WebGPU
-# 使用Three.js创建场景
+内容预览
+（一级标题）
 
 
-
-# 课程安排
-# 每节课时间（除去问答等互动时间）在30分钟内
+说明实现方式：
+Javascript
+基于WebGPU
+使用Three.js创建场景
 
 
 
-
-
-# # 复习
-
-# # 解答问题
+课程安排
+每节课时间（除去问答等互动时间）在30分钟内
 
 
 
-# # 参考资料
 
 
-# 扩展阅读
+# 复习
 
-# 感谢
+# 解答问题
 
 
 
-# - WebGPU介绍和使用光栅化管线绘制一个三角形
+# 参考资料
+
+
+扩展阅读
+
+感谢
+
+
+
+- WebGPU介绍和使用光栅化管线绘制一个三角形
 
 
 
@@ -197,8 +197,8 @@ can use its loader(e.g. GLTFLoader) to load model;
 
 
 
-# - 渲染框架介绍 - 光追管线介绍
-# - 光追管线介绍：使用光追管线绘制一个三角形
+- 渲染框架介绍 - 光追管线介绍
+- 光追管线介绍：使用光追管线绘制一个三角形
 - 3D基础介绍
 坐标系变换
 
@@ -215,14 +215,14 @@ can use its loader(e.g. GLTFLoader) to load model;
 
 
 
-** 理论准备
+** TODO 理论准备
 
-- 数学基础介绍
-微积分
+# - 数学基础介绍
+# 微积分
 
-refer to:
-https://zhuanlan.zhihu.com/p/260828634 :
-Fundamentals Of Computer Graphics，计算机图形学原理 -> ->14.1
+# refer to:
+# https://zhuanlan.zhihu.com/p/260828634 :
+# Fundamentals Of Computer Graphics，计算机图形学原理 -> ->14.1
 
 # 球面坐标系
 
@@ -246,28 +246,113 @@ Fundamentals Of Computer Graphics，计算机图形学原理 -> ->14.1
 
 # - 光线投射理论和实现：绘制一个三角形 
 - 光线投射、Whitted光线追踪、分布式光线追踪理论和伪代码
+
+
+- 暂停，研究wonder.js中迭代的实现！
+
+迭代方程
+throughput!
+
+
 - 蒙特卡洛积分推导
 实例代码
+
+
+- 暂停：
+
+研究下面材料，是否可以不讲"半球面随机方向生成"就先实现程序？
+https://www.cnblogs.com/lv-anchoret/p/10500918.html
+https://www.cnblogs.com/lv-anchoret/p/10508352.html
+https://www.cnblogs.com/lv-anchoret/p/10518961.html
+
+
+# 把采样、逆变换算法放到"半球面随机方向生成"中？
+
+
+- 使用“逆变换算法”采样
+实例代码
+
+
 - 减小方差：重要性采样
 实例代码
-- 路径追踪介绍和伪代码
-第四、六、九（和分布式光线追踪对比）节课
--路径追踪对应的渲染方程变换
-第九节课（去掉面积积分形式，只要路径积分形式）
-伪代码修改：
-将递归改为迭代（使用throughout）
+
+# - (暂停，为什么需要基于面积的积分形式？复习pbrt中矩形光源的实现！)
 
 
 
-- 最简单的实现？
 
-引出很多问题（如采样方向的选择等），进行简化实现
+- 暂停
+（给出所有的伪代码） 包括迭代
+
+（实现第三部分所有课程的代码！）(compute pipeline)
+
+
+
+
+# - 路径追踪理论和伪代码
+# 第四、六、九（和分布式光线追踪对比）节课
+
+# refer to lecture 16
+
+# (
+# 除了像素发送N条射线（改进1），还使用M帧来累加求平均值（.rgen就不再求平均值了！）（改进2）！
+# )
+
+
+
+# -路径追踪对应的渲染方程变换
+# 第九节课（去掉面积积分形式，只要路径积分形式）
+# 伪代码修改：
+# 将递归改为迭代（使用throughout）
+
+
+- 路径追踪
+
+
+
+# - 最简单的实现？
+
+# 引出很多问题（如采样方向的选择等），进行简化实现
 
 
 
 
 
 ** 最小实现
+
+# - 场景中增加平面，构成类似于conner box的场景
+
+- 场景中增加平面和球，构成类似于conner box的场景
+
+  - Geometry的快速学习
+
+  显式、隐式
+
+  geometry的几种表达方式
+
+
+  构造球的geometry:
+  why?
+  场景中要增加一个球
+
+
+  面分解法
+  经纬度法
+
+
+
+    - for compute shader
+# ray intersect with triangle mesh:
+# refer to https://www.bilibili.com/video/BV1X7411F744?p=13 -> 38:44
+
+add instanceIndex, primitiveIndex
+
+
+    # - for ray tracing pipeline
+
+
+
+运行结果，显示场景！
 
 
 
@@ -278,7 +363,15 @@ refer to:
 https://zhuanlan.zhihu.com/p/166154814
 
 
-- 一个像素的颜色计算
+
+- 1个矩形光源加入
+
+场景中增加平面，构成类似于conner box的场景
+
+给出运行效果
+
+
+# - 一个像素的颜色计算
 
 
 
@@ -417,14 +510,8 @@ void main() {
 
 
 
-- 1个矩形光源加入
 
-场景中增加平面，构成类似于conner box的场景
-
-给出运行效果
-
-
-- 加上fly相机？
+# - 加上fly相机？
 
 
 
@@ -433,40 +520,22 @@ void main() {
 
 ** 进一步完善
 
-- Geometry的快速学习
-
-显式、隐式
-
-geometry的几种表达方式
-
-
-构造球的geometry:
-why?
-场景中要增加一个球
-
-
-面分解法
-经纬度法
-
-
-- 场景中增加平面和球，构成类似于conner box的场景
-
-    - for compute shader
-# ray intersect with triangle mesh:
-# refer to https://www.bilibili.com/video/BV1X7411F744?p=13 -> 38:44
-
-add instanceIndex, primitiveIndex
-
-
-    - for ray tracing pipeline
 
 
 
+
+# - 场景中增加平面和球，构成类似于conner box的场景
+
+
+- 暂停:
+
+研究lecture 16, 看矩形光如何实现（直接替换dw和da！）
 
 
 
 
 - 直接光源采样数学推导
+
 
 路径追踪面积积分形式推导
 
@@ -498,6 +567,16 @@ https://github.com/KhronosGroup/glTF/blob/master/specification/2.0/README.md#app
 https://airguanz.github.io/2019/02/20/disney-brdf.html
 
 
+
+
+
+** 更多的光源加入
+
+- (暂停，复习pbrt、wonder.js中关于多重重要性采样和多光源的实现、直接光源采样！为什么需要基于面积的积分形式？)
+
+
+
+
 - 减小方差：多重重要性采样
 提出问题：
 使用MIS前: 大矩形、小矩形、perfect/gloss specular reflection 渲染效果
@@ -510,6 +589,20 @@ https://airguanz.github.io/2019/02/20/disney-brdf.html
 比较:
 使用MIS前的效果
 使用MIS后的效果
+
+
+- 多个矩形光源加入
+- 多个方向光加入
+- 多个点光源加入
+
+
+- 纹理基础介绍
+srgb, linear space
+texture array
+
+- 1个无限远的面积光加入
+
+
 
 
 
@@ -536,9 +629,9 @@ gltf
 
 
 
-- 纹理基础介绍
-srgb, linear space
-texture array
+# - 纹理基础介绍
+# srgb, linear space
+# texture array
 
 - 法线纹理加入
 tbn
@@ -547,23 +640,6 @@ handle double side
 diffuse, ...
 
 - Gamma矫正
-
-
-
-
-
-
-** 更多的光源加入
-
-
-
-- 多个矩形光源加入
-- 多个方向光加入
-- 多个点光源加入
-
-
-- 1个无限远的面积光加入
-
 
 
 
