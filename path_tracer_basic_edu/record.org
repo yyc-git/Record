@@ -322,7 +322,7 @@ https://www.cnblogs.com/lv-anchoret/p/10518961.html
 
 # - 场景中增加平面，构成类似于conner box的场景
 
-- 场景中增加平面和球，构成类似于conner box的场景
+- 场景中增加平面和球和一个矩形光源，构成类似于conner box的场景
 
   - Geometry的快速学习
 
@@ -357,6 +357,11 @@ add instanceIndex, primitiveIndex
 
 
 - 半球面随机方向生成
+
+
+任务：演示实例
+
+
 - 用Lambertian模型实现BRDF和LambertianBRDF材质加入
 
 refer to:
@@ -364,9 +369,12 @@ https://zhuanlan.zhihu.com/p/166154814
 
 
 
-- 1个矩形光源加入
 
-场景中增加平面，构成类似于conner box的场景
+# 场景中增加平面，构成类似于conner box的场景
+
+
+- 实现路径追踪
+
 
 给出运行效果
 
