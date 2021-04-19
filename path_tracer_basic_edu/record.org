@@ -215,7 +215,7 @@ can use its loader(e.g. GLTFLoader) to load model;
 
 
 
-** TODO 理论准备
+** DONE 理论准备
 
 # - 数学基础介绍
 # 微积分
@@ -318,7 +318,7 @@ https://www.cnblogs.com/lv-anchoret/p/10518961.html
 
 
 
-** 最小实现
+** TODO 最小实现
 
 # - 场景中增加平面，构成类似于conner box的场景
 
@@ -350,6 +350,9 @@ add instanceIndex, primitiveIndex
 
     # - for ray tracing pipeline
 
+  - 加入矩形光源
+
+
 
 
 运行结果，显示场景！
@@ -377,6 +380,11 @@ https://zhuanlan.zhihu.com/p/166154814
 
 
 给出运行效果
+
+
+优化：当bb >= ?时，再使用rr
+（进行运行测试，比较一开始就使用rr或者当bb>=0或1或2或3时，有什么区别！最后选择1？）
+
 
 
 # - 一个像素的颜色计算
@@ -535,9 +543,9 @@ void main() {
 # - 场景中增加平面和球，构成类似于conner box的场景
 
 
-- 暂停:
+# - 暂停:
 
-研究lecture 16, 看矩形光如何实现（直接替换dw和da！）
+# 研究lecture 16, 看矩形光如何实现（直接替换dw和da！）
 
 
 
@@ -573,6 +581,44 @@ https://zhuanlan.zhihu.com/p/187569004
 refer to:
 https://github.com/KhronosGroup/glTF/blob/master/specification/2.0/README.md#appendix-b-brdf-implementation
 https://airguanz.github.io/2019/02/20/disney-brdf.html
+
+
+
+** 更多功能加入
+
+- 处理单面/双面
+
+handle normal
+
+handle intersect with triangle:
+    compute shader:
+    refer to 
+    https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-rendering-a-triangle/single-vs-double-sided-triangle-backface-culling
+
+    ray tracing pipeline:
+    use GPURayTracingAccelerationInstanceUsage-TRIANGLE_CULL_DISABLE,TRIANGLE_FRONT_COUNTERCLOCKWISE ?
+    refer to
+    https://github.com/maierfelix/dawn-ray-tracing/blob/master/RT_SPEC.md#gpuraytracingaccelerationinstanceusage
+
+
+
+- 模型加载
+gltf
+
+
+
+# - 纹理基础介绍
+# srgb, linear space
+# texture array
+
+- 法线纹理加入
+tbn
+handle double side
+- 其余纹理加入
+diffuse, ...
+
+- Gamma矫正
+
 
 
 
@@ -613,41 +659,6 @@ texture array
 
 
 
-
-** 更多功能加入
-
-- 处理单面/双面
-
-handle normal
-
-handle intersect with triangle:
-    compute shader:
-    refer to 
-    https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-rendering-a-triangle/single-vs-double-sided-triangle-backface-culling
-
-    ray tracing pipeline:
-    use GPURayTracingAccelerationInstanceUsage-TRIANGLE_CULL_DISABLE,TRIANGLE_FRONT_COUNTERCLOCKWISE ?
-    refer to
-    https://github.com/maierfelix/dawn-ray-tracing/blob/master/RT_SPEC.md#gpuraytracingaccelerationinstanceusage
-
-
-
-- 模型加载
-gltf
-
-
-
-# - 纹理基础介绍
-# srgb, linear space
-# texture array
-
-- 法线纹理加入
-tbn
-handle double side
-- 其余纹理加入
-diffuse, ...
-
-- Gamma矫正
 
 
 
