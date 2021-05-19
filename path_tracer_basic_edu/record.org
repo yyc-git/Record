@@ -318,7 +318,7 @@ https://www.cnblogs.com/lv-anchoret/p/10518961.html
 
 
 
-** TODO 最小实现
+** DONE 最小实现
 
 # - 场景中增加平面，构成类似于conner box的场景
 
@@ -534,7 +534,7 @@ void main() {
 
 
 
-** 进一步完善
+** TODO 进一步完善
 
 
 
@@ -620,6 +620,7 @@ diffuse, ...
 - Gamma矫正
 
 
+- Tone Mapping
 
 
 
