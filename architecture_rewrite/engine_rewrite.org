@@ -1,0 +1,7 @@
+* TODO refer to Bevy(https://zhuanlan.zhihu.com/p/356881497), use ArcheType to store 
+
+如图，我们有Pos 和Velocity两个Component的Vector，但是实际上引擎里一般是按照两个Component一起遍历访问的，这时候不管按照哪个Vector来访问都会有访存上的问题
+
+把拥有相同Component组合的Entities，放在一起管理。
+
+这样访问时，可以批量获得一个Entity上的多个Comonent的数据，提升访问速度！
