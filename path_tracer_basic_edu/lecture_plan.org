@@ -2,16 +2,21 @@
 
 - 模型解析+纹理 专题课
 - 多光源、IBL 专题课
-- BSDF 专题课
-- 体散射 专题课
+- BSDF、体散射 专题课
 雾渲染
 玉渲染
-- 改进微表面模型 专题课
+- PBR 专题课
+disney pbr BRDF
+(支持各向异性的NDF(需要重新推导pdf！))
+
+PBR优化：
 高度相关的G
 使用VNDF
-disney pbr BRDF、BSDF
 
-- 各种材质的渲染 专题课
+
+disney pbr BSDF
+
+各种材质的渲染:
 塑料、毛发、宝石、布料、车漆、水、皮肤等渲染
 
 
