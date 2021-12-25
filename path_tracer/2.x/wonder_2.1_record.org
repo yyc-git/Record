@@ -1,0 +1,51 @@
+** TODO support basic bsdf
+
+
+
+
+** TODO support render Caustics
+
+
+*** TODO learn MLT
+
+refer to:
+https://www.zhihu.com/question/30016848
+https://www.cnblogs.com/starfallen/p/3509234.html
+
+
+
+learn Robust Light Transport Simulation via Metropolized Bidirectional Estimators:
+https://zhuanlan.zhihu.com/p/24316493
+
+
+*** TODO Manifold Exploration
+
+https://zhuanlan.zhihu.com/p/72673165 ->Manifold Exploration
+
+https://www.zhihu.com/question/29316802/answer/205988507
+
+
+**** TODO handle Caustics
+[Specular Manifold Sampling for Rendering High-Frequency Caustics and Glints](http://rgl.epfl.ch/publications/Zeltner2020Specular)
+
+https://devtalk.blender.org/t/specular-manifold-sampling-for-cycles-caustics-and-speed/15646/14
+
+
+
+*** TODO fix transmission shadow(BSDF)
+
+refer to:
+https://zhuanlan.zhihu.com/p/58692781
+<<Ray Tracing Gems>> -> part 3?
+https://stackoverflow.com/questions/13456738/shadow-rays-through-light-bending-objects
+https://www.google.com/search?newwindow=1&safe=strict&sxsrf=ALeKk001aYCN6cbHsLBJnMsR2rvt6_tEKQ%3A1603448448747&ei=gK6SX5mTLcTn9QPiiKzYAQ&q=transparent+Shadow+path+trace&oq=transparent+Shadow+path+trace&gs_lcp=CgZwc3ktYWIQAzIECCMQJ1DjvgRY474EYPzJBGgAcAB4AoABpAaIAY0OkgEJMy0xLjAuMS4xmAEAoAECoAEBqgEHZ3dzLXdpesABAQ&sclient=psy-ab&ved=0ahUKEwiZ08_5vsrsAhXEc30KHWIECxsQ4dUDCA0&uact=5
+
+
+this is caused with Caustics? see the Manifold Exploration or photon mapping!!!
+
+
+
+
+
+
+** TODO publish

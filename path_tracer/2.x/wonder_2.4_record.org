@@ -1,0 +1,19 @@
+** TODO add LDR support
+
+convert LDR to gltf, load it by three.js!
+
+
+*** TODO load ldr
+
+*** TODO 圆角/直角转换
+
+support rounded corner
+
+refer to:
+https://simoncourtin.github.io/research/courtin2019efficient.pdf
+
+
+
+
+
+

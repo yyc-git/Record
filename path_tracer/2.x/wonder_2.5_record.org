@@ -1,0 +1,160 @@
+** TODO add application
+
+////set camera
+
+////set lights
+
+////add env map
+
+
+only send ldr file
+(store part file in render3 engine cloud)
+
+
+*** TODO add Main Server
+
+
+*** TODO add Worker Server
+
+
+*** TODO add Front End Tool(very basic)
+
+
+*** TODO add Scheduler
+
+dispatch commands;
+sync;
+(invoke engine's init, update)
+
+
+
+.gltf
+config json
+
+
+one gpu server node
+
+one gpu server node
+
+
+three.init
+wonder.init
+
+render
+
+
+let picture = arrayBuffer;
+
+picture -> base64
+
+
+
+
+*** TODO add Transporter
+
+compress
+
+decompress
+
+
+
+https://stackoverflow.com/questions/36091022/how-compress-typedarrays-arraybuffers-for-storage-and-transmission
+
+https://nodejs.org/api/zlib.html#zlib_zlib
+http://www.zlib.net/
+
+
+
+
+
+
+** TODO deploy to cloud(distributed render)
+
+我们希望联合多个GPU(RTX2060及以上的显卡)形成支持光线追踪的渲染农场，从而让我们可以分布式地并行渲染一个大型3D场景(使用光线追踪)
+
+主要目的：
+进行分布式渲染，得到一张3D场景的图片
+
+思路：
+其中一台服务器节点（该节点可以为一个CPU或一般的服务器）作为主节点，进行渲染任务的调配;
+其他服务器节点（该节点可以为一个GPU或者GPU服务器）作为worker节点，负责渲染该图片的某个方块区域；
+他们都共享场景数据；
+
+
+所有服务器共享场景数据（一个buffer数据）；
+主服务器需要传输渲染指令（如渲染该图片的哪个方块区域，使用哪个相机的数据等）；
+GPU服务器节点负责把渲染结果（该图片的某个方块区域的数据）传输给主服务器节点；
+
+
+worker节点需要win10操作系统，因为渲染引擎需要运行在GPU服务器节点上，需要win10系统+vulkan驱动
+
+
+
+solution:
+1.use one compute with multi-gpus
+
+https://github.com/gpuweb/gpuweb/issues/995
+
+now not support it!!! will support in pre-1.0(after MVP)
+
+
+https://github.com/maierfelix/webgpu/issues/26
+
+
+
+2.use multiple computes(each one has one gpu)
+
+
+1、你这边是否可以把一台服务器的多个GPU聚合为一个GPU，让我像一个GPU那样调用？
+如一台服务器有两个显存为11G的RTX 2070s，那么我可以把它当成一个GPU那样来使用（显存为22G）
+
+
+回答：不能
+
+
+2、你这边是否可以给我多台服务器（包含一台主服务器和多台worker服务器），每台服务器都是win10系统+只有一个RTX2070s以上的GPU，每台服务器通过http通信（最好用内网通信，速度要快！）？
+这样我就可以由主服务器负责通过http通信，将渲染任务分派给各个worker服务器（只有一个GPU），然后将最终结果通过http通信传输给外界用户
+
+
+回答：
+可以。
+主服务器和worker服务器的通信速度、主服务器与外部用户的通信速度 要看你的设计要求。
+
+
+
+主服务器和worker服务器的通信、主服务器与外部用户的通信 都使用http通信把？
+
+回答：
+这个没问题
+
+
+
+
+
+
+最终方案：
+租用一台gpu服务器（一个服务器1个RTX 2070s显卡）作为worker服务器（gpu服务器店铺：https://shop392735765.taobao.com/?spm=2013.1.1000126.2.66cf1e6bdi61c0 );
+然后租用一台云服务器作为主服务器，两者通过http传输二进制文件;
+主服务器与Front End Tool通过http通信；
+
+一台worker node渲染一整张图片！
+
+
+可考虑把我这台电脑作为worker服务器！（@王影）
+
+
+
+
+
+** TODO add weixin login
+
+
+** TODO add weixin payment
+
+
+** TODO add website, document
+
+
+** TODO publish
+
+publish Wonder.js v2.0.0

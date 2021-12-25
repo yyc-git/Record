@@ -1,0 +1,252 @@
+** TODO use newest architecture
+
+only use brdf(direction light)
+use code from edu!
+
+
+*** TODO need fix wonder.js
+
+- change instanceContainer->instance->usage to NONE instead of TRIANGLE_CULL_DISABLE?
+    let instanceContainer = device.createRayTracingAccelerationContainer({
+        level: "top",
+        usage: WebGPU.GPURayTracingAccelerationContainerUsage.PREFER_FAST_TRACE,
+        instances: [
+            {
+                usage: WebGPU.GPURayTracingAccelerationInstanceUsage.NONE,
+                mask: 0xFF,
+                instanceId: 0,
+                instanceOffset: 0x0,
+                transform: {
+                    translation: { x: 0, y: 0, z: 0 },
+                    rotation: { x: 0, y: 0, z: 0 },
+                    scale: { x: 1, y: 1, z: 1 }
+                },
+                geometryContainer: geometryContainer
+            }
+        ]
+    });
+
+
+- remove  basicCameraViewRepo->   getActiveBasicCameraView, use gameObjectRepo->getBasicCameraView instead
+
+- optimize "一个像素的颜色计算"
+优化：少计算一次bounce(compute direct light)
+
+
+- fix: .rmiss 
+path.radiance should be:path.throughout * backgroundColor !
+
+
+*** TODO finish
+
+
+*** TODO load gltf model by threejs!
+
+read from MeshPhysicalMaterial!
+
+https://threejs.org/docs/#api/en/materials/MeshPhysicalMaterial
+
+
+refer to clound example project!
+
+
+
+////*** TODO extract load gltf middleare?
+
+*** TODO pass run test
+
+render pictures!
+
+
+
+*** TODO pass unit test
+
+
+** TODO handle single delta light
+
+light types:
+enum class LightFlags : int {
+    DeltaPosition = 1, DeltaDirection = 2, Area = 4, Infinite = 8
+};
+
+
+<<Light Declarations>>= 
+class Light {
+public:
+    <<Light Interface>> 
+       virtual ~Light();
+       Light(int flags, const Transform &LightToWorld,
+             const MediumInterface &mediumInterface, int nSamples = 1)
+           : flags(flags), nSamples(std::max(1, nSamples)),
+             mediumInterface(mediumInterface), LightToWorld(LightToWorld),
+             WorldToLight(Inverse(LightToWorld))  { 
+           <<Warn if light has transformation with non-uniform scale>> 
+       }
+       virtual Spectrum Sample_Li(const Interaction &ref, const Point2f &u, 
+                     Vector3f *wi, Float *pdf, VisibilityTester *vis) const = 0;
+       virtual Spectrum Power() const = 0;
+       virtual void Preprocess(const Scene &scene) { }
+       virtual Spectrum Le(const RayDifferential &r) const;
+       virtual Float Pdf_Li(const Interaction &ref,
+                            const Vector3f &wi) const = 0;
+       virtual Spectrum Sample_Le(const Point2f &u1, const Point2f &u2,
+                                  Float time, Ray *ray, Normal3f *nLight,
+                                  Float *pdfPos, Float *pdfDir) const = 0;
+       virtual void Pdf_Le(const Ray &ray, const Normal3f &nLight,
+                           Float *pdfPos, Float *pdfDir) const = 0;
+
+    <<Light Public Data>> 
+       const int flags;
+       const int nSamples;
+       const MediumInterface mediumInterface;
+
+protected:
+    <<Light Protected Data>> 
+       const Transform LightToWorld, WorldToLight;
+
+};
+
+
+*** TODO edit Distant Lights(directional light)
+
+*** TODO add point light
+
+
+** TODO handle area lights
+
+
+*** TODO add rect light
+
+
+
+** TODO mutliple lights, mis
+
+distance + point + rect(area) light
+
+
+
+** TODO verify and fix specular for direct light sample
+
+
+
+*** TODO do
+
+*** TODO fix damet model's firefly
+
+
+** TODO use RR instead of max bounce?
+
+
+
+
+
+** TODO IBL
+
+
+*** TODO IBL
+
+# refer to:
+# https://learnopengl.com/PBR/IBL/Diffuse-irradiance
+# https://learnopengl.com/PBR/IBL/Specular-IBL
+
+learn rayTrace.frag
+
+
+
+learn from pbrt
+
+
+importance sampling with the HDR image
+
+
+
+refer to github code:
+https://github.com/hoverinc/ray-tracing-renderer
+
+
+
+*** TODO optimize IBL importance sample
+
+别名法 Alias Method 优化？
+https://zhuanlan.zhihu.com/p/66518450
+
+
+
+http://www.aconty.com/pdf/fast-product-importance-abstract.pdf
+
+[Structured Importance Sampling of Environment Maps](https://vision.cornell.edu/se3/wp-content/uploads/2014/09/54_structured.pdf)
+
+
+
+# ** TODO remove direction light?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ** TODO derive multiple lights, mis(handle specular?), ibl
+** TODO derive mis(handle specular?), ibl
+
+
+
+
+
+
+
+** TODO derive mis(handle specular?), ibl
+
+
+
+
+** TODO gltf with area, sphere light, point/direction light
+
+
+https://github.com/KhronosGroup/glTF/issues/946
+
+https://github.com/KhronosGroup/glTF/pull/1850
+
+
+** TODO gltf with ibl
+
+
+https://github.com/KhronosGroup/glTF/issues/946
+
+https://github.com/KhronosGroup/glTF/pull/1850
+
+
+
+
+** TODO add gamma, tonemap
+
+
+
+** TODO test models
+
+from:
+https://github.com/AirGuanZ/Atrc
+https://casual-effects.com/g3d/data10/index.html#
+https://blendswap.com/
+
+
+(edit in blender! export gltf from blender?)
+
+
+** TODO consider model from vray, 3ds
+
+
+** TODO publish

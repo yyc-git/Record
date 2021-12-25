@@ -1,0 +1,49 @@
+* TODO support multiple layer material
+
+refer to:
+https://zhuanlan.zhihu.com/p/51398301
+https://www.google.com/search?q=Practical+Multilayered+Materials+in+Call+of+Duty%3A+Infinite+Warfare&oq=Practical+Multilayered+Materials+in+Call+of+Duty%3A+Infinite+Warfare&aqs=chrome..69i57.293j0j1&sourceid=chrome&ie=UTF-8
+https://research.cs.cornell.edu/layered-sg14/
+https://computergraphics.stackexchange.com/questions/5758/path-tracing-materials
+https://computergraphics.stackexchange.com/questions/8013/pbr-how-to-handle-multiple-bsdfs-and-material-type?noredirect=1&lq=1
+https://autodesk.github.io/standard-surface/#discussion/layeringmodel
+https://www.google.com/search?newwindow=1&safe=strict&sxsrf=ALeKk03hgnTbzH6pLqnUO0Hv_qbVDs3MsA%3A1602578613012&ei=tWiFX8ArkdD6BK2MgqAH&q=bssrdf&oq=bssrdf&gs_lcp=CgZwc3ktYWIQAzIECCMQJzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIAFCyCljlE2DjFGgAcAF4AIABwQKIAfQJkgEDMy00mAEAoAEBqgEHZ3dzLXdpesABAQ&sclient=psy-ab&ved=0ahUKEwiA2s_HlrHsAhURqJ4KHS2GAHQQ4dUDCA0&uact=5
+
+
+consider reciprocal?
+
+
+
+
+** TODO support thin fim layer
+
+gltf has this extension:
+https://github.com/KhronosGroup/glTF/issues/1221
+https://github.com/KhronosGroup/glTF/pull/1742
+
+
+
+** TODO support KHR_materials_clearcoat, KHR_materials_sheen gltf extension
+
+https://github.com/KhronosGroup/glTF/tree/master/extensions/2.0/Khronos/KHR_materials_clearcoat
+https://github.com/KhronosGroup/glTF/tree/master/extensions/2.0/Khronos/KHR_materials_sheen
+
+
+Blender 2.90 already support KHR_materials_clearcoat!
+
+wait for blender to support KHR_materials_sheen???
+
+
+** TODO 各种材质的渲染
+
+塑料、////毛发、宝石、布料、车漆、////水、////皮肤等渲染
+
+////*** TODO support disney brdf/bsdf: clearcoat, sheen, flatness, ...
+
+refer to:
+[Rendering the Moana Island Scene Part 1: Implementing the Disney BSDF](https://schuttejoe.github.io/post/disneybsdf/)
+
+
+
+
+
