@@ -1,11 +1,21 @@
 ** TODO use newest architecture
 
-only use brdf(direction light)
-use code from edu!
-
-*** TODO finish
+# only use brdf(direction light)
+# use code from edu!
 
 **** TODO do
+
+not use disney, use gltf brdf and expand to basic bsdf!
+
+
+# pass bdd test
+pass unit test
+
+
+pass run test:
+pass corner box scene
+
+
 
 **** TODO need fix wonder.js
 
@@ -42,6 +52,10 @@ path.radiance should be:path.throughout * backgroundColor !
 
 
 - fix: 直接光源采样->specular ??? 
+
+
+
+**** TODO add generate image
 
 
 **** TODO add arcball camera
@@ -110,14 +124,6 @@ protected:
 distance + point + rect(area) light
 
 
-
-** TODO verify and fix specular for direct light sample
-
-
-
-*** TODO do
-
-*** TODO fix damet model's firefly
 
 
 ** TODO use RR instead of max bounce?
@@ -194,7 +200,42 @@ http://www.aconty.com/pdf/fast-product-importance-abstract.pdf
 
 
 
-** TODO derive mis(handle specular?), ibl
+** TODO add gamma, tonemap
+
+
+** TODO load gltf model by threejs!(use wonder middleware to load!???)
+
+read from MeshPhysicalMaterial!
+
+https://threejs.org/docs/#api/en/materials/MeshPhysicalMaterial
+
+
+refer to clound example project!
+
+
+
+////*** TODO extract load gltf middleare?
+
+*** TODO pass run test
+
+render pictures!
+
+
+
+*** TODO pass unit test
+
+
+** TODO verify and fix specular for direct light sample
+
+
+
+*** TODO do
+
+*** TODO fix damet model's firefly
+
+
+
+
 
 
 
@@ -217,35 +258,11 @@ https://github.com/KhronosGroup/glTF/pull/1850
 
 
 
-** TODO add gamma, tonemap
-
-
-** TODO load gltf model by threejs!
-
-read from MeshPhysicalMaterial!
-
-https://threejs.org/docs/#api/en/materials/MeshPhysicalMaterial
-
-
-refer to clound example project!
-
-
-
-////*** TODO extract load gltf middleare?
-
-*** TODO pass run test
-
-render pictures!
-
-
-
-*** TODO pass unit test
-
-
 ** TODO test models
 
 from:
 https://github.com/AirGuanZ/Atrc
+https://benedikt-bitterli.me/resources/
 https://casual-effects.com/g3d/data10/index.html#
 https://blendswap.com/
 

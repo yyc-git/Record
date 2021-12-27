@@ -46,6 +46,16 @@ this is caused with Caustics? see the Manifold Exploration or photon mapping!!!
 
 
 
+*** TODO handle emissive + transparent
+
+refer to:
+https://blog.demofox.org/2016/09/21/path-tracing-getting-started-with-diffuse-and-emissive/
+https://blender.stackexchange.com/questions/98403/how-to-control-the-mix-of-emission-and-transparency-materials
+https://docs.chaosgroup.com/display/MTLEDITOR/Emissive+Material+%7C+BRDFLight
+
+
+need find the way to implement in path tracing!!!
+
 
 
 ** TODO publish
