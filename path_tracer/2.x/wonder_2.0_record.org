@@ -3,8 +3,11 @@
 only use brdf(direction light)
 use code from edu!
 
+*** TODO finish
 
-*** TODO need fix wonder.js
+**** TODO do
+
+**** TODO need fix wonder.js
 
 - change instanceContainer->instance->usage to NONE instead of TRIANGLE_CULL_DISABLE?
     let instanceContainer = device.createRayTracingAccelerationContainer({
@@ -37,29 +40,12 @@ use code from edu!
 path.radiance should be:path.throughout * backgroundColor !
 
 
-*** TODO finish
+
+- fix: 直接光源采样->specular ??? 
 
 
-*** TODO load gltf model by threejs!
+**** TODO add arcball camera
 
-read from MeshPhysicalMaterial!
-
-https://threejs.org/docs/#api/en/materials/MeshPhysicalMaterial
-
-
-refer to clound example project!
-
-
-
-////*** TODO extract load gltf middleare?
-
-*** TODO pass run test
-
-render pictures!
-
-
-
-*** TODO pass unit test
 
 
 ** TODO handle single delta light
@@ -233,6 +219,27 @@ https://github.com/KhronosGroup/glTF/pull/1850
 
 ** TODO add gamma, tonemap
 
+
+** TODO load gltf model by threejs!
+
+read from MeshPhysicalMaterial!
+
+https://threejs.org/docs/#api/en/materials/MeshPhysicalMaterial
+
+
+refer to clound example project!
+
+
+
+////*** TODO extract load gltf middleare?
+
+*** TODO pass run test
+
+render pictures!
+
+
+
+*** TODO pass unit test
 
 
 ** TODO test models
