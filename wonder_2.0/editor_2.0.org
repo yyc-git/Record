@@ -1,0 +1,27 @@
+* TODO new architecture demo
+
+** TODO based on new editor-architecture
+
+** TODO be plugin like engine!
+
+so that user can extend editor by writing new plugins!
+
+** TODO can use engine extend plugin/component in editor!
+
+** TODO support multi-user edit the same scene at the same time
+
+by using event sourcing?
+
+
+* TODO finish new architecture
+
+
+* TODO add basic functions
+
+
+* TODO future
+
+** TODO add before functions include stream load, asset bundle, script, point light(engine support defer shading?), fly camera controller
+
+
+** TODO add 1.2 functions include skybox, imgui

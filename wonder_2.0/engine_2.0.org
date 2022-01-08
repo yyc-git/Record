@@ -1,0 +1,33 @@
+* TODO only support webgpu
+
+* TODO use new architecture
+
+* TODO add gpu driven plugin!(not add gi plugin now!)
+
+* TODO add front render plugin
+
+* TODO support load/export/generate wdb
+
+* TODO support dispose
+
+* TODO support clone
+
+* TODO support redo/undo
+
+* TODO remain single thread render
+
+
+
+* TODO future
+
+** TODO add gi plugin
+
+*** TODO generate sdf
+
+*** TODO support shadow
+
+*** TODO more...
+
+** TODO support multi-queue
+
+** TODO support multi-thread render

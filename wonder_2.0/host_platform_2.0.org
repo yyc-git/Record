@@ -1,0 +1,13 @@
+write by typescript! so can be maintained by other front end coders!
+
+
+* TODO simplest login/register
+
+not verify by email!
+
+* TODO user can download, upload scene wdb to cloud repo(tencent cloud)!
+
+
+* TODO future
+
+** TODO verify by email when register
